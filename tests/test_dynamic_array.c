@@ -3,7 +3,7 @@
 
 #include <dynamic_array.h>
 #include <stddef.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 
 void testSetup (void) {
@@ -246,10 +246,12 @@ Test(dynamic_array, access) {
     cr_expect(val == '2');
     cr_expect(DynamicArray_length(&da_3) == 5);
     cr_expect(DynamicArray_capacity(&da_3) == 6);
+    cr_expect(DynamicArray_size(&da_3) == (DynamicArray_capacity(&da_3) * sizeof(da_3.data[0])));
     cr_expect(DynamicArray_remove(&da_3, 3, &val) == SUCCESS);
     cr_expect(val == '9');
     cr_expect(DynamicArray_get(&da_3, 3, &val) == SUCCESS);
     cr_expect(val == '8');
+    cr_expect(DynamicArray_size(&da_3) == (DynamicArray_capacity(&da_3) * sizeof(da_3.data[0])));
     cr_expect(DynamicArray_remove(&da_3, 3, &val) == SUCCESS);
     cr_expect(val == '8');
     cr_expect(DynamicArray_get(&da_3, 3, &val) == FAIL);

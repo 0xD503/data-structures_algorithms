@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 
-#define DATA_TYPE char
+#define DATA_TYPE long
 #define MEM_REALLOC_FACTOR 2
 //#define
 

@@ -138,7 +138,7 @@ Status DynamicArray_insert (DynamicArray *me, size_t index, DATA_TYPE val) {
                 goto end;
             }
         }
-        memmove(&me->data[index + 1], &me->data[index], me->length - index);
+        memmove(&me->data[index + 1], &me->data[index], (me->length - index) * sizeof(me->data[0]));
         me->data[index] = val;
         me->length++;
         status = SUCCESS;
@@ -162,7 +162,7 @@ Status DynamicArray_remove (DynamicArray *me, size_t index, DATA_TYPE *dest) {
                 goto end;
             }
         }
-        memmove(&me->data[index], &me->data[index + 1], me->length-- - index - 1);
+        memmove(&me->data[index], &me->data[index + 1], (me->length-- - index - 1) * sizeof(me->data[0]));
         status = SUCCESS;
     }
 
