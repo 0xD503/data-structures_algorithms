@@ -3,7 +3,6 @@
 
 #include <dynamic_array.h>
 #include <stddef.h>
-//#include <stdio.h>
 
 
 void testSetup (void) {
@@ -19,6 +18,12 @@ TestSuite(dynamic_array, .init = testSetup, .fini = testTeardown);
 
 
 Test(dynamic_array, create) {
+    DynamicArray_init(NULL);
+    DynamicArray_init_2(NULL, 0);
+    DynamicArray_init_2(NULL, 100);
+
+    DynamicArray_deinit(NULL);
+
     DynamicArray da;
     DynamicArray_init(&da);
     cr_expect(DynamicArray_length(&da) == 0);
@@ -43,15 +48,15 @@ Test(dynamic_array, create) {
     cr_expect(da_3.data == NULL);
     cr_expect(da.capacity == 0);
     cr_expect(da.length == 0);
-
-    DynamicArray_init(NULL);
-    DynamicArray_init_2(NULL, 0);
-    DynamicArray_init_2(NULL, 100);
-
-    DynamicArray_deinit(NULL);
 }
 
 Test(dynamic_array, insert_remove_elements) {
+    DATA_TYPE test = 0;
+    cr_expect(DynamicArray_insert(NULL, 0, 7) == FAIL);
+    cr_expect(DynamicArray_insert(NULL, 1707, 7) == FAIL);
+    cr_expect(DynamicArray_remove(NULL, 0, NULL) == FAIL);
+    cr_expect(DynamicArray_remove(NULL, 1707, &test) == FAIL);
+
     DATA_TYPE val = 'h';
     DynamicArray da;
     DynamicArray_init(&da);
@@ -275,6 +280,13 @@ Test(dynamic_array, access) {
 }
 
 Test(dynamic_array, size_manip) {
+    cr_expect(DynamicArray_length(NULL) == 0);
+    cr_expect(DynamicArray_capacity(NULL) == 0);
+    cr_expect(DynamicArray_size(NULL) == 0);
+
+    cr_expect(DynamicArray_resize(NULL, 0) == FAIL);
+    cr_expect(DynamicArray_resize(NULL, 1707) == FAIL);
+
     DynamicArray da;
     DynamicArray_init(&da);
     cr_expect(DynamicArray_length(&da) == 0);
@@ -305,7 +317,7 @@ Test(dynamic_array, size_manip) {
     }
     cr_expect(DynamicArray_length(&da) == 1452);
     cr_expect(DynamicArray_capacity(&da) == 4356);
-    cr_expect(DynamicArray_remove(&da, 0, NULL) == SUCCESS);    /// remove 727'th
+    cr_expect(DynamicArray_remove(&da, 0, NULL) == SUCCESS);    /// remove 727'th element
     cr_expect(DynamicArray_length(&da) == 1451);
     cr_expect(DynamicArray_capacity(&da) == 1453);
 

@@ -6,7 +6,6 @@
 
 #define DATA_TYPE long
 #define MEM_REALLOC_FACTOR 2
-//#define
 
 
 enum Status_e {
