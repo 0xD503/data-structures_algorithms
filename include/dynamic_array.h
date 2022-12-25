@@ -15,9 +15,9 @@ enum Status_e {
 
 
 struct DynamicArray_s {
-    DATA_TYPE *data;
-    size_t length;      /// number of elements in a queue
-    size_t capacity;    /// number of buckets for elements in a queue
+    DATA_TYPE *_data;
+    size_t _length;      /// number of elements in a queue
+    size_t _capacity;    /// number of buckets for elements in a queue
 };
 
 
@@ -29,6 +29,17 @@ void DynamicArray_init (DynamicArray *me);
 void DynamicArray_init_2 (DynamicArray *me, size_t capacity);
 void DynamicArray_deinit (DynamicArray *me);
 
+/// fabrics
+DynamicArray *DynamicArray_create (void);
+DynamicArray *DynamicArray_create_2 (size_t capacity);
+void DynamicArray_destroy (DynamicArray **me);
+
+/// copy/move constructors
+void DynamicArray_init_copy (DynamicArray *me, DynamicArray *src);
+
+/// copy/move operators
+void DynamicArray_copy (DynamicArray *me, DynamicArray *src);
+
 size_t DynamicArray_length (const DynamicArray *me);
 size_t DynamicArray_capacity (const DynamicArray *me);
 size_t DynamicArray_size (const DynamicArray *me);
@@ -37,13 +48,7 @@ Status DynamicArray_resize (DynamicArray *me, size_t newCap);
 
 Status DynamicArray_insert (DynamicArray *me, size_t index, DATA_TYPE val);
 Status DynamicArray_remove (DynamicArray *me, size_t index, DATA_TYPE *dest);
-/* Status DynamicArray_push_back (DynamicArray *me, DATA_TYPE val); */
-/* Status DynamicArray_ (DynamicArray *me, DATA_TYPE *dest); */
 
-/* /// begin/end - iterators */
-/* /// first/last, front/back - value, reference */
-/* Status DynamicArray_front (const DynamicArray *me, DATA_TYPE *dest); */
-/* Status DynamicArray_back (const DynamicArray *me, DATA_TYPE *dest); */
 Status DynamicArray_get (const DynamicArray *me, size_t index, DATA_TYPE *dest);
 Status DynamicArray_set (DynamicArray *me, size_t index, DATA_TYPE val, DATA_TYPE *dest);
 
