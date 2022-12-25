@@ -4,14 +4,10 @@
 #include <stdio.h>
 #include <stddef.h>
 
+#include "utils.h"
+
 
 #define MEM_REALLOC_FACTOR 2
-
-
-enum Status_e {
-    SUCCESS = 0,
-    FAIL = -1
-};
 
 
 typedef enum Status_e Status;
