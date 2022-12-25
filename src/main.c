@@ -1,12 +1,13 @@
 #include <stdio.h>
 
-//#include "dynamic_array.h"
-#include "dat.h"
+#include "dynamic_array.h"
 //#include "queue.h"
 
 
-DYNAMIC_ARRAY_T(DynamicArray_int, int)
-DYNAMIC_ARRAY_T(DynamicArray_char, char)
+/* DYNAMIC_ARRAY_T(DynamicArray_int, int) */
+/* DYNAMIC_ARRAY_T(DynamicArray_char, char) */
+DYNAMIC_ARRAY_T(int)
+DYNAMIC_ARRAY_T(char)
 
 
 int main (int argc, char *argv[]) {

@@ -2,15 +2,13 @@
 #include <criterion/internal/assert.h>
 
 #include <dynamic_array.h>
-//#include <dat.h>
 #include <stddef.h>
 
 
-//#define DATA_TYPE int
-
-
-DYNAMIC_ARRAY_T(DynamicArray_int, int)
-DYNAMIC_ARRAY_T(DynamicArray_char, char)
+/* DYNAMIC_ARRAY_T(DynamicArray_int, int) */
+/* DYNAMIC_ARRAY_T(DynamicArray_char, char) */
+DYNAMIC_ARRAY_T(int)
+DYNAMIC_ARRAY_T(char)
 
 
 void testSetup (void) {

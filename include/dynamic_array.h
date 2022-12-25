@@ -2,7 +2,8 @@
 #define __DYNAMIC_ARRAY_H__
 
 #include <stdio.h>
-#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "utils.h"
 
@@ -13,7 +14,8 @@
 typedef enum Status_e Status;
 
 
-#define DYNAMIC_ARRAY_T(typename, type)                                 \
+/* #define DYNAMIC_ARRAY_T(typename, type)                                 \ */
+#define DYNAMIC_ARRAY_T(type)                                           \
     typedef struct {                                                    \
         size_t _length;     /* number of elements in a queue */         \
         size_t _capacity;   /* number of buckets for elements in a queue */ \
