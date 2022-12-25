@@ -27,7 +27,7 @@ include_directories(
 
 add_executable(${PROJECT_NAME}
   src/main.c
-  src/dynamic_array.c
+  #src/dynamic_array.c
   #src/queue.c
   )
 
