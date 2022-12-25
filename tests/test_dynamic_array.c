@@ -10,6 +10,7 @@
 
 
 DYNAMIC_ARRAY_T(DynamicArray_int, int)
+DYNAMIC_ARRAY_T(DynamicArray_char, char)
 
 
 void testSetup (void) {
@@ -406,4 +407,19 @@ Test(dynamic_array, size_manip) {
     DynamicArray_int_init_2(&da_2, 1999);
     cr_expect(DynamicArray_int_length(&da_2) == 0);
     cr_expect(DynamicArray_int_capacity(&da_2) == 1999);
+
+    DynamicArray_int dai_1;
+    DynamicArray_char dac_1;
+
+    DynamicArray_int_init_2(&dai_1, 288);
+    DynamicArray_char_init_2(&dac_1, 288);
+
+    cr_expect(DynamicArray_int_resize(&dai_1, 1999) == SUCCESS);
+    cr_expect(DynamicArray_char_resize(&dac_1, 1999) == SUCCESS);
+
+    cr_expect(DynamicArray_int_capacity(&dai_1) == 1999);
+    cr_expect(DynamicArray_char_capacity(&dac_1) == 1999);
+
+    cr_expect(DynamicArray_int_size(&dai_1) == 7996);
+    cr_expect(DynamicArray_char_size(&dac_1) == 1999);
 }
