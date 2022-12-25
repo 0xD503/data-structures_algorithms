@@ -14,7 +14,6 @@
 typedef enum Status_e Status;
 
 
-/* #define DYNAMIC_ARRAY_T(typename, type)                                 \ */
 #define DYNAMIC_ARRAY_T(type)                                           \
     typedef struct {                                                    \
         size_t _length;     /* number of elements in an array */        \
@@ -234,6 +233,43 @@ typedef enum Status_e Status;
     end:                                                                \
         return (status);                                                \
     }
+
+
+
+
+
+/* #define DYNAMIC_ARRAY_T(typename, type)                                 \ */
+
+/* #define DYNAMIC_ARRAY_T(type)                                           \ */
+/*     typedef struct {                                                    \ */
+/*         size_t _length;     /\* number of elements in an array *\/        \ */
+/*         size_t _capacity;   /\* number of buckets for elements in an array *\/ \ */
+/*         type *_data;                                                    \ */
+/*     } DynamicArray_##type;                                              \ */
+/*                                                                         \ */
+/*     void DynamicArray_##type##_init (DynamicArray_##type *me);          \ */
+/*     void DynamicArray_##type##_init_2 (DynamicArray_##type *me, size_t capacity); \ */
+/*     void DynamicArray_##type##_init_3 (DynamicArray_##type *me, size_t capacity, type val); \ */
+/*     void DynamicArray_##type##_deinit (DynamicArray_##type *me);        \ */
+/*                                                                         \ */
+/*     DynamicArray_##type *DynamicArray_##type##_create (void);           \ */
+/*     DynamicArray_##type *DynamicArray_##type##_create_2 (size_t capacity); \ */
+/*     void DynamicArray_##type##_destroy (DynamicArray_##type **me);      \ */
+/*                                                                         \ */
+/*                                                                         \ */
+/*     Status DynamicArray_##type##_resize (DynamicArray_##type *me, size_t newCap); \ */
+/*                                                                         \ */
+/*                                                                         \ */
+/*     void DynamicArray_##type##_init_copy (DynamicArray_##type *me, DynamicArray_##type *src); \ */
+/*                                                                         \ */
+/*     void DynamicArray_##type##_copy (DynamicArray_##type *me, DynamicArray_##type *src); \ */
+/*     size_t DynamicArray_##type##_length (const DynamicArray_##type *me); \ */
+/*     size_t DynamicArray_##type##_capacity (const DynamicArray_##type *me); \ */
+/*     size_t DynamicArray_##type##_size (const DynamicArray_##type *me);  \ */
+/*     Status DynamicArray_##type##_get (const DynamicArray_##type *me, size_t index, type *dest); \ */
+/*     Status DynamicArray_##type##_set (DynamicArray_##type *me, size_t index, type val, type *dest); \ */
+/*     Status DynamicArray_##type##_insert (DynamicArray_##type *me, size_t index, type val); \ */
+/*     Status DynamicArray_##type##_remove (DynamicArray_##type *me, size_t index, type *dest); */
 
 
 #endif // __DYNAMIC_ARRAY_H__
