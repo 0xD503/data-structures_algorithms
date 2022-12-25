@@ -7,13 +7,10 @@
 
 void DynamicArray_init (DynamicArray *me) {
     if (me != NULL) {
-        static const size_t initCap = 0;
-        me->_data = calloc(initCap, sizeof(DATA_TYPE));
-        if (me->_data != NULL) {
-            me->_capacity = initCap;
-            me->_length = 0;
-        }
-        else {
+        me->_capacity = 0;
+        me->_length = 0;
+        me->_data = malloc(sizeof(me->_data[0]) * me->_capacity);
+        if (me->_data == NULL) {
             perror("Failed to construct dynamic array");
         }
     }
@@ -21,15 +18,19 @@ void DynamicArray_init (DynamicArray *me) {
 
 void DynamicArray_init_2 (DynamicArray *me, size_t capacity) {
     if (me != NULL) {
-        me->_data = calloc(capacity, sizeof(DATA_TYPE));
-        if (me->_data != NULL) {
-            me->_capacity = capacity;
-            me->_length = 0;
-        }
-        else {
+        me->_capacity = capacity;
+        me->_length = 0;
+        me->_data = malloc(sizeof(me->_data[0]) * me->_capacity);
+        if (me->_data == NULL) {
+            me->_capacity = 0;
             perror("Failed to construct dynamic array");
         }
     }
+}
+
+void DynamicArray_init_3 (DynamicArray *me, size_t capacity, DATA_TYPE val) {
+    DynamicArray_init_2(me, capacity);
+    memset(me->_data, val, sizeof(me->_data[0]) * capacity);
 }
 
 void DynamicArray_deinit (DynamicArray *me) {
@@ -130,7 +131,7 @@ Status DynamicArray_resize (DynamicArray *me, size_t newCap) {
     if ((me != NULL) && (me->_data != NULL)) {
         /// check if new capacity is more than the number of elements in array
         if (newCap > me->_length) {
-            DATA_TYPE *temp = (DATA_TYPE *) realloc(me->_data, newCap * sizeof(DATA_TYPE));
+            DATA_TYPE *temp = (DATA_TYPE *) realloc(me->_data, newCap * sizeof(*temp));
             if (temp == NULL) {
                 perror("Failed to reallocate memory");
                 goto end;
@@ -186,9 +187,8 @@ Status DynamicArray_insert (DynamicArray *me, size_t index, DATA_TYPE val) {
                 goto end;
             }
         }
-        memmove(&me->_data[index + 1], &me->_data[index], (me->_length - index) * sizeof(me->_data[0]));
-        me->_data[index] = val;
-        me->_length++;
+        memmove(&me->_data[index + 1], &me->_data[index], (me->_length++ - index) * sizeof(me->_data[0]));
+        DynamicArray_set(me, index, val, NULL);
         status = SUCCESS;
     }
 

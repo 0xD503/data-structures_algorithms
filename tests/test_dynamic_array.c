@@ -40,9 +40,16 @@ Test(dynamic_array, create) {
     cr_expect(DynamicArray_length(&da_3) == 0);
     cr_expect(DynamicArray_capacity(&da_3) == 0);
 
+    DynamicArray da_4;
+    DynamicArray_init_3(&da_4, 777, 0xD503);
+    cr_expect(da_4._data != NULL);
+    cr_expect(DynamicArray_length(&da_4) == 0);
+    cr_expect(DynamicArray_capacity(&da_4) == 777);
+
     DynamicArray_deinit(&da);
     DynamicArray_deinit(&da_2);
     DynamicArray_deinit(&da_3);
+    DynamicArray_deinit(&da_4);
 
     cr_expect(da._data == NULL);
     cr_expect(da_2._data == NULL);

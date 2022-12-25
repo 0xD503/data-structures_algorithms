@@ -27,6 +27,7 @@ typedef enum Status_e Status;
 
 void DynamicArray_init (DynamicArray *me);
 void DynamicArray_init_2 (DynamicArray *me, size_t capacity);
+void DynamicArray_init_3 (DynamicArray *me, size_t capacity, DATA_TYPE val);
 void DynamicArray_deinit (DynamicArray *me);
 
 /// fabrics
