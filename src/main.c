@@ -6,12 +6,20 @@
 
 /* DYNAMIC_ARRAY_T(DynamicArray_int, int) */
 /* DYNAMIC_ARRAY_T(DynamicArray_char, char) */
-DYNAMIC_ARRAY_T(int)
-DYNAMIC_ARRAY_T(char)
+
+/* DYNAMIC_ARRAY(int) */
+/* DYNAMIC_ARRAY(char) */
+
+DYNAMIC_ARRAY(int)
+DYNAMIC_ARRAY(char)
+//DYNAMIC_ARRAY(DynamicArray_int)
 
 
 int main (int argc, char *argv[]) {
     int status = -1;
+
+    /* DynamicArray_int dyna; */
+    /* DynamicArray_int_init(&dyna); */
 
     DynamicArray_int dynArr;
     DynamicArray_char dynArr_char;
@@ -24,6 +32,15 @@ int main (int argc, char *argv[]) {
 
     printf("Size of dynArr_int->data:  %zu\n", sizeof(dynArr._data[0]));
     printf("Size of dynArr_char->data: %zu\n", sizeof(dynArr_char._data[0]));
+
+
+    /* DynamicArray_DynamicArray_int ddaa; */
+    /* DynamicArray_DynamicArray_int_init(&ddaa); */
+    //DynamicArray_Dynamiint dynArr;
+
+
+
+
     /* DynamicArray q; */
     /* DynamicArray_init(&q); */
 

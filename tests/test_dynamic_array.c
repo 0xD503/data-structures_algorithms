@@ -1,14 +1,11 @@
-#include <criterion/criterion.h>
+#include <criterion/internal/test.h>
 #include <criterion/internal/assert.h>
 
 #include <dynamic_array.h>
-#include <stddef.h>
 
 
-/* DYNAMIC_ARRAY_T(DynamicArray_int, int) */
-/* DYNAMIC_ARRAY_T(DynamicArray_char, char) */
-DYNAMIC_ARRAY_T(int)
-DYNAMIC_ARRAY_T(char)
+DYNAMIC_ARRAY(int)
+DYNAMIC_ARRAY(char)
 
 
 void testSetup (void) {
@@ -20,6 +17,7 @@ void testTeardown (void) {
 }
 
 
+//TestSuite(...)
 TestSuite(dynamic_array, .init = testSetup, .fini = testTeardown);
 
 
@@ -60,6 +58,7 @@ Test(dynamic_array, create) {
     cr_expect(da._data == NULL);
     cr_expect(da_2._data == NULL);
     cr_expect(da_3._data == NULL);
+    cr_expect(da_4._data == NULL);
     cr_expect(da._capacity == 0);
     cr_expect(da._length == 0);
 

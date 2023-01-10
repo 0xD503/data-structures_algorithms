@@ -10,4 +10,7 @@ enum Status_e {
 };
 
 
+typedef enum Status_e Status;
+
+
 #endif // UTILS_H_
