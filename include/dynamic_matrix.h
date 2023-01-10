@@ -4,6 +4,21 @@
 #include "dynamic_array.h"
 
 
+/* #define DYNAMIC_MATRIX_T(type)                                      \ */
+/*     typedef struct {                                                \ */
+/*         /\* DYNAMIC_ARRAY_T(type) *\/                                                     \ */
+/*     } DynamicMatrix_##type;                                         \ */
+/*                                                                     \ */
+/*     int DynamicMatrix_##type##_init (DynamicMatrix_##type *me) {    \ */
+/*         int status = -1;                                            \ */
+/*                                                                     \ */
+/*         if (me != NULL) {                                           \ */
+/*                                                                     \ */
+/*         }                                                           \ */
+/*                                                                     \ */
+/*         return (status);                                            \ */
+/*     }                                                               \ */
+
 //struct DynamicMatrix {
     //DynamicArray *matrix;
     //size_t rows;

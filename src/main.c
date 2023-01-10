@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 
 #include "dynamic_array.h"
 //#include "queue.h"
@@ -11,8 +12,9 @@
 /* DYNAMIC_ARRAY(char) */
 
 DYNAMIC_ARRAY(int)
+DYNAMIC_ARRAY(uint16_t)
 DYNAMIC_ARRAY(char)
-//DYNAMIC_ARRAY(DynamicArray_int)
+DYNAMIC_ARRAY(DynamicArray_int)
 
 
 int main (int argc, char *argv[]) {
@@ -22,6 +24,7 @@ int main (int argc, char *argv[]) {
     /* DynamicArray_int_init(&dyna); */
 
     DynamicArray_int dynArr;
+    DynamicArray_uint16_t dyna;
     DynamicArray_char dynArr_char;
     dynArr._length = 3;
     dynArr._capacity = 100;
@@ -29,13 +32,34 @@ int main (int argc, char *argv[]) {
 
     DynamicArray_int_init(&dynArr);
     DynamicArray_char_init(&dynArr_char);
+    DynamicArray_uint16_t_init_3(&dyna, 77, 0xD503U);
 
     printf("Size of dynArr_int->data:  %zu\n", sizeof(dynArr._data[0]));
     printf("Size of dynArr_char->data: %zu\n", sizeof(dynArr_char._data[0]));
+    printf("\n\n");
+    printf("dyna len: %zu\n", DynamicArray_uint16_t_length(&dyna));
+    printf("dyna cap: %zu\n", DynamicArray_uint16_t_capacity(&dyna));
+    printf("dyna siz: %zu\n", DynamicArray_uint16_t_size(&dyna));
 
 
-    /* DynamicArray_DynamicArray_int ddaa; */
-    /* DynamicArray_DynamicArray_int_init(&ddaa); */
+    DynamicArray_int row, temp;
+    DynamicArray_int_init_3(&row, 3, 7);
+    DynamicArray_DynamicArray_int ddaa;
+    DynamicArray_DynamicArray_int_init(&ddaa);
+
+    DynamicArray_DynamicArray_int_insert(&ddaa, 0, row);
+    DynamicArray_DynamicArray_int_insert(&ddaa, 1, row);
+    DynamicArray_DynamicArray_int_insert(&ddaa, 2, row);
+    DynamicArray_DynamicArray_int_insert(&ddaa, 2, row);
+    DynamicArray_DynamicArray_int_insert(&ddaa, 2, row);
+    DynamicArray_DynamicArray_int_insert(&ddaa, 2, row);
+
+    printf("\n\n");
+    printf("row len:  %zu\n", DynamicArray_int_size(&row));
+    //printf("roww len: %zu\n", DynamicArray_int_size(&temp));
+    printf("dyna len: %zu\n", DynamicArray_DynamicArray_int_length(&ddaa));
+    printf("dyna cap: %zu\n", DynamicArray_DynamicArray_int_capacity(&ddaa));
+    printf("dyna siz: %zu\n", DynamicArray_DynamicArray_int_size(&ddaa));
     //DynamicArray_Dynamiint dynArr;
 
 

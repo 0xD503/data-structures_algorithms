@@ -17,7 +17,6 @@ void testTeardown (void) {
 }
 
 
-//TestSuite(...)
 TestSuite(dynamic_array, .init = testSetup, .fini = testTeardown);
 
 
@@ -44,11 +43,35 @@ Test(dynamic_array, create) {
     cr_expect(DynamicArray_int_length(&da_3) == 0);
     cr_expect(DynamicArray_int_capacity(&da_3) == 0);
 
+    //DynamicArray_int *val = DynamicArray_int_create_2(1);
+    /* DynamicArray_int val; */
+    /* DynamicArray_int_init_2(&val, 1); */
+    /* val._data[0] = 0; */
+    int val = 0;
+
     DynamicArray_int da_4;
     DynamicArray_int_init_3(&da_4, 777, 0xD503);
     cr_expect(da_4._data != NULL);
-    cr_expect(DynamicArray_int_length(&da_4) == 0);
+    cr_expect(DynamicArray_int_length(&da_4) == 777);
     cr_expect(DynamicArray_int_capacity(&da_4) == 777);
+    /* cr_expect(val._data[0] == 0); */
+    cr_expect(val == 0);
+    cr_expect(DynamicArray_int_get(&da_4, 0, &val) == SUCCESS);
+    /* cr_expect(val._data[0] == 0xD503); */
+    cr_expect(val == 0xD503);
+    cr_expect(DynamicArray_int_get(&da_4, 7, &val) == SUCCESS);
+    /* cr_expect(val._data[0] == 0xD503); */
+    cr_expect(val == 0xD503);
+    cr_expect(DynamicArray_int_get(&da_4, 76, &val) == SUCCESS);
+    /* cr_expect(val._data[0] == 0xD503); */
+    cr_expect(val == 0xD503);
+    cr_expect(DynamicArray_int_get(&da_4, 776, &val) == SUCCESS);
+    /* cr_expect(val._data[0] == 0xD503); */
+    cr_expect(val == 0xD503);
+    cr_expect(DynamicArray_int_get(&da_4, 777, &val) == FAIL);
+    cr_expect(DynamicArray_int_get(&da_4, 10873, &val) == FAIL);
+    /* cr_expect(val._data[0] == 0xD503); */
+    cr_expect(val == 0xD503);
 
     DynamicArray_int_deinit(&da);
     DynamicArray_int_deinit(&da_2);
