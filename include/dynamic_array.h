@@ -203,17 +203,6 @@
         return (size);                                                  \
     }
 
-/* #define DYNAMIC_ARRAY_SIZE(type)                                        \ */
-/*     size_t DynamicArray_##type##_size (const DynamicArray_##type *me) { \ */
-/*         size_t size = 0;                                                \ */
-/*                                                                         \ */
-/*         if (me != NULL) {                                               \ */
-/*             size = DynamicArray_##type##_capacity(me) * sizeof(type);   \ */
-/*         }                                                               \ */
-/*                                                                         \ */
-/*         return (size);                                                  \ */
-/*     } */
-
 #define DYNAMIC_ARRAY_GET(type)                                         \
     Status DynamicArray_##type##_get (const DynamicArray_##type *me, size_t index, type *dest) { \
         Status status = FAIL;                                           \

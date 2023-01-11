@@ -6,6 +6,7 @@
 
 DYNAMIC_ARRAY(int)
 DYNAMIC_ARRAY(char)
+DYNAMIC_ARRAY(DynamicArray_int)
 
 
 void testSetup (void) {
@@ -263,6 +264,34 @@ Test(dynamic_array, insert_remove_elements) {
 
 
     DynamicArray_int_deinit(&da_3);
+
+    DynamicArray_int row;
+    DynamicArray_DynamicArray_int twoDimArr;
+    cr_expect(DynamicArray_int_init_3(&row, 2, 7) == SUCCESS);
+    cr_expect(DynamicArray_DynamicArray_int_init(&twoDimArr) == SUCCESS);
+
+    cr_expect(DynamicArray_DynamicArray_int_insert(&twoDimArr, 0, row) == SUCCESS);
+    cr_expect(DynamicArray_DynamicArray_int_insert(&twoDimArr, 1, row) == SUCCESS);
+    cr_expect(DynamicArray_DynamicArray_int_insert(&twoDimArr, 2, row) == SUCCESS);
+    cr_expect(DynamicArray_DynamicArray_int_insert(&twoDimArr, 2, row) == SUCCESS);
+    cr_expect(DynamicArray_DynamicArray_int_insert(&twoDimArr, 2, row) == SUCCESS);
+    cr_expect(DynamicArray_DynamicArray_int_insert(&twoDimArr, 2, row) == SUCCESS);
+
+    cr_expect(DynamicArray_int_length(&row) == 2);
+    cr_expect(DynamicArray_int_capacity(&row) == 2);
+    cr_expect(DynamicArray_int_size(&row) == (2 * sizeof(int)));
+
+    cr_expect(DynamicArray_int_insert(&row, 3, 8) == FAIL);
+    cr_expect(DynamicArray_int_insert(&row, 2, 8) == SUCCESS);
+    cr_expect(DynamicArray_DynamicArray_int_insert(&twoDimArr, 7, row) == FAIL);
+    cr_expect(DynamicArray_DynamicArray_int_insert(&twoDimArr, 6, row) == SUCCESS);
+
+    cr_expect(DynamicArray_int_length(&row) == 3);
+    cr_expect(DynamicArray_int_capacity(&row) == 6);
+    cr_expect(DynamicArray_int_size(&row) == (6 * sizeof(int)));
+    cr_expect(DynamicArray_DynamicArray_int_length(&twoDimArr) == 7);
+    cr_expect(DynamicArray_DynamicArray_int_capacity(&twoDimArr) == 14);
+    cr_expect(DynamicArray_DynamicArray_int_size(&twoDimArr) == (14 * sizeof(DynamicArray_DynamicArray_int)));
 }
 
 Test(dynamic_array, access) {

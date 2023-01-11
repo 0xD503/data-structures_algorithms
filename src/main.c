@@ -2,6 +2,7 @@
 #include <stdint.h>
 
 #include "dynamic_array.h"
+#include "dynamic_matrix.h"
 //#include "queue.h"
 
 
@@ -15,6 +16,8 @@ DYNAMIC_ARRAY(int)
 DYNAMIC_ARRAY(uint16_t)
 DYNAMIC_ARRAY(char)
 DYNAMIC_ARRAY(DynamicArray_int)
+
+DYNAMIC_MATRIX(int)
 
 
 int main (int argc, char *argv[]) {
@@ -42,8 +45,8 @@ int main (int argc, char *argv[]) {
     printf("dyna siz: %zu\n", DynamicArray_uint16_t_size(&dyna));
 
 
-    DynamicArray_int row, temp;
-    DynamicArray_int_init_3(&row, 3, 7);
+    DynamicArray_int row;
+    DynamicArray_int_init_3(&row, 2, 7);
     DynamicArray_DynamicArray_int ddaa;
     DynamicArray_DynamicArray_int_init(&ddaa);
 
@@ -55,12 +58,22 @@ int main (int argc, char *argv[]) {
     DynamicArray_DynamicArray_int_insert(&ddaa, 2, row);
 
     printf("\n\n");
-    printf("row len:  %zu\n", DynamicArray_int_size(&row));
+    printf("row len:  %zu\n", DynamicArray_int_length(&row));
+    printf("row cap:  %zu\n", DynamicArray_int_capacity(&row));
+    printf("row siz:  %zu\n", DynamicArray_int_size(&row));
+    printf("\n\n");
     //printf("roww len: %zu\n", DynamicArray_int_size(&temp));
     printf("dyna len: %zu\n", DynamicArray_DynamicArray_int_length(&ddaa));
     printf("dyna cap: %zu\n", DynamicArray_DynamicArray_int_capacity(&ddaa));
     printf("dyna siz: %zu\n", DynamicArray_DynamicArray_int_size(&ddaa));
     //DynamicArray_Dynamiint dynArr;
+
+
+
+
+
+    DynamicMatrix_int mat;
+    mat._rowsNum = mat._columnsNum = 2;
 
 
 
