@@ -58,15 +58,15 @@
     }
 
 #define DYNAMIC_ARRAY_INIT_3(type)                                      \
-    Status DynamicArray_##type##_init_3 (DynamicArray_##type *me, size_t capacity, type val) { \
+    Status DynamicArray_##type##_init_3 (DynamicArray_##type *me, size_t length, type val) { \
         Status status;                                                  \
                                                                         \
-        status = DynamicArray_##type##_init_2(me, capacity);            \
+        status = DynamicArray_##type##_init_2(me, length);            \
         if (status == SUCCESS) {                                        \
-            for (size_t i = 0; i < capacity; i++) {                     \
+            for (size_t i = 0; i < _capacity; i++) {                     \
                 me->_data[i] = val;                                     \
             }                                                           \
-            me->_length = capacity;                                     \
+            me->_length = length;                                     \
         }                                                               \
                                                                         \
         return (status);                                                \
@@ -121,7 +121,7 @@
                                                                         \
         if ((me != NULL) && (me->_data != NULL)) {                      \
             /* check if new capacity is more than the number of elements in array */ \
-            if (newCap > me->_length) {                                 \
+            if ((newCap >= me->_length) && (newCap != me->_capacity)) {                                 \
                 type *temp = (type *) realloc(me->_data, newCap * sizeof(*temp)); \
                 if (temp == NULL) {                                     \
                     perror("Failed to reallocate memory");              \
@@ -217,6 +217,9 @@
         return (status);                                                \
     }
 
+/**
+ * Set array's element to a new value and save old in <dest> if present
+ **/
 #define DYNAMIC_ARRAY_SET(type)                                         \
     Status DynamicArray_##type##_set (DynamicArray_##type *me, size_t index, type val, type *dest) { \
         Status status = FAIL;                                           \
