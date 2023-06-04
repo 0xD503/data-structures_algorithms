@@ -1,0 +1,256 @@
+#include "dynamic_array.hpp"
+
+#include <cstring>
+#include <iostream>
+
+
+using std::clog;
+using std::cerr;
+using std::endl;
+
+template<typename T>
+DynamicArray<T>::DynamicArray() :
+    ListInterface<T>(), _array(nullptr), _capacity(0) {
+    //
+}
+
+template<typename T>
+DynamicArray<T>::DynamicArray(const size_t capacity) :
+    DynamicArray<T>() {
+    try {
+        _array = new T[capacity];
+        this->_capacity = capacity;
+    } catch (std::bad_alloc& excpt) {
+        _array = nullptr;
+        cerr << "Failed to construct dynamic array with capacity " << capacity
+             << ": " << excpt.what() << endl;
+    }
+}
+
+template<typename T>
+DynamicArray<T>::DynamicArray(const size_t length, const T fillValue) :
+    DynamicArray<T>(length) {
+    if (this->_capacity == length) {
+        for (size_t i = 0; i < this->_capacity; i++) {
+            _array[i] = fillValue;
+        }
+        this->_length = length;
+    }
+}
+
+template<typename T>
+DynamicArray<T>::~DynamicArray() {
+    clear();
+    // if (_capacity > 0) {
+    //     try {
+    //         delete[] _array;
+    //     } catch (...) {
+    //         cerr << "Failed to deconstruct dynamic array" << endl;
+    //     }
+    //     this->_length = 0;
+    //     this->_capacity = 0;
+    // }
+    // _array = nullptr;
+}
+
+
+template<typename T>
+bool DynamicArray<T>::resize (const size_t newCapacity) {
+    bool status = false;
+
+    if ((newCapacity >= this->_length) and (newCapacity != this->_capacity)) {
+        T *newArray;
+        try {
+            newArray = new T[newCapacity];
+        } catch (std::bad_alloc& excpt) {
+            cerr << "Failed to allocate resized array" << endl;
+            goto end;
+        }
+
+        for (size_t i = 0; i < this->_length; i++) {
+            newArray[i] = _array[i];
+        }
+
+        try {
+            delete[] _array;
+        } catch (...) {
+            cerr << "Failed to destroy old array before resizing" << endl;
+            goto end;
+        }
+
+        _array = newArray;
+        this->_capacity = newCapacity;
+        status = true;
+    }
+
+end:
+    return (status);
+}
+
+template<typename T>
+bool DynamicArray<T>::fit () {
+    bool status = true;
+
+    if (not resize(this->_length)) {
+        cerr << "Failed to fit array" << endl;
+    }
+    // if (this->_length < this->_capacity) {
+    //     T *newArray = new T[this->_length];
+    //     if (newArray != nullptr) {
+    //         for (size_t i = 0; i < this->_length; i++) {
+    //             newArray[i] = _array[i];
+    //         }
+    //         delete[] _array;
+    //         _array = newArray;
+    //         this->_capacity = this->_length;
+    //     }
+    //     else {
+    //         status = false;
+    //     }
+    // }
+
+    return (status);
+}
+
+
+template<typename T>
+const T DynamicArray<T>::get (const size_t index) const {
+    T val = T();
+
+    if (index < this->_length) {
+        val = _array[index];
+    }
+    else {
+        throw std::out_of_range("Index is out of range");
+    }
+
+    return (val);
+}
+
+template<typename T>
+T DynamicArray<T>::get (const size_t index) {
+    T val = T();
+
+    if (index < this->_length) {
+        val = _array[index];
+    }
+    else {
+        throw std::out_of_range("Index is out of range");
+    }
+
+    return (val);
+}
+
+template<typename T>
+bool DynamicArray<T>::set (const size_t index, const T& val) noexcept {
+    bool status(false);
+
+    if (index < this->_length) {
+        _array[index] = val;
+        status = true;
+    }
+
+    return (status);
+}
+
+
+template<typename T>
+bool DynamicArray<T>::add (const size_t index, const T& val) {
+    bool status(false);
+    const size_t destStart = index + 1;
+    const size_t n = this->_length + 1 - destStart;
+
+    if (index > this->_length) {
+        goto end;
+    }
+
+    if (this->_length >= this->_capacity) {
+        size_t newCap = (this->_length + 1) * MEM_REALLOC_FACTOR;
+        status = resize(newCap);
+        if (not status) {
+            cerr << "Failed to extend array" << endl;
+            goto end;
+        }
+        // T *newArray = new T[newCap];
+        // if (newArray != nullptr) {
+        //     _copyArray(newArray, _array, index, newCap, val);
+
+        //     delete[] _array;
+        //     _array = newArray;
+        //     this->_length++;
+        //     this->_capacity++;
+        //     status = true;
+        // }
+        // else {
+        //     goto end;
+        // }
+    }
+    //else {
+
+    std::memmove(&_array[destStart], &_array[index], n * sizeof(T));
+    _array[index] = val;
+
+    this->_length++;
+    status = true;
+    //}
+
+end:
+    return (status);
+}
+
+template<typename T>
+bool DynamicArray<T>::remove (const size_t index) {
+    bool status(false);
+
+    if (index < this->_length) {
+        if ((this->_length - 1) < (this->_capacity / (MEM_REALLOC_FACTOR + 1))) {
+            if (not resize(this->_length + 1)) {
+                cerr << "Failed to shrink array" << endl;
+                goto end;
+            }
+        }
+        const size_t n = this->_length - index - 1;  /// TODO: TEST IT!!!!!
+        std::memmove(&_array[index], &_array[index + 1], n);
+        this->_length--;
+        status = true;
+    }
+
+end:
+    return (status);
+}
+
+
+template<typename T>
+bool DynamicArray<T>::clear () {
+    bool done(true);
+
+    try {
+        delete[] _array;
+        this->_length = 0;
+        this->_capacity = 0;
+        _array = nullptr;
+    } catch (...) {
+        done = false;
+        cerr << "Failed to clear dynamic array" << endl;
+    }
+
+    return (done);
+}
+
+
+template<typename T>
+void DynamicArray<T>::_copyArray (T *dest, const T *src, const size_t index, const size_t newLen, const T val) {
+    size_t i;
+
+    for (i = 0; i < index; i++) {
+        dest[i] = src[i];
+    }
+    dest[i++] = val;
+    for (; i < newLen; i++) {
+        dest[i] = src[i - 1];
+    }
+}
+
+
+///
+template class DynamicArray<int>;
