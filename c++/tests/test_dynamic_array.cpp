@@ -18,7 +18,13 @@ void testTeardown (void) {
 }
 
 
+TestSuite(list_if, .init = testSetup, .fini = testTeardown);
 TestSuite(dynamic_array, .init = testSetup, .fini = testTeardown);
+
+
+Test(list_if, list_if) {
+    //
+}
 
 
 Test(dynamic_array, create) {

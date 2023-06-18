@@ -16,7 +16,7 @@ class LinkedList : public ListInterface<T> {
                 value(value_), previous(prev), next(next_) { }
         };
 
-        LinkedList();
+        LinkedList() = default;
         LinkedList(const size_t length, const T fillValue);
         ~LinkedList();
 

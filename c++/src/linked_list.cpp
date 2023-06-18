@@ -9,12 +9,6 @@ using std::clog;
 using std::endl;
 
 template<typename T>
-LinkedList<T>::LinkedList():
-    ListInterface<T>(), _rootNode() {
-    //
-}
-
-template<typename T>
 LinkedList<T>::LinkedList(const size_t length, const T fillValue):
     LinkedList<T>() {
 
@@ -60,27 +54,24 @@ bool LinkedList<T>::set (const size_t index, const T& value) noexcept {
 template<typename T>
 bool LinkedList<T>::add (const size_t index, const T& value) {
     bool success(false);
-    Node *newNode(nullptr);
+    Node *newNode;
     Node *prev, *next;
 
-    if (index > this->_length) {
+    if (index > this->length()) [[unlikely]] {
         goto end;
     }
-    try {
-        next = _getNode(index);
-    } catch (std::out_of_range& excpt) {
+    else if (index == this->length()) {
+        if (this->length() == 0) [[unlikely]] {  /// check if it is the first node to be added
+            prev = &_rootNode;
+        }
+        else [[likely]] {
+            prev = _getNode(index - 1);
+        }
         next = nullptr;
-        cerr << excpt.what() << endl;
-    }
-
-    if (this->_length == 0) [[unlikely]] {  /// check if it is the first node to be added
-        prev = &_rootNode;
-    }
-    else if (next != nullptr) [[likely]] {
-        prev = next->previous;
     }
     else {
-        goto end;
+        next = _getNode(index);
+        prev = next->previous;
     }
 
     try {
@@ -91,15 +82,11 @@ bool LinkedList<T>::add (const size_t index, const T& value) {
         goto end;
     }
 
-    newNode->previous = prev;
     newNode->previous->next = newNode;      /// left neighbour updates
-    if (index < this->_length) [[likely]] {
+    if (index < this->length()) {
         newNode->next->previous = newNode;  /// right neighbour updates
-        //newNode->next->previous = next;  /// right neighbour updates
     }
-    // else [[unlikely]] {
-    //     newNode->next = nullptr;
-    // }
+
     this->_length++;
     success = true;
 
@@ -157,7 +144,7 @@ const LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) const {
     }
     else [[unlikely]] {
         node = nullptr;
-        throw std::out_of_range("Index is out of range");
+        //throw std::out_of_range("Index is out of range (const)");
     }
 
     return (node);
@@ -167,7 +154,7 @@ template<typename T>
 LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) {
     Node *node(_rootNode.next);
 
-    if (index < this->_length) [[likely]] {
+    if (index < this->length()) [[likely]] {
         while (index > 0) {
             node = node->next;
             index--;
@@ -175,7 +162,7 @@ LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) {
     }
     else [[unlikely]] {
         node = nullptr;
-        throw std::out_of_range("Index is out of range");
+        //throw std::out_of_range("Index is out of range");
     }
 
     return (node);

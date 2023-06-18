@@ -9,12 +9,6 @@ using std::cerr;
 using std::endl;
 
 template<typename T>
-DynamicArray<T>::DynamicArray() :
-    ListInterface<T>() {
-    //
-}
-
-template<typename T>
 DynamicArray<T>::DynamicArray(const size_t capacity) :
     DynamicArray<T>() {
     try {
@@ -41,16 +35,6 @@ DynamicArray<T>::DynamicArray(const size_t length, const T fillValue) :
 template<typename T>
 DynamicArray<T>::~DynamicArray() {
     clear();
-    // if (_capacity > 0) {
-    //     try {
-    //         delete[] _array;
-    //     } catch (...) {
-    //         cerr << "Failed to deconstruct dynamic array" << endl;
-    //     }
-    //     this->_length = 0;
-    //     this->_capacity = 0;
-    // }
-    // _array = nullptr;
 }
 
 
@@ -208,15 +192,17 @@ template<typename T>
 bool DynamicArray<T>::clear () {
     bool done(true);
 
+    //if (_capacity > 0) {
     try {
         delete[] _array;
-        this->_length = 0;
-        this->_capacity = 0;
-        _array = nullptr;
     } catch (...) {
         done = false;
         cerr << "Failed to clear dynamic array" << endl;
     }
+    this->_length = 0;
+    this->_capacity = 0;
+    _array = nullptr;
+    //}
 
     return (done);
 }
