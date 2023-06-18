@@ -17,54 +17,7 @@ void testTeardown () {
     //
 }
 
-TestSuite(list_if, .init = testSetup, .fini = testTeardown);
 TestSuite(linked_list, .init = testSetup, .fini = testTeardown);
-
-
-Test(list_if, list_if) {
-    LinkedList<long> list{};
-    long val(-666);
-
-    cr_expect_eq(list.length(), 0);
-    cr_expect_eq(list.first(), 0);
-    cr_expect_eq(list.last(), 0);
-    cr_expect(not list.get(0, val));
-    cr_expect_eq(val, -666);
-    cr_expect(not list.get(7, val));
-    cr_expect_eq(val, -666);
-    cr_expect(not list.set(0, 8));
-    cr_expect(list.empty());
-    cr_expect(list.clear());
-
-    cr_expect(not list.add(1, 7));
-    cr_expect(not list.get(0, val));
-    cr_expect_eq(val, -666);
-    cr_expect(list.empty());
-    cr_expect(list.add(0, 7));
-    cr_expect(not list.empty());
-    cr_expect(not list.get(1, val));
-    cr_expect_eq(val, -666);
-    cr_expect(list.get(0, val));
-    cr_expect_eq(val, 7);
-    cr_expect(list.add(0, 8));
-    cr_expect(not list.empty());
-    cr_expect(list.get(1, val));
-    cr_expect_eq(val, 7);
-    cr_expect(list.get(0, val));
-    cr_expect_eq(val, 8);
-    cr_expect(list.add(0, 1));
-    cr_expect(list.add(1, 2));
-    cr_expect(list.add(2, 3));
-    cr_expect(list.add(3, 4));
-    cr_expect(list.add(4, 5));
-    cr_expect(list.add(5, 6));
-    cr_expect(list.set(6, 7));
-    cr_expect(list.set(7, 8));
-    for (size_t i(1); i <= 8; i++) {
-        cr_expect(list.get(i - 1, val));
-        cr_expect_eq(val, i);
-    }
-}
 
 
 Test(linked_list, create) {

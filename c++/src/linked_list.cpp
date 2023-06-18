@@ -52,6 +52,23 @@ bool LinkedList<T>::set (const size_t index, const T& value) noexcept {
 
 
 template<typename T>
+bool LinkedList<T>::swap (size_t index_1, size_t index_2) noexcept {
+    bool success(false);
+
+    Node *n_1(_getNode(index_1));
+    Node *n_2(_getNode(index_2));
+    if ((n_1 != nullptr) && (n_2 != nullptr)) [[likely]] {
+        T temp(n_1->value);
+        n_1->value = n_2->value;
+        n_2->value = temp;
+        success = true;
+    }
+
+    return (success);
+}
+
+
+template<typename T>
 bool LinkedList<T>::add (const size_t index, const T& value) {
     bool success(false);
     Node *newNode;
@@ -170,5 +187,8 @@ LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) {
 
 
 ///
-//template class LinkedList<char>;
+template class LinkedList<long long>;
 template class LinkedList<long>;
+template class LinkedList<int>;
+template class LinkedList<short>;
+template class LinkedList<char>;

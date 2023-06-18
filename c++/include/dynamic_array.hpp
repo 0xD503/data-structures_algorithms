@@ -28,6 +28,8 @@ class DynamicArray : public ListInterface<T> {
         bool get (const size_t index, T& dest) const noexcept override;
         bool set (const size_t index, const T& val) noexcept override;
 
+        bool swap (size_t index_1, size_t index_2) noexcept override;
+
         bool add (const size_t index, const T& val) override;
         bool remove (const size_t index) override;
 

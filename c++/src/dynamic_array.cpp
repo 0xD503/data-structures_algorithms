@@ -123,6 +123,28 @@ bool DynamicArray<T>::set (const size_t index, const T& val) noexcept {
 
 
 template<typename T>
+bool DynamicArray<T>::swap (size_t index_1, size_t index_2) noexcept {
+    bool success(false);
+
+    if (index_1 != index_2) {
+        T temp, val;
+        if (not get(index_1, temp)) [[unlikely]] {
+            goto end;
+        }
+        if (not get(index_2, val)) [[unlikely]] {
+            goto end;
+        }
+        set(index_1, val);
+        set(index_2, temp);
+        success = true;
+    }
+
+end:
+    return (success);
+}
+
+
+template<typename T>
 bool DynamicArray<T>::add (const size_t index, const T& val) {
     bool status(false);
     const size_t destStart = index + 1;
@@ -223,4 +245,6 @@ void DynamicArray<T>::_copyArray (T *dest, const T *src, const size_t index, con
 
 
 ///
+template class DynamicArray<long>;
 template class DynamicArray<int>;
+template class DynamicArray<char>;
