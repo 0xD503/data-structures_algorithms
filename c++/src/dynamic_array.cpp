@@ -10,7 +10,7 @@ using std::endl;
 
 template<typename T>
 DynamicArray<T>::DynamicArray() :
-    ListInterface<T>(), _array(nullptr), _capacity(0) {
+    ListInterface<T>() {
     //
 }
 
@@ -114,31 +114,15 @@ bool DynamicArray<T>::fit () {
 
 
 template<typename T>
-const T DynamicArray<T>::get (const size_t index) const {
-    T val = T();
+bool DynamicArray<T>::get (const size_t index, T& dest) const noexcept {
+    bool success(false);
 
-    if (index < this->_length) {
-        val = _array[index];
-    }
-    else {
-        throw std::out_of_range("Index is out of range");
+    if (index < this->length()) {
+        dest = _array[index];
+        success = true;
     }
 
-    return (val);
-}
-
-template<typename T>
-T DynamicArray<T>::get (const size_t index) {
-    T val = T();
-
-    if (index < this->_length) {
-        val = _array[index];
-    }
-    else {
-        throw std::out_of_range("Index is out of range");
-    }
-
-    return (val);
+    return (success);
 }
 
 template<typename T>

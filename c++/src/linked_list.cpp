@@ -30,38 +30,18 @@ LinkedList<T>::~LinkedList() {
 
 
 template<typename T>
-const T LinkedList<T>::get (const size_t index) const {
-    T val = T();
+bool LinkedList<T>::get (const size_t index, T& dest) const noexcept {
+    bool success(false);
 
-    try {
+    if (index < this->length()) {
         const Node *node = _getNode(index);
         if (node != nullptr) {
-            val = node->value;
+            dest = node->value;
+            success = true;
         }
-    } catch (std::out_of_range& excpt) {
-        cerr << excpt.what() << endl;
     }
 
-    return (val);
-}
-
-template<typename T>
-T LinkedList<T>::get (const size_t index) {
-    T val = T();
-    Node *node;
-
-    try {
-        node = _getNode(index);
-    } catch (std::out_of_range& excpt) {
-        cerr << excpt.what() << endl;
-        goto end;
-    }
-    if (node != nullptr) {
-        val = node->value;
-    }
-
-end:
-    return (val);
+    return (success);
 }
 
 template<typename T>
@@ -96,7 +76,7 @@ bool LinkedList<T>::add (const size_t index, const T& value) {
     if (this->_length == 0) [[unlikely]] {  /// check if it is the first node to be added
         prev = &_rootNode;
     }
-    else if (next != nullptr) {
+    else if (next != nullptr) [[likely]] {
         prev = next->previous;
     }
     else {
@@ -166,15 +146,13 @@ end:
 
 template<typename T>
 const LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) const {
+    // const Node *node(_getNode(index));
     const Node *node(_rootNode.next);
 
     if (index < this->_length) [[likely]] {
         while (index > 0) {
             node = node->next;
             index--;
-            // if (node == nullptr) {
-            //     break;
-            // }
         }
     }
     else [[unlikely]] {
@@ -193,9 +171,6 @@ LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) {
         while (index > 0) {
             node = node->next;
             index--;
-            // if (node == nullptr) {
-            //     break;
-            // }
         }
     }
     else [[unlikely]] {

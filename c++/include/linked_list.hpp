@@ -8,8 +8,8 @@ template<typename T>
 class LinkedList : public ListInterface<T> {
     public:
         struct Node {
-            T value;
-            Node *previous, *next;
+            T value{};
+            Node *previous{}, *next{};
 
             explicit Node(const T value_ = T(), Node *prev = nullptr,
                           Node *next_ = nullptr) :
@@ -20,20 +20,16 @@ class LinkedList : public ListInterface<T> {
         LinkedList(const size_t length, const T fillValue);
         ~LinkedList();
 
-        size_t size () const noexcept   { return (sizeof(T) * this->_length); }
+        size_t size () const noexcept   { return (sizeof(T) * this->length()); }
 
-        inline T first () const override    { return (get(0)); } /*_firstNode()->value*/
-        inline T last () const override     { return (get(this->_length - 1)); }
-
-        const T get (const size_t index) const override;
-        T get (const size_t index) override;
+        bool get (const size_t index, T& dest) const noexcept override;
         bool set (const size_t index, const T& value) noexcept override;
 
         bool add (const size_t index, const T& value) override;
         bool remove (const size_t index) override;
 
     protected:
-        Node _rootNode;
+        Node _rootNode{};
 
         const Node *_getNode (size_t index) const;
         Node *_getNode (size_t index);

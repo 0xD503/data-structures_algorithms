@@ -24,11 +24,8 @@ class DynamicArray : public ListInterface<T> {
         /// accessors
         inline T *data () noexcept                  { return (_array); }
         inline const T *data () const noexcept      { return (_array); }
-        inline T first () const override            { return (get(0)); }
-        inline T last () const override             { return (get(this->_length - 1)); }
 
-        const T get (const size_t index) const override;
-        T get (const size_t index) override;
+        bool get (const size_t index, T& dest) const noexcept override;
         bool set (const size_t index, const T& val) noexcept override;
 
         bool add (const size_t index, const T& val) override;
@@ -46,8 +43,8 @@ class DynamicArray : public ListInterface<T> {
         }
 
     protected:
-        T *_array;
-        size_t _capacity;
+        T *_array{};
+        size_t _capacity{};
 
     protected:
         void _copyArray (T *dest, const T *src, const size_t index, const size_t newLen, const T val);
