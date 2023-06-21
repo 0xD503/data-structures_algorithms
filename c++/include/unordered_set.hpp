@@ -16,7 +16,7 @@
 //         inline size_t capacity () const   { return (_capacity); }
 //         inline size_t size () const       { return (sizeof(T) * _capacity); }
 
-//         bool add (const T& elem) override;
+//         bool insert (const T& elem) override;
 //         bool remove (const T& i) override;
 
 //         bool find (const T& elem) override;

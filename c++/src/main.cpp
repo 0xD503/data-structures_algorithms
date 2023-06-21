@@ -21,10 +21,10 @@ int main(int argc, char *argv[]) {
 
     // DynamicArray<int> vec(5);
 
-    // vec.add(0, 7);
-    // vec.add(0, 6);
-    // vec.add(0, 5);
-    // vec.add(0, 3);
+    // vec.insert(0, 7);
+    // vec.insert(0, 6);
+    // vec.insert(0, 5);
+    // vec.insert(0, 3);
     // // cout << "BEFOREEEEEEEEEEEEEEEEEEEEEEEEEE" << endl;
     // // vec.set(1600, 800);
     // // cout << "AAFTEERRRRRRRRRRRRRRRRRRRRRRRRR" << endl;

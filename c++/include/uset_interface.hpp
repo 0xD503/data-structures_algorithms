@@ -12,7 +12,7 @@ class UnsortedSetI {
 
         inline size_t length () const       { return (_length); }
 
-        inline virtual bool add (const T& elem) = 0;
+        inline virtual bool insert (const T& elem) = 0;
         inline virtual bool remove (const T& i) = 0;
 
         inline virtual bool find (const T& elem) = 0;

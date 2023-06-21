@@ -20,7 +20,7 @@
 
 
 // template<typename T>
-// bool UnorderedSet<T>::add (const T& elem) {
+// bool UnorderedSet<T>::insert (const T& elem) {
 //     //
 // }
 

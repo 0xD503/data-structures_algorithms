@@ -180,7 +180,7 @@
 /*         Status status = FAIL;                                           \ */
 /*                                                                         \ */
 /*         if ((me != NULL) && (index <= me->_length)) {                   \ */
-/*             /\* check if we have enough memory first *\/                  \ */
+/*             /\* check if we have enough memory front *\/                  \ */
 /*             if (me->_length >= me->_capacity) {                         \ */
 /*                 size_t newCap = (me->_capacity + 1) * MEM_REALLOC_FACTOR; \ */
 /*                 Status st = DynamicArray_##type##_resize(me, newCap);   \ */
@@ -396,7 +396,7 @@
 /*     Status status = FAIL; */
 
 /*     if ((me != NULL) && (index <= me->_length)) { */
-/*         /// check if we have enough memory first */
+/*         /// check if we have enough memory front */
 /*         if (me->_length >= me->_capacity) { */
 /*             size_t newCap = (me->_capacity + 1) * MEM_REALLOC_FACTOR; */
 /*             Status st = DynamicArray_resize(me, newCap); */

@@ -145,7 +145,7 @@ end:
 
 
 template<typename T>
-bool DynamicArray<T>::add (const size_t index, const T& val) {
+bool DynamicArray<T>::insert (const size_t index, const T& val) {
     bool status(false);
     const size_t destStart = index + 1;
     const size_t n = this->_length + 1 - destStart;

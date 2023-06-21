@@ -13,7 +13,7 @@ LinkedList<T>::LinkedList(const size_t length, const T fillValue):
     LinkedList<T>() {
 
     for (size_t i(0); i < length; i++) {
-        add(0, fillValue);
+        insert(0, fillValue);
     }
 }
 
@@ -69,7 +69,7 @@ bool LinkedList<T>::swap (size_t index_1, size_t index_2) noexcept {
 
 
 template<typename T>
-bool LinkedList<T>::add (const size_t index, const T& value) {
+bool LinkedList<T>::insert (const size_t index, const T& value) {
     bool success(false);
     Node *newNode;
     Node *prev, *next;

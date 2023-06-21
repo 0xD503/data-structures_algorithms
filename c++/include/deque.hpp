@@ -1,25 +1,34 @@
-#ifndef __DEQUE_HPP__
-#define __DEQUE_HPP__
+#pragma once
 
-#include "list_interface.hpp"
+#include "deque_interface.hpp"
+#include "dynamic_array.hpp"
 
 
 template<typename T>
-class Deque : List<T> {
+class Deque : public DequeInterface<T> {
     public:
-        ~Deque() = 0;
+        Deque() = default;
+        ~Deque();
 
-        inline bool addFirst (T val)    { return (add(0, val)); }
-        inline bool removeFirst ()      { return (remove(0)); }
-        inline bool addLast (T val)     { return (add(_length, val)); }
-        inline bool removeLast ()       { return (remove(_length - 1)); }
+        inline size_t length () const noexcept {
+            return (_frontArray.length() + _backArray.length());
+        }
+
+        inline bool front (T& val) const noexcept override {
+            return (_frontArray.back(val));
+        }
+        inline bool back (T& val) const noexcept override {
+            return (_backArray.back());
+        }
+
+        bool addFront (const T& val) override;
+        bool removeFront ()          override;
+        bool addBack (const T& val)  override;
+        bool removeBack ()           override;
+
+        bool clear () override;
+
+    protected:
+        DynamicArray<T> _frontArray{};
+        DynamicArray<T> _backArray{};
 };
-
-
-template<typename T>
-Deque<T>::~Deque() {
-    //
-}
-
-
-#endif // __DEQUE_HPP__

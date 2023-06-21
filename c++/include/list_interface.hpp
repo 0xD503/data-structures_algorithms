@@ -12,17 +12,9 @@ class ListInterface {
 
         inline size_t length () const noexcept      { return (_length); }
 
-        virtual inline T first () const            {
-            T ret{};
-            get(0, ret);
-
-            return (ret);
-        }
-        virtual inline T last () const             {
-            T ret{};
-            get(_length - 1, ret);
-
-            return (ret);
+        inline bool front (T& val) const noexcept   { return (get(0, val)); }
+        inline bool back (T& val) const noexcept {
+            return (get(length() - 1, val));
         }
 
         virtual inline bool get (size_t index, T& dest) const noexcept = 0;
@@ -30,10 +22,13 @@ class ListInterface {
 
         virtual inline bool swap (size_t index_1, size_t index_2) noexcept = 0;
 
-        virtual inline bool add (size_t index, const T& val) = 0;
+        virtual inline bool insert (size_t index, const T& val) = 0;
         virtual inline bool remove (size_t index) = 0;
 
-        virtual inline bool empty () const { return (_length == 0); }
+        inline bool append (const T& val) { return (insert(length(), val)); }
+        inline bool prepend (const T& val) { return (insert(0, val)); }
+
+        inline bool empty () const { return (length() == 0); }
         virtual inline bool clear () {
             bool done(true);
 
