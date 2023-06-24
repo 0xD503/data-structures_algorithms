@@ -6,8 +6,7 @@
 template<typename T>
 class DequeInterface : public SequenceInterface<T> {
     public:
-        //explicit DequeInterface() = default;
-        ~DequeInterface() = 0;
+        virtual ~DequeInterface() = 0;
 
 
         virtual inline bool addFront (const T& val) = 0;

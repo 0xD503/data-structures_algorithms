@@ -22,7 +22,7 @@ DynamicArray<T>::DynamicArray(const size_t capacity) :
 }
 
 template<typename T>
-DynamicArray<T>::DynamicArray(const size_t length, const T fillValue) :
+DynamicArray<T>::DynamicArray(const size_t length, const T& fillValue) :
     DynamicArray<T>(length) {
     if (this->_capacity == length) {
         for (size_t i = 0; i < this->_capacity; i++) {

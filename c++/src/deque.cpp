@@ -2,6 +2,18 @@
 
 
 template<typename T>
+Deque<T>::Deque(const size_t len, const T& fillValue) {
+    for (size_t i(0); i < len; i++) {
+        addFront(fillValue);
+    }
+}
+template<typename T>
+Deque<T>::Deque(const size_t capacity) {
+    //
+    #warning "not implemented"
+}
+
+template<typename T>
 Deque<T>::~Deque() {
     clear();
 }
@@ -37,3 +49,6 @@ bool Deque<T>::clear() {
 
     return (status);
 }
+
+
+template class Deque<long>;

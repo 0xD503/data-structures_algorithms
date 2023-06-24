@@ -17,7 +17,7 @@ class LinkedList : public ListInterface<T> {
         };
 
         LinkedList() = default;
-        LinkedList(const size_t length, const T fillValue);
+        LinkedList(const size_t length, const T& fillValue);
         ~LinkedList();
 
         size_t size () const noexcept   { return (sizeof(T) * this->length()); }

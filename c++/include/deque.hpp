@@ -8,6 +8,8 @@ template<typename T>
 class Deque : public DequeInterface<T> {
     public:
         Deque() = default;
+        Deque(const size_t capacity);
+        Deque(const size_t len, const T& fillValue);
         ~Deque();
 
         inline size_t length () const noexcept {
@@ -18,7 +20,7 @@ class Deque : public DequeInterface<T> {
             return (_frontArray.back(val));
         }
         inline bool back (T& val) const noexcept override {
-            return (_backArray.back());
+            return (_backArray.back(val));
         }
 
         bool addFront (const T& val) override;
@@ -26,6 +28,7 @@ class Deque : public DequeInterface<T> {
         bool addBack (const T& val)  override;
         bool removeBack ()           override;
 
+        inline bool empty () const override { return (length() == 0); }
         bool clear () override;
 
     protected:

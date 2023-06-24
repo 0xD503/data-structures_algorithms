@@ -9,7 +9,7 @@ using std::clog;
 using std::endl;
 
 template<typename T>
-LinkedList<T>::LinkedList(const size_t length, const T fillValue):
+LinkedList<T>::LinkedList(const size_t length, const T& fillValue):
     LinkedList<T>() {
 
     for (size_t i(0); i < length; i++) {

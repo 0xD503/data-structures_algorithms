@@ -11,7 +11,7 @@ class DynamicArray : public ListInterface<T> {
     public:
         DynamicArray() = default;
         explicit DynamicArray(const size_t capacity);
-        DynamicArray(const size_t length, const T fillValue);
+        DynamicArray(const size_t length, const T& fillValue);
         DynamicArray(const DynamicArray& darr) = default;
         ~DynamicArray();
 

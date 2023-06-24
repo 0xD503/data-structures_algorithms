@@ -3,6 +3,7 @@
 //#include <bag.hpp>
 #include "dynamic_array.hpp"
 #include "linked_list.hpp"
+#include "deque.hpp"
 
 
 using std::cout;
@@ -13,6 +14,8 @@ int main(int argc, char *argv[]) {
     int status = EXIT_FAILURE;
 
     LinkedList<long> ll(7, 777);
+    Deque<long> dq;
+    Deque<long> dq_2{};
     cout << "LL len: " << ll.length() << endl;
     cout << "LL size: " << ll.size() << endl;
     ll.clear();
