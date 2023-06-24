@@ -94,8 +94,8 @@ bool LinkedList<T>::insert (const size_t index, const T& value) {
     try {
         newNode = new Node(value, prev, next);
     } catch (std::bad_alloc& excpt) {
-        cerr << "Failed to allocate new list node, length = " << this->_length
-             << endl;
+        cerr << "Failed to allocate new list node, current length = "
+             << this->_length << endl;
         goto end;
     }
 

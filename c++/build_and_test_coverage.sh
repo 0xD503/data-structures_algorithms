@@ -3,6 +3,7 @@
 
 ./build.sh && \
     cd build && \
-    ctest -T test -T coverage && \
-    lcov -c -d . -o coverage.info && \
-    genhtml coverage.info --output-directory html-out
+    ctest --output-on-failure -T test -T coverage && \
+    cd .. && \
+    lcov -c -d . -o build/coverage.info && \
+    genhtml build/coverage.info --output-directory html-out

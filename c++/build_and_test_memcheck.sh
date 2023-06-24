@@ -3,4 +3,4 @@
 
 ./build.sh && \
     cd build && \
-    ctest -T memcheck
+    ctest --output-on-failure -T memcheck

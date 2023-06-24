@@ -73,27 +73,13 @@ end:
 
 template<typename T>
 bool DynamicArray<T>::fit () {
-    bool status = true;
+    bool success(resize(this->_length));
 
-    if (not resize(this->_length)) {
+    if (not success) {
         cerr << "Failed to fit array" << endl;
     }
-    // if (this->_length < this->_capacity) {
-    //     T *newArray = new T[this->_length];
-    //     if (newArray != nullptr) {
-    //         for (size_t i = 0; i < this->_length; i++) {
-    //             newArray[i] = _array[i];
-    //         }
-    //         delete[] _array;
-    //         _array = newArray;
-    //         this->_capacity = this->_length;
-    //     }
-    //     else {
-    //         status = false;
-    //     }
-    // }
 
-    return (status);
+    return (success);
 }
 
 
@@ -111,14 +97,14 @@ bool DynamicArray<T>::get (const size_t index, T& dest) const noexcept {
 
 template<typename T>
 bool DynamicArray<T>::set (const size_t index, const T& val) noexcept {
-    bool status(false);
+    bool success(false);
 
     if (index < this->_length) {
         _array[index] = val;
-        status = true;
+        success = true;
     }
 
-    return (status);
+    return (success);
 }
 
 
@@ -146,7 +132,7 @@ end:
 
 template<typename T>
 bool DynamicArray<T>::insert (const size_t index, const T& val) {
-    bool status(false);
+    bool success(false);
     const size_t destStart = index + 1;
     const size_t n = this->_length + 1 - destStart;
 
@@ -156,41 +142,26 @@ bool DynamicArray<T>::insert (const size_t index, const T& val) {
 
     if (this->_length >= this->_capacity) {
         size_t newCap = (this->_length + 1) * MEM_REALLOC_FACTOR;
-        status = resize(newCap);
-        if (not status) {
+        success = resize(newCap);
+        if (not success) {
             cerr << "Failed to extend array" << endl;
             goto end;
         }
-        // T *newArray = new T[newCap];
-        // if (newArray != nullptr) {
-        //     _copyArray(newArray, _array, index, newCap, val);
-
-        //     delete[] _array;
-        //     _array = newArray;
-        //     this->_length++;
-        //     this->_capacity++;
-        //     status = true;
-        // }
-        // else {
-        //     goto end;
-        // }
     }
-    //else {
 
     std::memmove(&_array[destStart], &_array[index], n * sizeof(T));
     _array[index] = val;
 
     this->_length++;
-    status = true;
-    //}
+    success = true;
 
 end:
-    return (status);
+    return (success);
 }
 
 template<typename T>
 bool DynamicArray<T>::remove (const size_t index) {
-    bool status(false);
+    bool success(false);
 
     if (index < this->_length) {
         if ((this->_length - 1) < (this->_capacity / (MEM_REALLOC_FACTOR + 1))) {
@@ -202,11 +173,11 @@ bool DynamicArray<T>::remove (const size_t index) {
         const size_t n = this->_length - index - 1;  /// TODO: TEST IT!!!!!
         std::memmove(&_array[index], &_array[index + 1], n);
         this->_length--;
-        status = true;
+        success = true;
     }
 
 end:
-    return (status);
+    return (success);
 }
 
 
@@ -230,18 +201,18 @@ bool DynamicArray<T>::clear () {
 }
 
 
-template<typename T>
-void DynamicArray<T>::_copyArray (T *dest, const T *src, const size_t index, const size_t newLen, const T val) {
-    size_t i;
+// template<typename T>
+// void DynamicArray<T>::_copyArray (T *dest, const T *src, const size_t index, const size_t newLen, const T val) {
+//     size_t i;
 
-    for (i = 0; i < index; i++) {
-        dest[i] = src[i];
-    }
-    dest[i++] = val;
-    for (; i < newLen; i++) {
-        dest[i] = src[i - 1];
-    }
-}
+//     for (i = 0; i < index; i++) {
+//         dest[i] = src[i];
+//     }
+//     dest[i++] = val;
+//     for (; i < newLen; i++) {
+//         dest[i] = src[i - 1];
+//     }
+// }
 
 
 ///

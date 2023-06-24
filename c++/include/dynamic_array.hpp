@@ -36,20 +36,20 @@ class DynamicArray : public ListInterface<T> {
         bool clear () override;
 
         inline DynamicArray& operator= (const DynamicArray& other) = default;
-        inline DynamicArray& operator= (const DynamicArray&& other) {
-            _array = std::move(other._array);
-            this->_length = std::move(other._length);
-            this->_capacity = std::move(other._capacity);
+        // inline DynamicArray& operator= (const DynamicArray&& other) {
+        //     _array = std::move(other._array);
+        //     this->_length = std::move(other._length);
+        //     this->_capacity = std::move(other._capacity);
 
-            return (*this);
-        }
+        //     return (*this);
+        // }
 
     protected:
         T *_array{};
         size_t _capacity{};
 
     protected:
-        void _copyArray (T *dest, const T *src, const size_t index, const size_t newLen, const T val);
+        // void _copyArray (T *dest, const T *src, const size_t index, const size_t newLen, const T val);
 
     private:
         static constexpr size_t MEM_REALLOC_FACTOR = 2;
