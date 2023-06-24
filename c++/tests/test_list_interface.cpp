@@ -21,6 +21,7 @@ void test_list_if(ListInterface<T> *list) {
     cr_assert_not_null(list);
     T val(-126);
 
+    #warning "not done yet"
     cr_expect_eq(list->length(), 0);
     cr_expect_not(list->front(val));
     cr_expect_eq(val, -126);

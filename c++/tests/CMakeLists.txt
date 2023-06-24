@@ -1,5 +1,15 @@
 ## Tests
 
+include(Dart)
+
+
+## valgrind
+find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
+
+## coverage
+#find_program(CTEST_COVERAGE_COMMAND NAMES gcov)
+
+
 add_executable(TestContainerInterface
   test_container_if.cpp
   ../src/dynamic_array.cpp
@@ -62,3 +72,11 @@ add_test(
   NAME TestDeque
   COMMAND TestDeque
 )
+
+#
+#find_package(CodeCoverage)
+#include(CodeCoverage)
+#include(CodeCoverage)
+#append_coverage_compiler_flags()
+
+#

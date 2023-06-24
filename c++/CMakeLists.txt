@@ -10,7 +10,9 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++")
+#set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -fprofile-arcs -ftest-coverage")
+#set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -coverage -fprofile-arcs -ftest-coverage")
 #set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -stdlib=libc++")
 #set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -Og")
@@ -21,6 +23,10 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 #set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
 #set(CMAKE_BUILD_TYPE Release)
+
+#append_coverage_compiler_flags()
+# set(GCC_COVERAGE_COMPILER_FLAGS "-g -O3 -fprofile-arcs -ftest-coverage")
+# set(GCC_COVERAGE_LINK_FLAGS "-coverage -lgcov")
 
 ## use clang++, not g++
 #set(CMAKE_LINKER "lld")
@@ -51,5 +57,7 @@ add_executable(${PROJECT_NAME}
 )
 
 ## testing
+include(CTest)
 enable_testing()
+
 add_subdirectory(tests/)
