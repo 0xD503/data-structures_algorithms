@@ -1,19 +1,18 @@
-#ifndef __LIST_INTERFACE_HPP__
-#define __LIST_INTERFACE_HPP__
+#pragma once
 
-#include <cstddef>
+#include <sequence_interface.hpp>
 
 
 template<typename T>
-class ListInterface {
+class ListInterface : public SequenceInterface<T> {
     public:
         explicit ListInterface() = default;
         virtual ~ListInterface() = 0;
 
-        inline size_t length () const noexcept      { return (_length); }
+        inline size_t length () const noexcept override     { return (_length); }
 
-        inline bool front (T& val) const noexcept   { return (get(0, val)); }
-        inline bool back (T& val) const noexcept {
+        inline bool front (T& val) const noexcept override  { return (get(0, val)); }
+        inline bool back (T& val) const noexcept override   {
             return (get(length() - 1, val));
         }
 
@@ -28,8 +27,8 @@ class ListInterface {
         inline bool append (const T& val) { return (insert(length(), val)); }
         inline bool prepend (const T& val) { return (insert(0, val)); }
 
-        inline bool empty () const { return (length() == 0); }
-        virtual inline bool clear () {
+        inline bool empty () const override { return (length() == 0); }
+        virtual inline bool clear () override {
             bool done(true);
 
             while (not empty()) {
@@ -54,6 +53,3 @@ ListInterface<T>::~ListInterface() {
 
 
 //template class ListInterface<int>;
-
-
-#endif // __LIST_INTERFACE_HPP__
