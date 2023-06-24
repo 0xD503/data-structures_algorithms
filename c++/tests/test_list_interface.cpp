@@ -18,6 +18,7 @@ TestSuite(list_if, .init = testSetUp, .fini = testTearDown);
 
 template<typename T>
 void test_list_if(ListInterface<T> *list) {
+    cr_assert_not_null(list);
     T val(-126);
 
     cr_expect_eq(list->length(), 0);

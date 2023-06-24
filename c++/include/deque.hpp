@@ -16,12 +16,8 @@ class Deque : public DequeInterface<T> {
             return (_frontArray.length() + _backArray.length());
         }
 
-        inline bool front (T& val) const noexcept override {
-            return (_frontArray.back(val));
-        }
-        inline bool back (T& val) const noexcept override {
-            return (_backArray.back(val));
-        }
+        bool front (T& val) const noexcept override;
+        bool back (T& val) const noexcept override;
 
         bool addFront (const T& val) override;
         bool removeFront ()          override;

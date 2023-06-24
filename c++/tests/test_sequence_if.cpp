@@ -36,7 +36,7 @@ void testSequenceIf(SequenceInterface<T> *seq) {
     cr_expect(seq->front(val));
     cr_expect_eq(val, 2);
     cr_expect(seq->back(val));
-    cr_expect_eq(val, 2);
+    cr_expect_eq(val, 8);
 }
 
 
@@ -45,6 +45,7 @@ Test(sequence_if, dynamic_array) {
     DynamicArray<long> da_2{};
     DynamicArray<long> da_3(4);
     DynamicArray<long> da_4(4, 2);
+    da_4.append(8);
 
     testEmptySequenceIf<long>(&da);
     testEmptySequenceIf<long>(&da_2);
@@ -56,6 +57,7 @@ Test(sequence_if, linked_list) {
     LinkedList<long> ll;
     LinkedList<long> ll_2{};
     LinkedList<long> ll_4(4, 2);
+    ll_4.append(8);
 
     testEmptySequenceIf<long>(&ll);
     testEmptySequenceIf<long>(&ll_2);
@@ -67,6 +69,7 @@ Test(sequence_if, dual_array_deque) {
     Deque<long> dq_2{};
     Deque<long> dq_3(4);
     Deque<long> dq_4(4, 2);
+    dq_4.addBack(8);
 
     testEmptySequenceIf<long>(&dq);
     testEmptySequenceIf<long>(&dq_2);
