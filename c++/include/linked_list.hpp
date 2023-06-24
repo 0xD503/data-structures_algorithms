@@ -31,38 +31,10 @@ class LinkedList : public ListInterface<T> {
         bool remove (const size_t index) override;
 
     protected:
-        Node _rootNode{};
+        Node _rootNode{T(), &_rootNode, &_rootNode};
 
-        const Node *_getNode (size_t index) const;
-        Node *_getNode (size_t index);
-
-        // inline const Node *_firstNode () const  { return (_getNode(0)); }
-        // inline Node *_firstNode ()              { return (_getNode(0)); }
-        // inline const Node *_lastNode () const   { return (_getNode(this->_length - 1)); }
-        // inline Node *_lastNode ()               { return (_getNode(this->_length - 1)); }
-
-
-
-
-
-        // inline const Node *_firstNode () const {
-        //     const Node *node = nullptr;
-
-        //     if (this->_length > 0) {
-        //         node = _rootNode.next;
-        //     }
-
-        //     return (node);
-        // }
-        // inline const Node *_lastNode () const {
-        //     const Node *node(&_rootNode);
-
-        //     while (node->next != nullptr) {
-        //         node = node->next;
-        //     }
-
-        //     return (node);
-        // }
+        const Node *_getNode (size_t index) const noexcept;
+        Node *_getNode (size_t index) noexcept;
 };
 
 
