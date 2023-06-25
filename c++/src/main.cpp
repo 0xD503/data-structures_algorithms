@@ -13,14 +13,58 @@ using std::endl;
 int main(int argc, char *argv[]) {
     int status = EXIT_FAILURE;
 
-    LinkedList<long> ll(7, 777);
+    // LinkedList<long> ll(7, 777);
     Deque<long> dq;
-    Deque<long> dq_2{};
-    cout << "LL len: " << ll.length() << endl;
-    cout << "LL size: " << ll.size() << endl;
-    ll.clear();
-    cout << "LL len: " << ll.length() << endl;
-    cout << "LL size: " << ll.size() << endl;
+
+    // dq.addFront(1);
+    // dq.addFront(2);
+    // dq.addFront(3);
+    // dq.addFront(4);
+    // dq.addFront(5);
+    // dq.addBack(0);
+    // dq.addBack(-1);
+    // dq.addBack(-2);
+    // dq.addBack(-3);
+
+    // cout << "DQ len: " << dq.length() << endl;
+
+    // long val = dq.length();
+    // for (size_t i(val); i > 0; i--) {
+    //     dq.back(val);
+    //     cout << "i: " << i << endl;
+    //     cout << "back val: " << val << endl;
+    //     dq.front(val);
+    //     cout << "front val: " << val << endl;
+    //     dq.removeBack();
+    // }
+
+    for (size_t i(0); i < 900; i++) {
+        dq.addFront(i);
+    }
+    for (size_t i(1); i < 100; i++) {
+        dq.addBack(-i);
+    }
+    for (size_t i(0); i < 200; i++) {
+        dq.removeFront();
+    }
+    for (size_t i(0); i < 200; i++) {
+        dq.removeBack();
+    }
+    for (size_t i(0); i < 100; i++) {
+        dq.removeFront();
+    }
+    for (size_t i(0); i < 499; i++) {
+        dq.removeBack();
+    }
+
+    cout << "DQ empty: " << dq.empty() << endl;
+
+    //Deque<long> dq_2{};
+    // cout << "LL len: " << ll.length() << endl;
+    // cout << "LL size: " << ll.size() << endl;
+    // ll.clear();
+    // cout << "LL len: " << ll.length() << endl;
+    // cout << "LL size: " << ll.size() << endl;
 
     // DynamicArray<int> vec(5);
 
@@ -35,6 +79,8 @@ int main(int argc, char *argv[]) {
     // cout << "s    : " << vec.get(1) << endl;
     // cout << "t    : " << vec.get(2) << endl;
     // cout << "f    : " << vec.get(3) << endl;
+
+    //for ()
 
     status = EXIT_SUCCESS;
 
