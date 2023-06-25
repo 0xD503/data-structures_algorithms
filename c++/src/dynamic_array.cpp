@@ -42,7 +42,7 @@ template<typename T>
 bool DynamicArray<T>::resize (const size_t newCapacity) {
     bool status = false;
 
-    if ((newCapacity >= this->_length) and (newCapacity != this->_capacity)) {
+    if ((newCapacity >= this->length()) and (newCapacity != this->_capacity)) {
         T *newArray;
         try {
             newArray = new T[newCapacity];
@@ -51,17 +51,11 @@ bool DynamicArray<T>::resize (const size_t newCapacity) {
             goto end;
         }
 
-        for (size_t i = 0; i < this->_length; i++) {
+        for (size_t i = 0; i < this->length(); i++) {
             newArray[i] = _array[i];
         }
 
-        try {
-            delete[] _array;
-        } catch (...) {
-            cerr << "Failed to destroy old array before resizing" << endl;
-            goto end;
-        }
-
+        delete[] _array;
         _array = newArray;
         this->_capacity = newCapacity;
         status = true;
@@ -73,7 +67,7 @@ end:
 
 template<typename T>
 bool DynamicArray<T>::fit () {
-    bool success(resize(this->_length));
+    bool success(resize(this->length()));
 
     if (not success) {
         cerr << "Failed to fit array" << endl;
@@ -99,7 +93,7 @@ template<typename T>
 bool DynamicArray<T>::set (const size_t index, const T& val) noexcept {
     bool success(false);
 
-    if (index < this->_length) {
+    if (index < this->length()) {
         _array[index] = val;
         success = true;
     }
@@ -134,14 +128,14 @@ template<typename T>
 bool DynamicArray<T>::insert (const size_t index, const T& val) {
     bool success(false);
     const size_t destStart = index + 1;
-    const size_t n = this->_length + 1 - destStart;
+    const size_t n = this->length() + 1 - destStart;
 
-    if (index > this->_length) {
+    if (index > this->length()) {
         goto end;
     }
 
-    if (this->_length >= this->_capacity) {
-        size_t newCap = (this->_length + 1) * MEM_REALLOC_FACTOR;
+    if (this->length() >= this->_capacity) {
+        size_t newCap = (this->length() + 1) * MEM_REALLOC_FACTOR;
         success = resize(newCap);
         if (not success) {
             cerr << "Failed to extend array" << endl;
@@ -149,7 +143,7 @@ bool DynamicArray<T>::insert (const size_t index, const T& val) {
         }
     }
 
-    std::memmove(&_array[destStart], &_array[index], n * sizeof(T));
+    std::memmove(&_array[destStart], &_array[index], sizeof(T) * n);
     _array[index] = val;
 
     this->_length++;
@@ -163,15 +157,15 @@ template<typename T>
 bool DynamicArray<T>::remove (const size_t index) {
     bool success(false);
 
-    if (index < this->_length) {
-        if ((this->_length - 1) < (this->_capacity / (MEM_REALLOC_FACTOR + 1))) {
-            if (not resize(this->_length + 1)) {
+    if (index < this->length()) {
+        if ((this->length() - 1) < (this->_capacity / (MEM_REALLOC_FACTOR + 1))) {
+            if (not resize(this->length() + 1)) {
                 cerr << "Failed to shrink array" << endl;
                 goto end;
             }
         }
-        const size_t n = this->_length - index - 1;  /// TODO: TEST IT!!!!!
-        std::memmove(&_array[index], &_array[index + 1], n);
+        const size_t n = this->length() - index - 1;
+        std::memmove(&_array[index], &_array[index + 1], sizeof(T) * n);
         this->_length--;
         success = true;
     }
@@ -185,17 +179,10 @@ template<typename T>
 bool DynamicArray<T>::clear () {
     bool done(true);
 
-    //if (_capacity > 0) {
-    try {
-        delete[] _array;
-    } catch (...) {
-        done = false;
-        cerr << "Failed to clear dynamic array" << endl;
-    }
+    delete[] _array;
+    _array = nullptr;
     this->_length = 0;
     this->_capacity = 0;
-    _array = nullptr;
-    //}
 
     return (done);
 }

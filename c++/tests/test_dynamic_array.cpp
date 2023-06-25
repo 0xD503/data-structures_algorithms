@@ -194,6 +194,7 @@ Test(dynamic_array, reserving_space) {
     cr_expect(vec.capacity() == 17);
 
     cr_expect(vec.fit());
+    cr_expect_not(vec.fit());
     cr_expect(vec.length() == 2);
     cr_expect(vec.size() == (sizeof(int) * vec.capacity()));
     cr_expect(vec.capacity() == 2);
