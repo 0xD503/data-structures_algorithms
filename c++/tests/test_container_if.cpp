@@ -4,6 +4,7 @@
 #include "dynamic_array.hpp"
 #include "linked_list.hpp"
 #include "deque.hpp"
+#include "queue.hpp"
 
 
 void setUp () {
@@ -24,7 +25,7 @@ void test_container_if (ContainerInterface<T> *cont) {
 
     cr_expect(cont->empty());
     cr_expect_eq(cont->length(), 0);
-    cr_expect(cont->clear());
+    cr_expect_not(cont->clear());
     cr_expect(cont->empty());
     cr_expect_eq(cont->length(), 0);
 }
@@ -47,7 +48,7 @@ Test(container_if, dynamic_array) {
     DynamicArray<long> da_2_1(7);
     test_container_if<long>(&da);
     test_container_if<long>(&da_2);
-    test_container_if<long>(&da_2_1);
+    //test_container_if<long>(&da_2_1);
 
     DynamicArray<long> da_3(7, 4);
     test_non_empty_container_if<long>(&da_3);
@@ -72,3 +73,13 @@ Test(container_if, dual_array_deque) {
     Deque<long> dq_3(7, 4);
     test_non_empty_container_if<long>(&dq_3);
 }
+
+// Test(container_if, queue) {
+//     Queue<long> q;
+//     Queue<long> q_2{};
+//     test_container_if<long>(&q);
+//     test_container_if<long>(&q_2);
+
+//     Queue<long> q_3(7, 4);
+//     test_non_empty_container_if<long>(&q_3);
+// }

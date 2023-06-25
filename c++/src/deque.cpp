@@ -111,3 +111,4 @@ bool Deque<T>::clear() {
 
 
 template class Deque<long>;
+template class Deque<char>;

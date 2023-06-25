@@ -27,13 +27,13 @@ Test(dynamic_array, create) {
     cr_expect(vec.length() == 0, "Expected empty array");
     cr_expect(vec.capacity() == 0, "Expected empty array with 0 capacity");
     cr_expect(vec.size() == 0, "Expected empty array with 0 size");
-    cr_expect(vec.clear(), "Expected success on clearing array");
+    cr_expect_not(vec.clear(), "Expected fail on clearing an empty array");
 
     DynamicArray<int> vec_2(5);
     cr_expect(vec_2.length() == 0, "Expected empty array");
     cr_expect(vec_2.capacity() == 5, "Expected array with 5 buckets");
     cr_expect(vec_2.size() == (sizeof(int) * 5), "Expected empty array with the size of (5 * int)");
-    cr_expect(vec.clear(), "Expected success on clearing array");
+    cr_expect(vec_2.clear(), "Expected success on clearing non-empty array");
 
     DynamicArray<int> vec_3(-1);
     cr_expect_null(vec_3.data());
@@ -54,7 +54,7 @@ Test(dynamic_array, adding_alements) {
 
     DynamicArray<int> vec_2(7);
     cr_expect(vec_2.insert(0, 1));
-    cr_expect(!vec_2.insert(2, 3));
+    cr_expect_not(vec_2.insert(2, 3));
     cr_expect(vec_2.length() == 1);
     cr_expect(vec_2.capacity() == 7);
 
@@ -68,7 +68,7 @@ Test(dynamic_array, removing_elements) {
     int val(-791);
     //int testVal = -1;
     cr_expect(vec_2.insert(0, 1));
-    cr_expect(not vec_2.insert(2, 3));
+    cr_expect_not(vec_2.insert(2, 3));
     cr_expect(vec_2.insert(1, 7));
     cr_expect(vec_2.insert(2, 2));
     cr_expect(vec_2.remove(1));
@@ -91,7 +91,7 @@ Test(dynamic_array, removing_elements) {
     cr_expect(vec_2.capacity() == 16);
     cr_expect(vec_2.remove(5));
     cr_expect(vec_2.remove(5));
-    cr_expect(not vec_2.remove(5));
+    cr_expect_not(vec_2.remove(5));
     cr_expect(vec_2.get(4, val));
     cr_expect(val == 5);
     cr_expect(vec_2.remove(0));
@@ -99,7 +99,7 @@ Test(dynamic_array, removing_elements) {
     cr_expect(vec_2.remove(0));
     cr_expect(vec_2.remove(0));
     cr_expect(vec_2.remove(0));
-    cr_expect(!vec_2.remove(0));
+    cr_expect_not(vec_2.remove(0));
     cr_expect(vec_2.length() == 0);
     cr_expect(vec_2.capacity() == 2);
 }
@@ -171,7 +171,7 @@ Test(dynamic_array, accessors) {
     cr_expect_eq(val, 19);
     cr_expect(vec.back(val));
     cr_expect_eq(val, 9);
-    cr_expect(!vec.set(16, 800));
+    cr_expect_not(vec.set(16, 800));
 }
 
 Test(dynamic_array, reserving_space) {
@@ -186,7 +186,7 @@ Test(dynamic_array, reserving_space) {
     cr_expect(vec.capacity() == 17);
     cr_expect(vec_2.capacity() == 19);
 
-    cr_expect(!vec.insert(3, 3));
+    cr_expect_not(vec.insert(3, 3));
     cr_expect(vec.insert(0, 3));
     cr_expect(vec.insert(1, 33));
     cr_expect(vec.length() == 2);

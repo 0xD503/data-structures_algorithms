@@ -32,7 +32,7 @@ void test_list_if(ListInterface<T> *list) {
     cr_expect_eq(val, -126);
     cr_expect_not(list->set(0, 8));
     cr_expect(list->empty());
-    cr_expect(list->clear());
+    cr_expect_not(list->clear());
 
     cr_expect_not(list->insert(1, 7));
     cr_expect_not(list->get(0, val));

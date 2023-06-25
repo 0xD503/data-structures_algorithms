@@ -29,12 +29,15 @@ class ListInterface : public SequenceInterface<T> {
 
         inline bool empty () const override { return (length() == 0); }
         virtual inline bool clear () override {
-            bool done(true);
+            bool done(false);
 
-            while (not empty()) {
-                if (not remove(0)) [[unlikely]] {
-                    done = false;
-                    break;
+            if (not empty()) {
+                done = true;
+                while (not empty()) {
+                    if (not remove(0)) [[unlikely]] {
+                        done = false;
+                        break;
+                    }
                 }
             }
 

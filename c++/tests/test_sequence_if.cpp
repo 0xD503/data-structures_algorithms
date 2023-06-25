@@ -3,6 +3,7 @@
 #include "dynamic_array.hpp"
 #include "linked_list.hpp"
 #include "deque.hpp"
+#include "queue.hpp"
 
 
 void setUp () {
@@ -75,4 +76,17 @@ Test(sequence_if, dual_array_deque) {
     testEmptySequenceIf<long>(&dq_2);
     testEmptySequenceIf<long>(&dq_3);
     testSequenceIf<long>(&dq_4);
+}
+
+Test(sequence_if, queue) {
+    Queue<long> q;
+    Queue<long> q_2{};
+    Queue<long> q_3(4);
+    Queue<long> q_4(4, 2);
+    q_4.add(8);
+
+    testEmptySequenceIf<long>(&q);
+    testEmptySequenceIf<long>(&q_2);
+    testEmptySequenceIf<long>(&q_3);
+    testSequenceIf<long>(&q_4);
 }

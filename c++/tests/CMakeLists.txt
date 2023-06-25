@@ -15,12 +15,14 @@ add_executable(TestContainerInterface
   ../src/dynamic_array.cpp
   ../src/linked_list.cpp
   ../src/deque.cpp
+  ../src/queue.cpp
 )
 add_executable(TestSequenceInterface
   test_sequence_if.cpp
   ../src/dynamic_array.cpp
   ../src/linked_list.cpp
   ../src/deque.cpp
+  ../src/queue.cpp
 )
 add_executable(TestListInterface
   test_list_interface.cpp
@@ -40,6 +42,12 @@ add_executable(TestDeque
   ../src/deque.cpp
   ../src/dynamic_array.cpp
 )
+add_executable(TestQueue
+  test_queue.cpp
+  ../src/queue.cpp
+  ../src/deque.cpp
+  ../src/dynamic_array.cpp
+)
 
 target_link_libraries(TestContainerInterface criterion)
 target_link_libraries(TestSequenceInterface criterion)
@@ -47,6 +55,7 @@ target_link_libraries(TestListInterface criterion)
 target_link_libraries(TestDynamicArray criterion)
 target_link_libraries(TestLinkedList criterion)
 target_link_libraries(TestDeque criterion)
+target_link_libraries(TestQueue criterion)
 
 add_test(
   NAME TestContainerInterface
@@ -71,6 +80,10 @@ add_test(
 add_test(
   NAME TestDeque
   COMMAND TestDeque
+)
+add_test(
+  NAME TestQueue
+  COMMAND TestQueue
 )
 
 #

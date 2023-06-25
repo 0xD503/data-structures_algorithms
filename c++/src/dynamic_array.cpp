@@ -177,12 +177,15 @@ end:
 
 template<typename T>
 bool DynamicArray<T>::clear () {
-    bool done(true);
+    bool done(false);
 
-    delete[] _array;
-    _array = nullptr;
-    this->_length = 0;
-    this->_capacity = 0;
+    if (_array != nullptr) {
+        delete[] _array;
+        _array = nullptr;
+        this->_length = 0;
+        this->_capacity = 0;
+        done = true;
+    }
 
     return (done);
 }

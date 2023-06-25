@@ -19,7 +19,6 @@ class DequeInterface : public SequenceInterface<T> {
 };
 
 
-//template<class List, typename T>
 template<typename T>
 DequeInterface<T>::~DequeInterface() {
     //

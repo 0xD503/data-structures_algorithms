@@ -26,7 +26,7 @@ Test(linked_list, create) {
 
     cr_expect(ll.length() == 0, "Expected empty linked list");
     cr_expect(ll.size() == 0, "Expected empty linked list with 0 size");
-    cr_expect(ll.clear(), "Expected success at clearing empty linked list");
+    cr_expect_not(ll.clear(), "Expected fail on clearing an empty linked list");
     cr_expect(ll.empty());
 
     constexpr size_t ll_2_size = 2342;
