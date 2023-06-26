@@ -104,7 +104,7 @@ bool Deque<T>::clear() {
     bool status;
 
     status = _frontArray.clear();
-    status = status and _backArray.clear();
+    status = _backArray.clear() or status;
 
     return (status);
 }

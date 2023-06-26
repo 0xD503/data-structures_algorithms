@@ -33,7 +33,7 @@ class Queue : public QueueInterface<T> {
         }
 
         bool add (const T& val) override;
-        bool remove (T& val) override;
+        bool remove () override;
 
     protected:
         Deque<T> _deque{};

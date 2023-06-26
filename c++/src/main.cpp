@@ -14,7 +14,14 @@ int main(int argc, char *argv[]) {
     int status = EXIT_FAILURE;
 
     // LinkedList<long> ll(7, 777);
-    Deque<long> dq;
+    Deque<long> dq(7, 4);
+
+
+    cout << "DQ len: " << dq.empty() << endl;
+    cout << "DQ len: " << dq.length() << endl;
+    cout << "DQ len: " << dq.clear() << endl;
+    cout << "DQ len: " << dq.empty() << endl;
+    cout << "DQ len: " << dq.length() << endl;
 
     // dq.addFront(1);
     // dq.addFront(2);
@@ -38,26 +45,26 @@ int main(int argc, char *argv[]) {
     //     dq.removeBack();
     // }
 
-    for (size_t i(0); i < 900; i++) {
-        dq.addFront(i);
-    }
-    for (size_t i(1); i < 100; i++) {
-        dq.addBack(-i);
-    }
-    for (size_t i(0); i < 200; i++) {
-        dq.removeFront();
-    }
-    for (size_t i(0); i < 200; i++) {
-        dq.removeBack();
-    }
-    for (size_t i(0); i < 100; i++) {
-        dq.removeFront();
-    }
-    for (size_t i(0); i < 499; i++) {
-        dq.removeBack();
-    }
+    // for (size_t i(0); i < 900; i++) {
+    //     dq.addFront(i);
+    // }
+    // for (size_t i(1); i < 100; i++) {
+    //     dq.addBack(-i);
+    // }
+    // for (size_t i(0); i < 200; i++) {
+    //     dq.removeFront();
+    // }
+    // for (size_t i(0); i < 200; i++) {
+    //     dq.removeBack();
+    // }
+    // for (size_t i(0); i < 100; i++) {
+    //     dq.removeFront();
+    // }
+    // for (size_t i(0); i < 499; i++) {
+    //     dq.removeBack();
+    // }
 
-    cout << "DQ empty: " << dq.empty() << endl;
+    // cout << "DQ empty: " << dq.empty() << endl;
 
     //Deque<long> dq_2{};
     // cout << "LL len: " << ll.length() << endl;

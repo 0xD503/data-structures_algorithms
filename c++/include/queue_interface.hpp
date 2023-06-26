@@ -9,7 +9,7 @@ class QueueInterface : public SequenceInterface<T> {
         virtual ~QueueInterface() = 0;
 
         virtual inline bool add (const T& val) = 0;
-        virtual inline bool remove (T& val) = 0;
+        virtual inline bool remove () = 0;
 };
 
 

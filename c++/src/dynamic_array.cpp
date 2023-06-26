@@ -179,7 +179,7 @@ template<typename T>
 bool DynamicArray<T>::clear () {
     bool done(false);
 
-    if (_array != nullptr) {
+    if (/* (this->length() > 0) and */(_array != nullptr)) {
         delete[] _array;
         _array = nullptr;
         this->_length = 0;

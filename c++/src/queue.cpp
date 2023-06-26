@@ -20,14 +20,8 @@ bool Queue<T>::add (const T& val) {
 }
 
 template<typename T>
-bool Queue<T>::remove (T& val) {
-    bool success(front(val));
-
-    if (success) {
-        success = _deque.removeFront();
-    }
-
-    return (success);
+bool Queue<T>::remove () {
+    return (_deque.removeFront());
 }
 
 
