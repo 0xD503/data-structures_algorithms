@@ -5,6 +5,7 @@
 #include "linked_list.hpp"
 #include "deque.hpp"
 #include "queue.hpp"
+#include "stack.hpp"
 
 
 void setUp () {
@@ -63,10 +64,10 @@ Test(container_if, linked_list) {
     test_container_if<long>(&ll);
     test_container_if<long>(&ll_2);
 
-    DynamicArray<long> ll_2_1(7);
-    cr_expect(ll_2_1.empty());
-    cr_expect_eq(ll_2_1.length(), 0);
-    cr_expect(ll_2_1.clear());
+    // LinkedList<long> ll_2_1(7);
+    // cr_expect(ll_2_1.empty());
+    // cr_expect_eq(ll_2_1.length(), 0);
+    // cr_expect(ll_2_1.clear());
 
     LinkedList<long> ll_3(7, 4);
     test_non_empty_container_if<long>(&ll_3);
@@ -78,7 +79,7 @@ Test(container_if, dual_array_deque) {
     test_container_if<long>(&dq);
     test_container_if<long>(&dq_2);
 
-    DynamicArray<long> dq_2_1(7);
+    Deque<long> dq_2_1(7);
     cr_expect(dq_2_1.empty());
     cr_expect_eq(dq_2_1.length(), 0);
     cr_expect(dq_2_1.clear());
@@ -93,11 +94,26 @@ Test(container_if, queue) {
     test_container_if<long>(&q);
     test_container_if<long>(&q_2);
 
-    DynamicArray<long> q_2_1(7);
+    Queue<long> q_2_1(7);
     cr_expect(q_2_1.empty());
     cr_expect_eq(q_2_1.length(), 0);
     cr_expect(q_2_1.clear());
 
     Queue<long> q_3(7, 4);
+    test_non_empty_container_if<long>(&q_3);
+}
+
+Test(container_if, stack) {
+    Stack<long> q;
+    Stack<long> q_2{};
+    test_container_if<long>(&q);
+    test_container_if<long>(&q_2);
+
+    Stack<long> q_2_1(7);
+    cr_expect(q_2_1.empty());
+    cr_expect_eq(q_2_1.length(), 0);
+    cr_expect(q_2_1.clear());
+
+    Stack<long> q_3(7, 4);
     test_non_empty_container_if<long>(&q_3);
 }

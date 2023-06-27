@@ -55,6 +55,7 @@ add_executable(${PROJECT_NAME}
   src/linked_list.cpp
   src/deque.cpp
   src/queue.cpp
+  src/stack.cpp
 )
 
 ## testing
