@@ -73,7 +73,6 @@ Test(indexable_seq_if, dynamic_array) {
 Test(indexable_seq_if, linked_list) {
     LinkedList<long> ll;
     LinkedList<long> ll_2{};
-    //LinkedList<long> ll_3(4);
     LinkedList<long> ll_4(4, 2);
     ll_4.append(8);
 
