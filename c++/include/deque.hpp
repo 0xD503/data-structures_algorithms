@@ -12,7 +12,7 @@ class Deque : public DequeInterface<T> {
         Deque(const size_t len, const T& fillValue);
         ~Deque();
 
-        inline size_t length () const noexcept {
+        inline size_t length () const noexcept override {
             return (_frontArray.length() + _backArray.length());
         }
 

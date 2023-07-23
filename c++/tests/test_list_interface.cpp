@@ -62,7 +62,7 @@ void test_list_if(ListInterface<T> *list) {
     cr_expect_not(list->swap(5, 7));
     cr_expect(list->prepend(1));
     cr_expect(list->append(9));
-    for (size_t i(1); i <= 9; i++) {
+    for (long i(1); i <= 9; i++) {
         cr_expect(list->get(i - 1, val));
         cr_expect_eq(val, i);
     }

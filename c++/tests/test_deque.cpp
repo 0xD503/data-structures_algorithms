@@ -56,7 +56,7 @@ void test_deque_if (DequeInterface<T> *dq) {
     //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 4);
 
-    for (size_t i(7); i > 0; i--) {
+    for (long i(7); i > 0; i--) {
         cr_expect(dq->addBack(i));
         cr_expect(dq->back(val));
         cr_expect_eq(val, i);
@@ -65,7 +65,7 @@ void test_deque_if (DequeInterface<T> *dq) {
     }
     //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 11); /// 4f + 7b
-    for (size_t i(12); i < 20; i = i + 2) {
+    for (long i(12); i < 20; i = i + 2) {
         cr_expect(dq->addFront(i));
         cr_expect(dq->front(val));
         cr_expect_eq(val, i);
@@ -75,7 +75,7 @@ void test_deque_if (DequeInterface<T> *dq) {
     //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 15); /// 8f + 7b
 
-    for (size_t i(18); i > 15; i--) {
+    for (long i(18); i > 15; i--) {
         cr_expect(dq->removeBack());
         cr_expect(dq->front(val));
         cr_expect_eq(val, 18);
@@ -84,7 +84,7 @@ void test_deque_if (DequeInterface<T> *dq) {
     }
     //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 12); /// 8f + 4b
-    for (size_t i(16); i >= 12; i = i - 2) {
+    for (long i(16); i >= 12; i = i - 2) {
         cr_expect(dq->removeFront());
         cr_expect(dq->back(val));
         cr_expect_eq(val, 4);
@@ -94,12 +94,10 @@ void test_deque_if (DequeInterface<T> *dq) {
 
     cr_expect_eq(dq->length(), 9); /// 5f + 4b
     val = dq->length();
-    for (size_t i(val); i > 0; i--) {
+    for (long i(val); i > 0; i--) {
         cr_expect(dq->back(val));
-        //cout << "back: " << val << ", i " << i << endl;
         cr_expect_eq(val, 9 - i + 4);
         cr_expect(dq->front(val));
-        //cout << "front: " << val << ", i " << i << endl;
         cr_expect_eq(val, 12);
         cr_expect_not(dq->empty());
         cr_expect(dq->removeBack());

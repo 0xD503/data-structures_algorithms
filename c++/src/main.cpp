@@ -10,7 +10,7 @@ using std::cout;
 using std::clog;
 using std::endl;
 
-int main(int argc, char *argv[]) {
+int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
     int status = EXIT_FAILURE;
 
     // LinkedList<long> ll(7, 777);

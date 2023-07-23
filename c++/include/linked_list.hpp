@@ -1,5 +1,4 @@
-#ifndef __LINKED_LIST__
-#define __LINKED_LIST__
+#pragma once
 
 #include "list_interface.hpp"
 
@@ -36,6 +35,3 @@ class LinkedList : public ListInterface<T> {
         const Node *_getNode (size_t index) const noexcept;
         Node *_getNode (size_t index) noexcept;
 };
-
-
-#endif // __LINKED_LIST__

@@ -146,7 +146,7 @@ end:
 
 
 template<typename T>
-LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) noexcept {
+typename LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) noexcept {
     Node *node;
 
     if (index < (this->length() / 2)) {
@@ -171,7 +171,7 @@ LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) noexcept {
 }
 
 template<typename T>
-const LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) const noexcept {
+const typename LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) const noexcept {
     const Node *node;
 
     if (index < (this->length() / 2)) {
