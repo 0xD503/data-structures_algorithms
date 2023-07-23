@@ -123,7 +123,7 @@ bool Deque<T>::clear() {
 }
 
 
-template class Deque<long>;
-template class Deque<int>;
-template class Deque<short>;
 template class Deque<char>;
+template class Deque<short>;
+template class Deque<int>;
+template class Deque<long>;

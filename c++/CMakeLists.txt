@@ -57,6 +57,7 @@ add_executable(${PROJECT_NAME}
   src/deque.cpp
   src/queue.cpp
   src/stack.cpp
+  src/circular_buffer.cpp
 )
 
 ## testing

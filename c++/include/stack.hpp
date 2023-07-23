@@ -17,7 +17,6 @@ class Stack : public StackInterface<T> {
             return (_deque.length());
         }
 
-        inline bool empty () const override { return (_deque.empty()); }
         inline bool clear () override { return (_deque.clear()); }
 
         inline bool front (T& val) const noexcept override {

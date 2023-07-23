@@ -208,7 +208,7 @@ bool DynamicArray<T>::clear() {
 
 
 ///
-template class DynamicArray<long>;
-template class DynamicArray<int>;
-template class DynamicArray<short>;
 template class DynamicArray<char>;
+template class DynamicArray<short>;
+template class DynamicArray<int>;
+template class DynamicArray<long>;

@@ -27,7 +27,6 @@ class Deque : public DequeInterface<T> {
         bool addBack (const T& val) override;
         bool removeBack () override;
 
-        inline bool empty () const override { return (length() == 0); }
         bool clear () override;
 
     protected:

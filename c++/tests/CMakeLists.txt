@@ -9,6 +9,10 @@ find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 ## coverage
 #find_program(CTEST_COVERAGE_COMMAND NAMES gcov)
 
+# #
+# set(CMAKE_CXX_STANDARD 20)
+# set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 add_executable(TestContainerInterface
   test_container_if.cpp
@@ -62,6 +66,10 @@ add_executable(TestStack
   ../src/deque.cpp
   ../src/dynamic_array.cpp
 )
+add_executable(TestCircularBuffer
+  test_circular_buffer.cpp
+  ../src/circular_buffer.cpp
+)
 
 target_link_libraries(TestContainerInterface criterion)
 target_link_libraries(TestSequenceInterface criterion)
@@ -72,6 +80,7 @@ target_link_libraries(TestLinkedList criterion)
 target_link_libraries(TestDeque criterion)
 target_link_libraries(TestQueue criterion)
 target_link_libraries(TestStack criterion)
+target_link_libraries(TestCircularBuffer criterion)
 
 add_test(
   NAME TestContainerInterface
@@ -108,6 +117,10 @@ add_test(
 add_test(
   NAME TestStack
   COMMAND TestStack
+)
+add_test(
+  NAME TestCircularBuffer
+  COMMAND TestCircularBuffer
 )
 
 #

@@ -1,7 +1,5 @@
 #include "queue.hpp"
 
-//#include <cstdint>
-
 
 template<typename T>
 Queue<T>::Queue(const size_t capacity) : _deque(capacity) {
@@ -26,6 +24,7 @@ bool Queue<T>::remove() {
 
 
 /// template types declaration
-template class Queue<long>;
-// template class Queue<int8_t>;
 template class Queue<char>;
+template class Queue<short>;
+template class Queue<int>;
+template class Queue<long>;

@@ -16,7 +16,6 @@ class Queue : public QueueInterface<T> {
             return (_deque.length());
         }
 
-        virtual inline bool empty () const override { return (_deque.empty()); }
         virtual inline bool clear () override { return (_deque.clear()); }
 
         inline bool front (T& val) const noexcept override {

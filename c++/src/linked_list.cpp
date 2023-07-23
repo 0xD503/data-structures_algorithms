@@ -190,8 +190,8 @@ const typename LinkedList<T>::Node *LinkedList<T>::_getNode(
 
 
 ///
-template class LinkedList<long long>;
-template class LinkedList<long>;
-template class LinkedList<int>;
-template class LinkedList<short>;
 template class LinkedList<char>;
+template class LinkedList<short>;
+template class LinkedList<int>;
+template class LinkedList<long>;
+template class LinkedList<long long>;

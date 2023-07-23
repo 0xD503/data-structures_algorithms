@@ -26,13 +26,12 @@ class ListInterface : public IndexableSequenceInterface<T> {
         inline bool append (const T& val) { return (insert(length(), val)); }
         inline bool prepend (const T& val) { return (insert(0, val)); }
 
-        inline bool empty () const override { return (length() == 0); }
         virtual inline bool clear () override {
             bool done(false);
 
-            if (not empty()) {
+            if (not this->empty()) {
                 done = true;
-                while (not empty()) {
+                while (not this->empty()) {
                     if (not remove(0)) [[unlikely]] {
                         done = false;
                         break;
