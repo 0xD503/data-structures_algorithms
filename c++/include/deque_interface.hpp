@@ -1,13 +1,12 @@
 #pragma once
 
-#include "sequence_interface.hpp"
+#include "indexable_sequence_interface.hpp"
 
 
 template<typename T>
-class DequeInterface : public SequenceInterface<T> {
+class DequeInterface : public IndexableSequenceInterface<T> {
     public:
         virtual ~DequeInterface() override = 0;
-
 
         virtual inline bool addFront (const T& val) = 0;
         virtual inline bool removeFront ()          = 0;

@@ -33,27 +33,44 @@ Deque<T>::~Deque() {
 
 template<typename T>
 bool Deque<T>::front (T& val) const noexcept {
-    bool success;
-
-    if (not _frontArray.empty()) {
-        success = _frontArray.back(val);
-    }
-    else {
-        success = _backArray.front(val);
-    }
+    bool success(get(0, val));
 
     return (success);
 }
 
 template<typename T>
 bool Deque<T>::back (T& val) const noexcept {
-    bool success;
+    bool success(get(length() - 1, val));
 
-    if (not _backArray.empty()) {
-        success = _backArray.back(val);
+    return (success);
+}
+
+
+template<typename T>
+bool Deque<T>::get (size_t index, T& dest) const noexcept {
+    bool success(false);
+
+    if (index < _frontArray.length()) {
+        success = _frontArray.get(_frontArray.length() - 1 - index, dest);
     }
-    else {
-        success = _frontArray.front(val);
+    else if (index < length()) {
+        size_t backId(index - _frontArray.length());
+        success = _backArray.get(backId, dest);
+    }
+
+    return (success);
+}
+
+template<typename T>
+bool Deque<T>::set (size_t index, const T& val) noexcept {
+    bool success(false);
+
+    if (index < _frontArray.length()) {
+        success = _frontArray.set(_frontArray.length() - 1 - index, val);
+    }
+    else if (index < length()) {
+        size_t backId(index - _frontArray.length());
+        success = _backArray.set(backId, val);
     }
 
     return (success);

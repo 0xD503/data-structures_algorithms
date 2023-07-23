@@ -32,6 +32,10 @@ void test_deque_if (DequeInterface<T> *dq) {
     cr_expect_eq(val, -2);
     cr_expect_not(dq->back(val));
     cr_expect_eq(val, -2);
+    cr_expect_not(dq->get(0, val));
+    cr_expect_eq(val, -2);
+    cr_expect_not(dq->set(0, val));
+    cr_expect_eq(val, -2);
 
     cr_expect(dq->addFront(8));
     cr_expect_eq(dq->length(), 1);
@@ -39,12 +43,31 @@ void test_deque_if (DequeInterface<T> *dq) {
     cr_expect_eq(val, 8);
     cr_expect(dq->front(val));
     cr_expect_eq(val, 8);
+
+    cr_expect(dq->set(0, 9));
+    cr_expect(dq->get(0, val));
+    cr_expect_eq(val, 9);
+    cr_expect(dq->set(dq->length() - 1, 111));
+    cr_expect(dq->get(0, val));
+    cr_expect_eq(val, 111);
+    cr_expect(dq->set(0, 8));
+
     cr_expect(dq->addFront(9));
     cr_expect_eq(dq->length(), 2);
     cr_expect(dq->back(val));
     cr_expect_eq(val, 8);
     cr_expect(dq->front(val));
     cr_expect_eq(val, 9);
+
+    val = -1112;
+    cr_expect(dq->get(0, val));
+    cr_expect_eq(val, 9);
+    cr_expect(dq->get(dq->length() - 1, val));
+    cr_expect_eq(val, 8);
+    val = -1;
+    cr_expect(dq->get(1, val));
+    cr_expect_eq(val, 8);
+
     cr_expect(dq->addFront(10));
     cr_expect_eq(dq->length(), 3);
     cr_expect(dq->addFront(11));
@@ -53,7 +76,6 @@ void test_deque_if (DequeInterface<T> *dq) {
     cr_expect_eq(val, 11);
     cr_expect(dq->back(val));
     cr_expect_eq(val, 8);
-    //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 4);
 
     for (T i(7); i > 0; i--) {
@@ -63,7 +85,6 @@ void test_deque_if (DequeInterface<T> *dq) {
         cr_expect(dq->front(val));
         cr_expect_eq(val, 11);
     }
-    //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 11); /// 4f + 7b
     for (T i(12); i < 20; i = i + 2) {
         cr_expect(dq->addFront(i));
@@ -72,8 +93,23 @@ void test_deque_if (DequeInterface<T> *dq) {
         cr_expect(dq->back(val));
         cr_expect_eq(val, 1);
     }
-    //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 15); /// 8f + 7b
+
+    for (size_t i(1); i < 13; i++) {
+        cr_expect(dq->set(dq->length() - i, static_cast<T>(i + 500)));
+    }
+    val = -117;
+    for (size_t i(1); i < 13; i++) {
+        cr_expect(dq->get(dq->length() - i, val));
+        cr_expect_eq(val, static_cast<T>(i + 500));
+    }
+    for (size_t i(1); i < 13; i++) {
+        cr_expect(dq->set(dq->length() - i, static_cast<T>(i)));
+    }
+    for (size_t i(1); i < 13; i++) {
+        cr_expect(dq->get(dq->length() - i, val));
+        cr_expect_eq(val, static_cast<T>(i));
+    }
 
     for (T i(18); i > 15; i--) {
         cr_expect(dq->removeBack());

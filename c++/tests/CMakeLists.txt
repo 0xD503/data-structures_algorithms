@@ -26,6 +26,12 @@ add_executable(TestSequenceInterface
   ../src/queue.cpp
   ../src/stack.cpp
 )
+add_executable(TestIndexableSequenceInterface
+  test_indexable_sequence_if.cpp
+  ../src/dynamic_array.cpp
+  ../src/linked_list.cpp
+  ../src/deque.cpp
+)
 add_executable(TestListInterface
   test_list_interface.cpp
   ../src/dynamic_array.cpp
@@ -59,6 +65,7 @@ add_executable(TestStack
 
 target_link_libraries(TestContainerInterface criterion)
 target_link_libraries(TestSequenceInterface criterion)
+target_link_libraries(TestIndexableSequenceInterface criterion)
 target_link_libraries(TestListInterface criterion)
 target_link_libraries(TestDynamicArray criterion)
 target_link_libraries(TestLinkedList criterion)
@@ -73,6 +80,10 @@ add_test(
 add_test(
   NAME TestSequenceInterface
   COMMAND TestSequenceInterface
+)
+add_test(
+  NAME TestIndexableSequenceInterface
+  COMMAND TestIndexableSequenceInterface
 )
 add_test(
   NAME TestListInterface

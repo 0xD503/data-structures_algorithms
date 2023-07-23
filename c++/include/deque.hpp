@@ -19,6 +19,9 @@ class Deque : public DequeInterface<T> {
         bool front (T& val) const noexcept override;
         bool back (T& val) const noexcept override;
 
+        bool get (size_t index, T& dest) const noexcept override;
+        bool set (size_t index, const T& val) noexcept override;
+
         bool addFront (const T& val) override;
         bool removeFront ()          override;
         bool addBack (const T& val)  override;
