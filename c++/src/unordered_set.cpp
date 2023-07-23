@@ -8,7 +8,8 @@
 // }
 
 // template<typename T>
-// UnorderedSet<T>::UnorderedSet(size_t cap) : UnsorteSetI<T>(), _buckets(nullptr),
+// UnorderedSet<T>::UnorderedSet(size_t cap) : UnsorteSetI<T>(),
+// _buckets(nullptr),
 //                                             _capacity(cap) {
 //     //
 // }

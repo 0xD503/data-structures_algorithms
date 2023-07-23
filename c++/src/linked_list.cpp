@@ -3,15 +3,14 @@
 #include <iostream>
 
 
-using std::cout;
 using std::cerr;
 using std::clog;
+using std::cout;
 using std::endl;
 
 template<typename T>
-LinkedList<T>::LinkedList(const size_t length, const T& fillValue):
+LinkedList<T>::LinkedList(const size_t length, const T &fillValue) :
     LinkedList<T>() {
-
     for (size_t i(0); i < length; i++) {
         insert(0, fillValue);
     }
@@ -24,7 +23,7 @@ LinkedList<T>::~LinkedList() {
 
 
 template<typename T>
-bool LinkedList<T>::get (const size_t index, T& dest) const noexcept {
+bool LinkedList<T>::get(const size_t index, T &dest) const noexcept {
     bool success(false);
 
     const Node *node(_getNode(index));
@@ -37,7 +36,7 @@ bool LinkedList<T>::get (const size_t index, T& dest) const noexcept {
 }
 
 template<typename T>
-bool LinkedList<T>::set (const size_t index, const T& value) noexcept {
+bool LinkedList<T>::set(const size_t index, const T &value) noexcept {
     bool status(false);
 
     Node *node(_getNode(index));
@@ -51,7 +50,7 @@ bool LinkedList<T>::set (const size_t index, const T& value) noexcept {
 
 
 template<typename T>
-bool LinkedList<T>::swap (size_t index_1, size_t index_2) noexcept {
+bool LinkedList<T>::swap(size_t index_1, size_t index_2) noexcept {
     bool success(false);
 
     Node *n_1(_getNode(index_1));
@@ -68,21 +67,20 @@ bool LinkedList<T>::swap (size_t index_1, size_t index_2) noexcept {
 
 
 template<typename T>
-bool LinkedList<T>::insert (const size_t index, const T& value) {
+bool LinkedList<T>::insert(const size_t index, const T &value) {
     bool success(false);
     Node *newNode;
     Node *prev, *next;
 
     if (index == this->length()) {
-        if (this->length() == 0) [[unlikely]] {  /// check if it is the first node to be added
+        if (this->length() == 0)
+            [[unlikely]] {  /// check if it is the first node to be added
             prev = &_rootNode;
-        }
-        else [[likely]] {
+        } else [[likely]] {
             prev = _getNode(index - 1);
         }
         next = &_rootNode;
-    }
-    else {
+    } else {
         next = _getNode(index);
         if (next == nullptr) {
             cerr << "Failed to add node at index " << index << endl;
@@ -93,17 +91,16 @@ bool LinkedList<T>::insert (const size_t index, const T& value) {
 
     try {
         newNode = new Node(value, prev, next);
-    } catch (std::bad_alloc& excpt) {
-        cerr << "Failed to allocate new list node: " << excpt.what() << ", current length = "
-             << this->_length << endl;
+    } catch (std::bad_alloc &excpt) {
+        cerr << "Failed to allocate new list node: " << excpt.what()
+             << ", current length = " << this->_length << endl;
         goto end;
     }
 
-    newNode->previous->next = newNode;      /// left neighbour updates
+    newNode->previous->next = newNode;  /// left neighbour updates
     if (index < this->length()) {
         newNode->next->previous = newNode;  /// right neighbour updates
-    }
-    else {
+    } else {
         _rootNode.previous = newNode;
     }
 
@@ -115,7 +112,7 @@ end:
 }
 
 template<typename T>
-bool LinkedList<T>::remove (const size_t index) {
+bool LinkedList<T>::remove(const size_t index) {
     bool status(false);
     Node *node, *prev, *next;
 
@@ -131,10 +128,9 @@ bool LinkedList<T>::remove (const size_t index) {
     node = nullptr;
 
     prev->next = next;
-    if (index < (this->_length - 1)) {          /// if removing not the last node
+    if (index < (this->_length - 1)) {  /// if removing not the last node
         next->previous = prev;
-    }
-    else {
+    } else {
         _rootNode.previous = prev;
     }
     this->_length--;
@@ -146,7 +142,7 @@ end:
 
 
 template<typename T>
-typename LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) noexcept {
+typename LinkedList<T>::Node *LinkedList<T>::_getNode(size_t index) noexcept {
     Node *node;
 
     if (index < (this->length() / 2)) {
@@ -155,15 +151,13 @@ typename LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) noexcept {
             node = node->next;
             index--;
         }
-    }
-    else if (index < this->length()) {
+    } else if (index < this->length()) {
         node = &_rootNode;
         while (index < this->length()) {
             node = node->previous;
             index++;
         }
-    }
-    else [[unlikely]] {
+    } else [[unlikely]] {
         node = nullptr;
     }
 
@@ -171,7 +165,8 @@ typename LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) noexcept {
 }
 
 template<typename T>
-const typename LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) const noexcept {
+const typename LinkedList<T>::Node *LinkedList<T>::_getNode(
+    size_t index) const noexcept {
     const Node *node;
 
     if (index < (this->length() / 2)) {
@@ -180,15 +175,13 @@ const typename LinkedList<T>::Node *LinkedList<T>::_getNode (size_t index) const
             node = node->next;
             index--;
         }
-    }
-    else if (index < this->length()) {
+    } else if (index < this->length()) {
         node = &_rootNode;
         while (index < this->length()) {
             node = node->previous;
             index++;
         }
-    }
-    else [[unlikely]] {
+    } else [[unlikely]] {
         node = nullptr;
     }
 

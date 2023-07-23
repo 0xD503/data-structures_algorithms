@@ -5,8 +5,8 @@
 #include <iostream>
 
 
-using std::cout;
 using std::clog;
+using std::cout;
 using std::endl;
 
 void testSetup () {
@@ -21,7 +21,7 @@ TestSuite(linked_list, .init = testSetup, .fini = testTeardown);
 
 
 Test(linked_list, create) {
-    LinkedList<long> ll{};
+    LinkedList<long> ll {};
     long val(-9);
 
     cr_expect(ll.length() == 0, "Expected empty linked list");
@@ -47,7 +47,7 @@ Test(linked_list, create) {
 }
 
 Test(linked_list, adding_elements) {
-    LinkedList<long> ll{};
+    LinkedList<long> ll {};
 
     cr_expect(not ll.insert(7, 777));
     cr_expect(not ll.insert(1, 777));
@@ -77,7 +77,7 @@ Test(linked_list, adding_elements) {
 }
 
 Test(linked_list, accessors) {
-    LinkedList<long> ll{};
+    LinkedList<long> ll {};
     long val(-342);
 
     cr_expect_eq(ll.size(), 0);

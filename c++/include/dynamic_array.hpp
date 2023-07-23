@@ -15,14 +15,14 @@ class DynamicArray : public ListInterface<T> {
         ~DynamicArray() override;
 
         /// memory management
-        inline size_t capacity () const noexcept    { return (_capacity); }
-        inline size_t size () const noexcept        { return (sizeof(T) * _capacity); }
+        inline size_t capacity () const noexcept { return (_capacity); }
+        inline size_t size () const noexcept { return (sizeof(T) * _capacity); }
         bool resize (const size_t newSize);
         bool fit ();
 
         /// accessors
-        inline T *data () noexcept                  { return (_array); }
-        inline const T *data () const noexcept      { return (_array); }
+        inline T* data () noexcept { return (_array); }
+        inline const T* data () const noexcept { return (_array); }
 
         bool get (const size_t index, T& dest) const noexcept override;
         bool set (const size_t index, const T& val) noexcept override;
@@ -34,21 +34,15 @@ class DynamicArray : public ListInterface<T> {
 
         bool clear () override;
 
-        inline DynamicArray& operator= (const DynamicArray& other) = default;
-        // inline DynamicArray& operator= (const DynamicArray&& other) {
-        //     _array = std::move(other._array);
-        //     this->_length = std::move(other._length);
-        //     this->_capacity = std::move(other._capacity);
-
-        //     return (*this);
-        // }
+        inline DynamicArray& operator=(const DynamicArray& other) = default;
 
     protected:
-        T *_array{};
-        size_t _capacity{};
+        T* _array {};
+        size_t _capacity {};
 
     protected:
-        // void _copyArray (T *dest, const T *src, const size_t index, const size_t newLen, const T val);
+        // void _copyArray (T *dest, const T *src, const size_t index, const
+        // size_t newLen, const T val);
 
     private:
         static constexpr size_t MEM_REALLOC_FACTOR = 2;

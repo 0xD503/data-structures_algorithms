@@ -16,7 +16,7 @@ TestSuite(stack_if, .init = setUp, .fini = tearDown);
 
 
 template<typename T>
-void test_stack_if(StackInterface<T> *stack) {
+void test_stack_if (StackInterface<T> *stack) {
     cr_assert_not_null(stack);
     T val(-4);
 
@@ -96,7 +96,7 @@ void test_stack_if(StackInterface<T> *stack) {
 }
 
 template<typename T>
-void test_non_empty_stack_if(StackInterface<T> *stack) {
+void test_non_empty_stack_if (StackInterface<T> *stack) {
     cr_assert_not_null(stack);
     T val(-4);
 
@@ -174,7 +174,7 @@ void test_non_empty_stack_if(StackInterface<T> *stack) {
 
 Test(stack_if, stack_long) {
     Stack<long> stack;
-    Stack<long> stack_2{};
+    Stack<long> stack_2 {};
     Stack<long> stack_3(5);
     Stack<long> stack_4(9, 11);
 
@@ -186,7 +186,7 @@ Test(stack_if, stack_long) {
 
 Test(stack_if, stack_char) {
     Stack<char> stack;
-    Stack<char> stack_2{};
+    Stack<char> stack_2 {};
     Stack<char> stack_3(5);
     Stack<char> stack_4(9, 11);
 

@@ -20,7 +20,7 @@ TestSuite(sequence_if, .init = setUp, .fini = tearDown);
 
 
 template<typename T>
-void testEmptySequenceIf(SequenceInterface<T> *seq) {
+void testEmptySequenceIf (SequenceInterface<T> *seq) {
     cr_assert_not_null(seq);
     T val(-1237);
 
@@ -31,7 +31,7 @@ void testEmptySequenceIf(SequenceInterface<T> *seq) {
 }
 
 template<typename T>
-void testSequenceIf(SequenceInterface<T> *seq) {
+void testSequenceIf (SequenceInterface<T> *seq) {
     cr_assert_not_null(seq);
     T val(-1237);
 
@@ -44,7 +44,7 @@ void testSequenceIf(SequenceInterface<T> *seq) {
 
 Test(sequence_if, dynamic_array) {
     DynamicArray<long> da;
-    DynamicArray<long> da_2{};
+    DynamicArray<long> da_2 {};
     DynamicArray<long> da_3(4);
     DynamicArray<long> da_4(4, 2);
     da_4.append(8);
@@ -57,7 +57,7 @@ Test(sequence_if, dynamic_array) {
 
 Test(sequence_if, linked_list) {
     LinkedList<long> ll;
-    LinkedList<long> ll_2{};
+    LinkedList<long> ll_2 {};
     LinkedList<long> ll_4(4, 2);
     ll_4.append(8);
 
@@ -68,7 +68,7 @@ Test(sequence_if, linked_list) {
 
 Test(sequence_if, dual_array_deque) {
     Deque<long> dq;
-    Deque<long> dq_2{};
+    Deque<long> dq_2 {};
     Deque<long> dq_3(4);
     Deque<long> dq_4(4, 2);
     dq_4.addBack(8);
@@ -81,7 +81,7 @@ Test(sequence_if, dual_array_deque) {
 
 Test(sequence_if, queue) {
     Queue<long> q;
-    Queue<long> q_2{};
+    Queue<long> q_2 {};
     Queue<long> q_3(4);
     Queue<long> q_4(4, 2);
     q_4.add(8);
@@ -94,7 +94,7 @@ Test(sequence_if, queue) {
 
 Test(sequence_if, stack) {
     Stack<long> q;
-    Stack<long> q_2{};
+    Stack<long> q_2 {};
     Stack<long> q_3(4);
     Stack<long> q_4(4, 2);
     q_4.push(8);

@@ -32,14 +32,14 @@ Deque<T>::~Deque() {
 
 
 template<typename T>
-bool Deque<T>::front (T& val) const noexcept {
+bool Deque<T>::front(T& val) const noexcept {
     bool success(get(0, val));
 
     return (success);
 }
 
 template<typename T>
-bool Deque<T>::back (T& val) const noexcept {
+bool Deque<T>::back(T& val) const noexcept {
     bool success(get(length() - 1, val));
 
     return (success);
@@ -47,13 +47,12 @@ bool Deque<T>::back (T& val) const noexcept {
 
 
 template<typename T>
-bool Deque<T>::get (size_t index, T& dest) const noexcept {
+bool Deque<T>::get(size_t index, T& dest) const noexcept {
     bool success(false);
 
     if (index < _frontArray.length()) {
         success = _frontArray.get(_frontArray.length() - 1 - index, dest);
-    }
-    else if (index < length()) {
+    } else if (index < length()) {
         size_t backId(index - _frontArray.length());
         success = _backArray.get(backId, dest);
     }
@@ -62,13 +61,12 @@ bool Deque<T>::get (size_t index, T& dest) const noexcept {
 }
 
 template<typename T>
-bool Deque<T>::set (size_t index, const T& val) noexcept {
+bool Deque<T>::set(size_t index, const T& val) noexcept {
     bool success(false);
 
     if (index < _frontArray.length()) {
         success = _frontArray.set(_frontArray.length() - 1 - index, val);
-    }
-    else if (index < length()) {
+    } else if (index < length()) {
         size_t backId(index - _frontArray.length());
         success = _backArray.set(backId, val);
     }
@@ -78,18 +76,17 @@ bool Deque<T>::set (size_t index, const T& val) noexcept {
 
 
 template<typename T>
-bool Deque<T>::addFront (const T& val) {
+bool Deque<T>::addFront(const T& val) {
     return (_frontArray.append(val));
 }
 
 template<typename T>
-bool Deque<T>::removeFront () {
+bool Deque<T>::removeFront() {
     bool success;
 
     if (not _frontArray.empty()) {
         success = _frontArray.remove(_frontArray.length() - 1);
-    }
-    else {
+    } else {
         success = _backArray.remove(0);
     }
 
@@ -97,18 +94,17 @@ bool Deque<T>::removeFront () {
 }
 
 template<typename T>
-bool Deque<T>::addBack (const T& val) {
+bool Deque<T>::addBack(const T& val) {
     return (_backArray.append(val));
 }
 
 template<typename T>
-bool Deque<T>::removeBack () {
+bool Deque<T>::removeBack() {
     bool success;
 
     if (not _backArray.empty()) {
         success = _backArray.remove(_backArray.length() - 1);
-    }
-    else {
+    } else {
         success = _frontArray.remove(0);
     }
 

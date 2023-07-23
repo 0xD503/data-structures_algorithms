@@ -10,20 +10,14 @@ class Queue : public QueueInterface<T> {
         Queue() = default;
         Queue(const size_t capacity);
         Queue(const size_t len, const T& fillValue);
-        ~Queue() override {
-            clear();
-        }
+        ~Queue() override { clear(); }
 
         inline size_t length () const noexcept override {
             return (_deque.length());
         }
 
-        virtual inline bool empty () const override {
-            return (_deque.empty());
-        }
-        virtual inline bool clear () override {
-            return (_deque.clear());
-        }
+        virtual inline bool empty () const override { return (_deque.empty()); }
+        virtual inline bool clear () override { return (_deque.clear()); }
 
         inline bool front (T& val) const noexcept override {
             return (_deque.front(val));
@@ -36,5 +30,5 @@ class Queue : public QueueInterface<T> {
         bool remove () override;
 
     protected:
-        Deque<T> _deque{};
+        Deque<T> _deque {};
 };

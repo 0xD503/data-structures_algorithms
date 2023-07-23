@@ -11,20 +11,14 @@ class Stack : public StackInterface<T> {
         Stack() = default;
         Stack(const size_t capacity);
         Stack(const size_t len, const T& fillValue);
-        ~Stack() override {
-            clear();
-        }
+        ~Stack() override { clear(); }
 
         inline size_t length () const noexcept override {
             return (_deque.length());
         }
 
-        inline bool empty () const override {
-            return (_deque.empty());
-        }
-        inline bool clear () override {
-            return (_deque.clear());
-        }
+        inline bool empty () const override { return (_deque.empty()); }
+        inline bool clear () override { return (_deque.clear()); }
 
         inline bool front (T& val) const noexcept override {
             return (_deque.front(val));
@@ -36,10 +30,8 @@ class Stack : public StackInterface<T> {
         inline bool push (const T& val) override {
             return (_deque.addBack(val));
         }
-        inline bool pop () override {
-            return (_deque.removeBack());
-        }
+        inline bool pop () override { return (_deque.removeBack()); }
 
     protected:
-        Deque<T> _deque{};
+        Deque<T> _deque {};
 };

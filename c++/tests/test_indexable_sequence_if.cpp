@@ -18,7 +18,8 @@ TestSuite(indexable_seq_if, .init = testSetUp, .fini = testTearDown);
 
 
 template<typename T>
-void testEmptyIndexableSequenceIf(IndexableSequenceInterface<T> *indexableSeq) {
+void testEmptyIndexableSequenceIf (
+    IndexableSequenceInterface<T> *indexableSeq) {
     cr_assert_not_null(indexableSeq);
     T val(-1237);
 
@@ -32,7 +33,7 @@ void testEmptyIndexableSequenceIf(IndexableSequenceInterface<T> *indexableSeq) {
 }
 
 template<typename T>
-void testIndexableSequenceIf(IndexableSequenceInterface<T> *indexableSeq) {
+void testIndexableSequenceIf (IndexableSequenceInterface<T> *indexableSeq) {
     cr_assert_not_null(indexableSeq);
     T val(-1237);
 
@@ -59,7 +60,7 @@ void testIndexableSequenceIf(IndexableSequenceInterface<T> *indexableSeq) {
 
 Test(indexable_seq_if, dynamic_array) {
     DynamicArray<long> da;
-    DynamicArray<long> da_2{};
+    DynamicArray<long> da_2 {};
     DynamicArray<long> da_3(4);
     DynamicArray<long> da_4(4, 2);
     da_4.append(8);
@@ -72,7 +73,7 @@ Test(indexable_seq_if, dynamic_array) {
 
 Test(indexable_seq_if, linked_list) {
     LinkedList<long> ll;
-    LinkedList<long> ll_2{};
+    LinkedList<long> ll_2 {};
     LinkedList<long> ll_4(4, 2);
     ll_4.append(8);
 
@@ -83,7 +84,7 @@ Test(indexable_seq_if, linked_list) {
 
 Test(indexable_seq_if, dual_array_deque) {
     Deque<long> dq;
-    Deque<long> dq_2{};
+    Deque<long> dq_2 {};
     Deque<long> dq_3(4);
     Deque<long> dq_4(4, 2);
     dq_4.addBack(8);

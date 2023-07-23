@@ -45,7 +45,7 @@ void test_non_empty_container_if (ContainerInterface<T> *cont) {
 
 Test(container_if, dynamic_array) {
     DynamicArray<long> da;
-    DynamicArray<long> da_2{};
+    DynamicArray<long> da_2 {};
     test_container_if<long>(&da);
     test_container_if<long>(&da_2);
 
@@ -60,7 +60,7 @@ Test(container_if, dynamic_array) {
 
 Test(container_if, linked_list) {
     LinkedList<long> ll;
-    LinkedList<long> ll_2{};
+    LinkedList<long> ll_2 {};
     test_container_if<long>(&ll);
     test_container_if<long>(&ll_2);
 
@@ -75,7 +75,7 @@ Test(container_if, linked_list) {
 
 Test(container_if, dual_array_deque) {
     Deque<long> dq;
-    Deque<long> dq_2{};
+    Deque<long> dq_2 {};
     test_container_if<long>(&dq);
     test_container_if<long>(&dq_2);
 
@@ -90,7 +90,7 @@ Test(container_if, dual_array_deque) {
 
 Test(container_if, queue) {
     Queue<long> q;
-    Queue<long> q_2{};
+    Queue<long> q_2 {};
     test_container_if<long>(&q);
     test_container_if<long>(&q_2);
 
@@ -105,7 +105,7 @@ Test(container_if, queue) {
 
 Test(container_if, stack) {
     Stack<long> q;
-    Stack<long> q_2{};
+    Stack<long> q_2 {};
     test_container_if<long>(&q);
     test_container_if<long>(&q_2);
 

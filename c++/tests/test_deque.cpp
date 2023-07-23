@@ -85,7 +85,7 @@ void test_deque_if (DequeInterface<T> *dq) {
         cr_expect(dq->front(val));
         cr_expect_eq(val, 11);
     }
-    cr_expect_eq(dq->length(), 11); /// 4f + 7b
+    cr_expect_eq(dq->length(), 11);  /// 4f + 7b
     for (T i(12); i < 20; i = i + 2) {
         cr_expect(dq->addFront(i));
         cr_expect(dq->front(val));
@@ -93,7 +93,7 @@ void test_deque_if (DequeInterface<T> *dq) {
         cr_expect(dq->back(val));
         cr_expect_eq(val, 1);
     }
-    cr_expect_eq(dq->length(), 15); /// 8f + 7b
+    cr_expect_eq(dq->length(), 15);  /// 8f + 7b
 
     for (size_t i(1); i < 13; i++) {
         cr_expect(dq->set(dq->length() - i, static_cast<T>(i + 500)));
@@ -118,8 +118,8 @@ void test_deque_if (DequeInterface<T> *dq) {
         cr_expect(dq->back(val));
         cr_expect_eq(val, (5 - (i - 15)));
     }
-    //cout << "length: " << dq->length() << endl;
-    cr_expect_eq(dq->length(), 12); /// 8f + 4b
+    // cout << "length: " << dq->length() << endl;
+    cr_expect_eq(dq->length(), 12);  /// 8f + 4b
     for (T i(16); i >= 12; i = i - 2) {
         cr_expect(dq->removeFront());
         cr_expect(dq->back(val));
@@ -128,7 +128,7 @@ void test_deque_if (DequeInterface<T> *dq) {
         cr_expect_eq(val, i);
     }
 
-    cr_expect_eq(dq->length(), 9); /// 5f + 4b
+    cr_expect_eq(dq->length(), 9);  /// 5f + 4b
     val = static_cast<T>(dq->length());
     for (T i(val); i > 0; i--) {
         cr_expect(dq->back(val));
@@ -207,7 +207,7 @@ void test_non_empty_deque_if (DequeInterface<T> *dq) {
 
 Test(deque_if, dual_array_deque) {
     Deque<long> dq;
-    Deque<long> dq_2{};
+    Deque<long> dq_2 {};
     Deque<long> dq_3(3);
     Deque<long> dq_6(4);
     Deque<long> dq_4(3, 2);

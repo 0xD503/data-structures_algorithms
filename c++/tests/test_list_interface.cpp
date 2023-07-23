@@ -17,7 +17,7 @@ TestSuite(list_if, .init = testSetUp, .fini = testTearDown);
 
 
 template<typename T>
-void test_list_if(ListInterface<T> *list) {
+void test_list_if (ListInterface<T> *list) {
     cr_assert_not_null(list);
     T val(-126);
 
@@ -50,7 +50,7 @@ void test_list_if(ListInterface<T> *list) {
     cr_expect_eq(val, 7);
     cr_expect(list->get(0, val));
     cr_expect_eq(val, 8);
-    //cr_expect(list->insert(0, 1));
+    // cr_expect(list->insert(0, 1));
     cr_expect(list->insert(0, 2));
     cr_expect(list->insert(1, 3));
     cr_expect(list->insert(2, 4));
@@ -75,15 +75,15 @@ void test_list_if(ListInterface<T> *list) {
 }
 
 Test(list_if, dynamic_array) {
-  DynamicArray<long> da_1{};
-  test_list_if<long>(&da_1);
-  DynamicArray<char> da_2{};
-  test_list_if<char>(&da_2);
+    DynamicArray<long> da_1 {};
+    test_list_if<long>(&da_1);
+    DynamicArray<char> da_2 {};
+    test_list_if<char>(&da_2);
 }
 
 Test(list_if, linked_list) {
-  LinkedList<long> da_1{};
-  test_list_if<long>(&da_1);
-  LinkedList<char> da_2{};
-  test_list_if<char>(&da_2);
+    LinkedList<long> da_1 {};
+    test_list_if<long>(&da_1);
+    LinkedList<char> da_2 {};
+    test_list_if<char>(&da_2);
 }

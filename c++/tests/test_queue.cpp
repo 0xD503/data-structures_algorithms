@@ -73,7 +73,7 @@ void test_non_empty_queue_if (QueueInterface<T> *queue) {
     cr_expect_eq(bVal, 83);
 
     cr_expect(queue->remove());
-    //cr_expect(queue->front(fVal));
+    // cr_expect(queue->front(fVal));
     cr_expect(queue->back(val));
     cr_expect_eq(val, bVal);
     cr_expect(queue->remove());
@@ -90,7 +90,7 @@ void test_non_empty_queue_if (QueueInterface<T> *queue) {
 
 Test(queue_if, queue) {
     Queue<long> q;
-    Queue<long> q_2{};
+    Queue<long> q_2 {};
     Queue<long> q_4(87, 6);
     Queue<char> q_5(878, 23);
 

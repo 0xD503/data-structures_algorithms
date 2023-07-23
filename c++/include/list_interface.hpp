@@ -9,10 +9,12 @@ class ListInterface : public IndexableSequenceInterface<T> {
         explicit ListInterface() = default;
         virtual ~ListInterface() override = 0;
 
-        inline size_t length () const noexcept override     { return (_length); }
+        inline size_t length () const noexcept override { return (_length); }
 
-        inline bool front (T& val) const noexcept override  { return (this->get(0, val)); }
-        inline bool back (T& val) const noexcept override   {
+        inline bool front (T& val) const noexcept override {
+            return (this->get(0, val));
+        }
+        inline bool back (T& val) const noexcept override {
             return (this->get(length() - 1, val));
         }
 
@@ -42,7 +44,7 @@ class ListInterface : public IndexableSequenceInterface<T> {
         }
 
     protected:
-        size_t _length{};
+        size_t _length {};
 };
 
 
@@ -52,4 +54,4 @@ ListInterface<T>::~ListInterface() {
 }
 
 
-//template class ListInterface<int>;
+// template class ListInterface<int>;

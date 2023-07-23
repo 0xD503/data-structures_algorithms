@@ -23,14 +23,14 @@ class Deque : public DequeInterface<T> {
         bool set (size_t index, const T& val) noexcept override;
 
         bool addFront (const T& val) override;
-        bool removeFront ()          override;
-        bool addBack (const T& val)  override;
-        bool removeBack ()           override;
+        bool removeFront () override;
+        bool addBack (const T& val) override;
+        bool removeBack () override;
 
         inline bool empty () const override { return (length() == 0); }
         bool clear () override;
 
     protected:
-        DynamicArray<T> _frontArray{};
-        DynamicArray<T> _backArray{};
+        DynamicArray<T> _frontArray {};
+        DynamicArray<T> _backArray {};
 };

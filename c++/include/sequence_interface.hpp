@@ -9,7 +9,7 @@ class SequenceInterface : public ContainerInterface<T> {
         virtual ~SequenceInterface() override = 0;
 
         virtual inline bool front (T& val) const noexcept = 0;
-        virtual inline bool back (T& val) const noexcept  = 0;
+        virtual inline bool back (T& val) const noexcept = 0;
 };
 
 

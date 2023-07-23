@@ -34,15 +34,18 @@ Test(dynamic_array, create) {
     cr_expect(vec_2.empty(), "Expected empty array");
     cr_expect(vec_2.length() == 0, "Expected empty array");
     cr_expect(vec_2.capacity() == 5, "Expected array with 5 buckets");
-    cr_expect(vec_2.size() == (sizeof(int) * 5), "Expected empty array with the size of (5 * int)");
+    cr_expect(vec_2.size() == (sizeof(int) * 5),
+              "Expected empty array with the size of (5 * int)");
     cr_expect(vec_2.clear(), "Expected success on clearing non-empty array");
 
     DynamicArray<int> vec_2_filled(5, 7);
     cr_expect_not(vec_2_filled.empty(), "Expected non-empty array");
     cr_expect(vec_2_filled.length() == 5, "Expected non-empty array");
     cr_expect(vec_2_filled.capacity() == 5, "Expected array with 5 buckets");
-    cr_expect_eq(vec_2_filled.size(), sizeof(int) * 5, "Expected empty array with the size of (5 * int)");
-    cr_expect(vec_2_filled.clear(), "Expected success on clearing non-empty array");
+    cr_expect_eq(vec_2_filled.size(), sizeof(int) * 5,
+                 "Expected empty array with the size of (5 * int)");
+    cr_expect(vec_2_filled.clear(),
+              "Expected success on clearing non-empty array");
 
     DynamicArray<int> vec_3(std::numeric_limits<size_t>::max());
     cr_expect_null(vec_3.data());
@@ -80,7 +83,7 @@ Test(dynamic_array, adding_alements) {
 Test(dynamic_array, removing_elements) {
     DynamicArray<int> vec_2(7);
     int val(-791);
-    //int testVal = -1;
+    // int testVal = -1;
     cr_expect(vec_2.insert(0, 1));
     cr_expect_not(vec_2.insert(2, 3));
     cr_expect(vec_2.insert(1, 7));
@@ -135,7 +138,7 @@ Test(dynamic_array, accessors) {
     cPtr = vec.data();
     val = *cPtr;
     cr_expect_eq(val, 7);
-    //cr_assert_not_null(cPtr);
+    // cr_assert_not_null(cPtr);
     cr_expect(vec.insert(0, 6));
     cr_expect(vec.get(0, val));
     cr_expect(val == 6);
