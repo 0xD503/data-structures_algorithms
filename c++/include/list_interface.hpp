@@ -1,23 +1,20 @@
 #pragma once
 
-#include <sequence_interface.hpp>
+#include <indexable_sequence_interface.hpp>
 
 
 template<typename T>
-class ListInterface : public SequenceInterface<T> {
+class ListInterface : public IndexableSequenceInterface<T> {
     public:
         explicit ListInterface() = default;
         virtual ~ListInterface() override = 0;
 
         inline size_t length () const noexcept override     { return (_length); }
 
-        inline bool front (T& val) const noexcept override  { return (get(0, val)); }
+        inline bool front (T& val) const noexcept override  { return (this->get(0, val)); }
         inline bool back (T& val) const noexcept override   {
-            return (get(length() - 1, val));
+            return (this->get(length() - 1, val));
         }
-
-        virtual inline bool get (size_t index, T& dest) const noexcept = 0;
-        virtual inline bool set (size_t index, const T& val) noexcept = 0;
 
         virtual inline bool swap (size_t index_1, size_t index_2) noexcept = 0;
 
