@@ -10,7 +10,7 @@ class Queue : public QueueInterface<T> {
         Queue() = default;
         Queue(const size_t capacity);
         Queue(const size_t len, const T& fillValue);
-        ~Queue() {
+        ~Queue() override {
             clear();
         }
 

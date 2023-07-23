@@ -6,7 +6,7 @@
 template<typename T>
 class QueueInterface : public SequenceInterface<T> {
     public:
-        virtual ~QueueInterface() = 0;
+        virtual ~QueueInterface() override = 0;
 
         virtual inline bool add (const T& val) = 0;
         virtual inline bool remove () = 0;

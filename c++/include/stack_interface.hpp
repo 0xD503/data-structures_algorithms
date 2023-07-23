@@ -6,7 +6,7 @@
 template<typename T>
 class StackInterface : public SequenceInterface<T> {
     public:
-        virtual ~StackInterface() = 0;
+        virtual ~StackInterface() override = 0;
 
         virtual inline bool push (const T& val) = 0;
         virtual inline bool pop () = 0;

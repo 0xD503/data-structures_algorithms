@@ -6,7 +6,7 @@
 template<typename T>
 class SequenceInterface : public ContainerInterface<T> {
     public:
-        virtual ~SequenceInterface() = 0;
+        virtual ~SequenceInterface() override = 0;
 
         virtual inline bool front (T& val) const noexcept = 0;
         virtual inline bool back (T& val) const noexcept  = 0;

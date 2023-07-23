@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/env sh
 
 
 rm -rf build

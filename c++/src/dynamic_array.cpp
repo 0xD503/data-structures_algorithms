@@ -47,7 +47,7 @@ bool DynamicArray<T>::resize (const size_t newCapacity) {
         try {
             newArray = new T[newCapacity];
         } catch (std::bad_alloc& excpt) {
-            cerr << "Failed to allocate resized array" << endl;
+            cerr << "Failed to allocate resized array: " << excpt.what() << endl;
             goto end;
         }
 

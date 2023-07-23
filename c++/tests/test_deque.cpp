@@ -56,7 +56,7 @@ void test_deque_if (DequeInterface<T> *dq) {
     //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 4);
 
-    for (long i(7); i > 0; i--) {
+    for (T i(7); i > 0; i--) {
         cr_expect(dq->addBack(i));
         cr_expect(dq->back(val));
         cr_expect_eq(val, i);
@@ -65,7 +65,7 @@ void test_deque_if (DequeInterface<T> *dq) {
     }
     //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 11); /// 4f + 7b
-    for (long i(12); i < 20; i = i + 2) {
+    for (T i(12); i < 20; i = i + 2) {
         cr_expect(dq->addFront(i));
         cr_expect(dq->front(val));
         cr_expect_eq(val, i);
@@ -75,7 +75,7 @@ void test_deque_if (DequeInterface<T> *dq) {
     //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 15); /// 8f + 7b
 
-    for (long i(18); i > 15; i--) {
+    for (T i(18); i > 15; i--) {
         cr_expect(dq->removeBack());
         cr_expect(dq->front(val));
         cr_expect_eq(val, 18);
@@ -84,7 +84,7 @@ void test_deque_if (DequeInterface<T> *dq) {
     }
     //cout << "length: " << dq->length() << endl;
     cr_expect_eq(dq->length(), 12); /// 8f + 4b
-    for (long i(16); i >= 12; i = i - 2) {
+    for (T i(16); i >= 12; i = i - 2) {
         cr_expect(dq->removeFront());
         cr_expect(dq->back(val));
         cr_expect_eq(val, 4);
@@ -93,8 +93,8 @@ void test_deque_if (DequeInterface<T> *dq) {
     }
 
     cr_expect_eq(dq->length(), 9); /// 5f + 4b
-    val = dq->length();
-    for (long i(val); i > 0; i--) {
+    val = static_cast<T>(dq->length());
+    for (T i(val); i > 0; i--) {
         cr_expect(dq->back(val));
         cr_expect_eq(val, 9 - i + 4);
         cr_expect(dq->front(val));
@@ -105,10 +105,10 @@ void test_deque_if (DequeInterface<T> *dq) {
 
     cr_expect(dq->empty());
 
-    for (size_t i(0); i < 900; i++) {
+    for (T i(0); i < 900; i++) {
         cr_expect(dq->addFront(i));
     }
-    for (size_t i(1); i <= 100; i++) {
+    for (T i(1); i <= 100; i++) {
         cr_expect(dq->addBack(-i));
     }
     for (size_t i(0); i < 200; i++) {

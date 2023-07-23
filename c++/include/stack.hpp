@@ -11,7 +11,7 @@ class Stack : public StackInterface<T> {
         Stack() = default;
         Stack(const size_t capacity);
         Stack(const size_t len, const T& fillValue);
-        ~Stack() {
+        ~Stack() override {
             clear();
         }
 

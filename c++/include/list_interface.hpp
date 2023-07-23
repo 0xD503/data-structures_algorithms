@@ -7,7 +7,7 @@ template<typename T>
 class ListInterface : public SequenceInterface<T> {
     public:
         explicit ListInterface() = default;
-        virtual ~ListInterface() = 0;
+        virtual ~ListInterface() override = 0;
 
         inline size_t length () const noexcept override     { return (_length); }
 

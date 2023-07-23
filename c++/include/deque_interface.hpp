@@ -6,7 +6,7 @@
 template<typename T>
 class DequeInterface : public SequenceInterface<T> {
     public:
-        virtual ~DequeInterface() = 0;
+        virtual ~DequeInterface() override = 0;
 
 
         virtual inline bool addFront (const T& val) = 0;

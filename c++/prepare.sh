@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/env sh
 
 
 mkdir -p build

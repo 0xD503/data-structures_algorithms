@@ -10,8 +10,9 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-#set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++")
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -Wsign-conversion")
+#set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-undefined-func-template -Wno-missing-prototypes -Wno-missing-variable-declarations -Wno-global-constructors")
+#set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -fprofile-arcs -ftest-coverage")
 #set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -coverage -fprofile-arcs -ftest-coverage")
 #set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -stdlib=libc++")
 #set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")

@@ -1,5 +1,4 @@
-#ifndef __DYNAMIC_ARRAY_HPP__
-#define __DYNAMIC_ARRAY_HPP__
+#pragma once
 
 #include "list_interface.hpp"
 
@@ -13,7 +12,7 @@ class DynamicArray : public ListInterface<T> {
         explicit DynamicArray(const size_t capacity);
         DynamicArray(const size_t length, const T& fillValue);
         DynamicArray(const DynamicArray& darr) = default;
-        ~DynamicArray();
+        ~DynamicArray() override;
 
         /// memory management
         inline size_t capacity () const noexcept    { return (_capacity); }
@@ -54,6 +53,3 @@ class DynamicArray : public ListInterface<T> {
     private:
         static constexpr size_t MEM_REALLOC_FACTOR = 2;
 };
-
-
-#endif // __DYNAMIC_ARRAY_HPP__
