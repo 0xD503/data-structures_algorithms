@@ -180,7 +180,7 @@ template<typename T>
 bool DynamicArray<T>::clear() {
     bool done(false);
 
-    if (/* (this->length() > 0) and */ (_array != nullptr)) {
+    if ((this->length() > 0) and (_array != nullptr)) {
         delete[] _array;
         _array = nullptr;
         this->_length = 0;
@@ -190,21 +190,6 @@ bool DynamicArray<T>::clear() {
 
     return (done);
 }
-
-
-// template<typename T>
-// void DynamicArray<T>::_copyArray (T *dest, const T *src, const size_t index,
-// const size_t newLen, const T val) {
-//     size_t i;
-
-//     for (i = 0; i < index; i++) {
-//         dest[i] = src[i];
-//     }
-//     dest[i++] = val;
-//     for (; i < newLen; i++) {
-//         dest[i] = src[i - 1];
-//     }
-// }
 
 
 ///

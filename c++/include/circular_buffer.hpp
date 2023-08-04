@@ -3,7 +3,6 @@
 #include "queue.hpp"
 
 
-// template<typename T, size_t maxLength_ = 0>
 template<typename T>
 class CircularBuffer : public ContainerInterface<T> {
     public:
@@ -17,8 +16,16 @@ class CircularBuffer : public ContainerInterface<T> {
         inline bool clear () override { return (queue_.clear()); }
 
         inline size_t maxLength () const noexcept { return (maxLength_); }
-        // inline void setMaxLength (size_t maxLen) noexcept { maxLength_ =
-        // maxLen; }
+        inline bool setMaxLength (size_t maxLen) noexcept
+        {
+            bool status(false);
+            if ((maxLen >= length()) and (maxLen != maxLength())) {
+                maxLength_ = maxLen;
+                status = true;
+            }
+
+            return (status);
+        }
         inline bool isFull () const noexcept {
             return (this->length() == maxLength());
         }
@@ -33,7 +40,6 @@ class CircularBuffer : public ContainerInterface<T> {
 
     protected:
         size_t maxLength_ { 0 };
-        // size_t head_{0}, tail_{0};
         Queue<T> queue_ {};
         bool overwritable_ { false };
 };

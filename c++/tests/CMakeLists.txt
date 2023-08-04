@@ -21,6 +21,7 @@ add_executable(TestContainerInterface
   ../src/deque.cpp
   ../src/queue.cpp
   ../src/stack.cpp
+  ../src/circular_buffer.cpp
 )
 add_executable(TestSequenceInterface
   test_sequence_if.cpp
@@ -69,6 +70,9 @@ add_executable(TestStack
 add_executable(TestCircularBuffer
   test_circular_buffer.cpp
   ../src/circular_buffer.cpp
+  ../src/queue.cpp
+  ../src/deque.cpp
+  ../src/dynamic_array.cpp
 )
 
 target_link_libraries(TestContainerInterface criterion)

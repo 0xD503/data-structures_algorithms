@@ -100,7 +100,7 @@ Test(queue_if, queue) {
     Queue<long> q_3(87);
     cr_expect(q_3.empty());
     cr_expect_eq(q_3.length(), 0);
-    cr_expect(q_3.clear());
+    cr_expect_not(q_3.clear());
 
     test_non_empty_queue_if(&q_4);
     test_non_empty_queue_if(&q_5);

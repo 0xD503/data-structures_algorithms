@@ -6,6 +6,7 @@
 #include "deque.hpp"
 #include "queue.hpp"
 #include "stack.hpp"
+#include "circular_buffer.hpp"
 
 
 void setUp () {
@@ -52,7 +53,7 @@ Test(container_if, dynamic_array) {
     DynamicArray<long> da_2_1(7);
     cr_expect(da_2_1.empty());
     cr_expect_eq(da_2_1.length(), 0);
-    cr_expect(da_2_1.clear());
+    cr_expect_not(da_2_1.clear());
 
     DynamicArray<long> da_3(7, 4);
     test_non_empty_container_if<long>(&da_3);
@@ -82,7 +83,7 @@ Test(container_if, dual_array_deque) {
     Deque<long> dq_2_1(7);
     cr_expect(dq_2_1.empty());
     cr_expect_eq(dq_2_1.length(), 0);
-    cr_expect(dq_2_1.clear());
+    cr_expect_not(dq_2_1.clear());
 
     Deque<long> dq_3(7, 4);
     test_non_empty_container_if<long>(&dq_3);
@@ -97,7 +98,7 @@ Test(container_if, queue) {
     Queue<long> q_2_1(7);
     cr_expect(q_2_1.empty());
     cr_expect_eq(q_2_1.length(), 0);
-    cr_expect(q_2_1.clear());
+    cr_expect_not(q_2_1.clear());
 
     Queue<long> q_3(7, 4);
     test_non_empty_container_if<long>(&q_3);
@@ -112,8 +113,18 @@ Test(container_if, stack) {
     Stack<long> q_2_1(7);
     cr_expect(q_2_1.empty());
     cr_expect_eq(q_2_1.length(), 0);
-    cr_expect(q_2_1.clear());
+    cr_expect_not(q_2_1.clear());
 
     Stack<long> q_3(7, 4);
     test_non_empty_container_if<long>(&q_3);
+}
+
+Test(container_if, circular_buffer) {
+    CircularBuffer<long> cb_2_1(7);
+    cr_expect(cb_2_1.empty());
+    cr_expect_eq(cb_2_1.length(), 0);
+    cr_expect_not(cb_2_1.clear());
+
+    CircularBuffer<long> cb_3(7, true);
+    test_container_if<long>(&cb_3);
 }

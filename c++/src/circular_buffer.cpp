@@ -1,13 +1,6 @@
 #include "circular_buffer.hpp"
 
 
-// //template<typename T, size_t maxLength>
-// template<typename T>
-// //CircularBuffer<T, maxLength>::CircularBuffer() {
-// CircularBuffer<T>::CircularBuffer() queue_(maxLength_) {
-//     //
-// }
-
 template<typename T>
 CircularBuffer<T>::CircularBuffer(const size_t maxLen,
                                   const bool overwritable) :
@@ -16,8 +9,6 @@ CircularBuffer<T>::CircularBuffer(const size_t maxLen,
 }
 
 
-// template<typename T, size_t maxLength>
-// bool CircularBuffer<T, maxLength>::get (T& dest) const noexcept {
 template<typename T>
 bool CircularBuffer<T>::get(T& dest) noexcept {
     bool success(queue_.front(dest));
@@ -28,8 +19,6 @@ bool CircularBuffer<T>::get(T& dest) noexcept {
     return (success);
 }
 
-// template<typename T, size_t maxLength>
-// bool CircularBuffer<T, maxLength>::put (const T& val) noexcept {
 template<typename T>
 bool CircularBuffer<T>::put(const T& val) noexcept {
     bool success(false);
@@ -44,11 +33,17 @@ bool CircularBuffer<T>::put(const T& val) noexcept {
 }
 
 
-// template class CircularBuffer<char, 1>;
-// template class CircularBuffer<short, 1>;
-// template class CircularBuffer<int, 1>;
-// template class CircularBuffer<long, 1>;
 template class CircularBuffer<char>;
-// template class CircularBuffer<short>;
-// template class CircularBuffer<int>;
-// template class CircularBuffer<long>;
+template class CircularBuffer<short>;
+template class CircularBuffer<int>;
+template class CircularBuffer<long>;
+
+// template class CircularBuffer<int8_t>;
+// template class CircularBuffer<int16_t>;
+// template class CircularBuffer<int32_t>;
+// template class CircularBuffer<int64_t>;
+
+// template class CircularBuffer<uint8_t>;
+// template class CircularBuffer<uint16_t>;
+// template class CircularBuffer<uint32_t>;
+// template class CircularBuffer<uint64_t>;

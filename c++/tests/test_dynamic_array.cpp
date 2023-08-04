@@ -36,7 +36,7 @@ Test(dynamic_array, create) {
     cr_expect(vec_2.capacity() == 5, "Expected array with 5 buckets");
     cr_expect(vec_2.size() == (sizeof(int) * 5),
               "Expected empty array with the size of (5 * int)");
-    cr_expect(vec_2.clear(), "Expected success on clearing non-empty array");
+    cr_expect_not(vec_2.clear(), "Expected fail on clearing empty array");
 
     DynamicArray<int> vec_2_filled(5, 7);
     cr_expect_not(vec_2_filled.empty(), "Expected non-empty array");
