@@ -195,3 +195,13 @@ template class LinkedList<short>;
 template class LinkedList<int>;
 template class LinkedList<long>;
 template class LinkedList<long long>;
+
+// template class LinkedList<int8_t>;
+// template class LinkedList<int16_t>;
+// template class LinkedList<int32_t>;
+// template class LinkedList<int64_t>;
+
+// template class LinkedList<uint8_t>;
+// template class LinkedList<uint16_t>;
+// template class LinkedList<uint32_t>;
+// template class LinkedList<uint64_t>;

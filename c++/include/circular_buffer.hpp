@@ -16,8 +16,7 @@ class CircularBuffer : public ContainerInterface<T> {
         inline bool clear () override { return (queue_.clear()); }
 
         inline size_t maxLength () const noexcept { return (maxLength_); }
-        inline bool setMaxLength (size_t maxLen) noexcept
-        {
+        inline bool setMaxLength (size_t maxLen) noexcept {
             bool status(false);
             if ((maxLen >= length()) and (maxLen != maxLength())) {
                 maxLength_ = maxLen;

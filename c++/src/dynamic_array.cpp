@@ -197,3 +197,14 @@ template class DynamicArray<char>;
 template class DynamicArray<short>;
 template class DynamicArray<int>;
 template class DynamicArray<long>;
+template class DynamicArray<long long>;
+
+// template class DynamicArray<int8_t>;
+// template class DynamicArray<int16_t>;
+// template class DynamicArray<int32_t>;
+// template class DynamicArray<int64_t>;
+
+// template class DynamicArray<uint8_t>;
+// template class DynamicArray<uint16_t>;
+// template class DynamicArray<uint32_t>;
+// template class DynamicArray<uint64_t>;

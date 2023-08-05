@@ -23,10 +23,11 @@ template<typename T>
 bool CircularBuffer<T>::put(const T& val) noexcept {
     bool success(false);
 
-    if (queue_.length() < maxLength_) {
+    if (queue_.length() < maxLength()) {
         success = queue_.add(val);
-    } else if (isOverwritable()) {
-#warning "undone"
+    } else if (isOverwritable() and (maxLength() > 0)) {
+        success = queue_.remove();
+        success = success && queue_.add(val);
     }
 
     return (success);
@@ -37,6 +38,7 @@ template class CircularBuffer<char>;
 template class CircularBuffer<short>;
 template class CircularBuffer<int>;
 template class CircularBuffer<long>;
+template class CircularBuffer<long long>;
 
 // template class CircularBuffer<int8_t>;
 // template class CircularBuffer<int16_t>;

@@ -22,8 +22,6 @@ TestSuite(circularBuffer, .init = setUp, .fini = tearDown);
 
 template<typename T>
 void test_circular_buffer (CircularBuffer<T>& cb) {
-    //cr_expect_not_null
-    // CircularBuffer<char> circBuff_1(maxLen);
     size_t maxLen = 5;
 
     cr_expect(cb.empty());
@@ -67,7 +65,7 @@ void test_circular_buffer (CircularBuffer<T>& cb) {
 
     size_t i;
     for (i = 1; i <= maxLen; i++) {
-        cr_expect(cb.put(84 + i));
+        cr_expect(cb.put(84 + static_cast<T>(i)));
         cr_expect_not(cb.empty());
         cr_expect_eq(cb.length(), i);
     }
@@ -83,18 +81,15 @@ void test_circular_buffer (CircularBuffer<T>& cb) {
     cr_expect_not(cb.isFull());
     cr_expect(cb.put(92));
     cr_expect(cb.put(93));
-    for (i = maxLen; i-- > 0; ) {
+    for (i = maxLen; i-- > 0;) {
         cr_expect(cb.get(val));
-        cout << "CURRRRRRRRRRRR ITERATION: " << i << endl;
-        cout << "CURRRRRRRRRRRR val: " << static_cast<long>(val) << endl;
-        cout << "CURRRRRRRRRRRR refVal: " << static_cast<long>(84 + maxLen - i) << endl;
-        cr_expect_eq(val, 84 + maxLen - i);
+        cr_expect_eq(val, static_cast<T>(84 + maxLen - i));
         cr_expect_not(cb.isFull());
         cr_expect_eq(cb.length(), i);
     }
     cr_expect(cb.empty());
     cr_expect_not(cb.get(val));
-    cr_expect_eq(val, 84 + maxLen);
+    cr_expect_eq(val, static_cast<T>(84 + maxLen));
 
     cr_expect(cb.put(1));
     cr_expect(cb.put(2));
@@ -117,9 +112,63 @@ void test_circular_buffer (CircularBuffer<T>& cb) {
     cb.setOverwritability(true);
     cr_expect(cb.isOverwritable());
     cr_expect(cb.isFull());
-    //
-    // maxLen = 5;
-    // cr_expect(cb.setMaxLength(maxLen));
+    cr_expect(cb.put(4));
+    cr_expect(cb.isFull());
+    cr_expect(cb.put(5));
+    cr_expect(cb.isFull());
+    cr_expect(cb.get(val));
+    cr_expect_eq(val, 3);
+    cr_expect_not(cb.isFull());
+    cr_expect_not(cb.empty());
+    cr_expect_eq(cb.length(), maxLen - 1);
+    cr_expect(cb.get(val));
+    cr_expect_eq(val, 4);
+    cr_expect_not(cb.isFull());
+    cr_expect_not(cb.empty());
+    cr_expect_eq(cb.length(), maxLen - 2);
+    cr_expect(cb.get(val));
+    cr_expect_eq(val, 5);
+    cr_expect_not(cb.isFull());
+    cr_expect(cb.empty());
+    cr_expect_eq(cb.length(), 0);
+    cr_expect_not(cb.get(val));
+    cr_expect_eq(val, 5);
+
+    cr_expect(cb.put(1));
+    cr_expect(cb.put(2));
+    cr_expect_not(cb.isFull());
+    cr_expect(cb.put(3));
+    cr_expect(cb.isFull());
+    cr_expect(cb.put(4));
+    cr_expect(cb.isFull());
+    maxLen = 5;
+    cr_expect(cb.setMaxLength(maxLen));
+    cr_expect_not(cb.isFull());
+    cr_expect(cb.put(5));
+    cr_expect_not(cb.isFull());
+    cr_expect(cb.put(6));
+    cr_expect(cb.isFull());
+    cr_expect(cb.put(7));
+    size_t currLen = cb.length();
+    for (size_t i(0); i < currLen; i++) {
+        cr_expect(cb.get(val));
+        cr_expect_eq(val, static_cast<T>(i + 3));
+        cr_expect_not(cb.isFull());
+    }
+    cr_expect(cb.empty());
+
+    maxLen = 3;
+    cr_expect(cb.setMaxLength(maxLen));
+    cr_expect(cb.put(1));
+    cr_expect(cb.put(2));
+    cr_expect(cb.put(3));
+    cb.setOverwritability(false);
+    cr_expect(cb.isFull());
+    cr_expect_not(cb.put(4));
+
+    cr_expect_not(cb.setMaxLength(2));
+    maxLen = 5;
+    cr_expect(cb.setMaxLength(maxLen));
 }
 
 

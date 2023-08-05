@@ -127,3 +127,14 @@ template class Deque<char>;
 template class Deque<short>;
 template class Deque<int>;
 template class Deque<long>;
+template class Deque<long long>;
+
+// template class Deque<int8_t>;
+// template class Deque<int16_t>;
+// template class Deque<int32_t>;
+// template class Deque<int64_t>;
+
+// template class Deque<uint8_t>;
+// template class Deque<uint16_t>;
+// template class Deque<uint32_t>;
+// template class Deque<uint64_t>;

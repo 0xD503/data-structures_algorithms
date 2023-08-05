@@ -28,3 +28,14 @@ template class Queue<char>;
 template class Queue<short>;
 template class Queue<int>;
 template class Queue<long>;
+template class Queue<long long>;
+
+// template class Queue<int8_t>;
+// template class Queue<int16_t>;
+// template class Queue<int32_t>;
+// template class Queue<int64_t>;
+
+// template class Queue<uint8_t>;
+// template class Queue<uint16_t>;
+// template class Queue<uint32_t>;
+// template class Queue<uint64_t>;

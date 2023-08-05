@@ -16,3 +16,14 @@ template class Stack<long>;
 template class Stack<int>;
 template class Stack<short>;
 template class Stack<char>;
+template class Stack<long long>;
+
+// template class Stack<int8_t>;
+// template class Stack<int16_t>;
+// template class Stack<int32_t>;
+// template class Stack<int64_t>;
+
+// template class Stack<uint8_t>;
+// template class Stack<uint16_t>;
+// template class Stack<uint32_t>;
+// template class Stack<uint64_t>;
