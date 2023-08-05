@@ -9,9 +9,6 @@ class ContainerInterface {
         virtual ~ContainerInterface() = 0;
 
         virtual inline size_t length () const noexcept = 0;
-
-        inline bool empty () const { return (length() == 0); };
-        virtual inline bool clear () = 0;
 };
 
 

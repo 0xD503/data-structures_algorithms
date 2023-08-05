@@ -1,10 +1,11 @@
 #pragma once
 
+#include "dynamic_container_interface.hpp"
 #include "queue.hpp"
 
 
 template<typename T>
-class CircularBuffer : public ContainerInterface<T> {
+class CircularBuffer : public DynamicContainerInterface<T> {
     public:
         CircularBuffer(const size_t maxLen, const bool overwritable = false);
         ~CircularBuffer() override { this->clear(); }

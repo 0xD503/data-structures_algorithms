@@ -1,15 +1,16 @@
 #pragma once
 
-#include <indexable_sequence_interface.hpp>
+#include <indexable_dynamic_sequence_interface.hpp>
 
 
 template<typename T>
-class ListInterface : public IndexableSequenceInterface<T> {
+class ListInterface : public IndexableDynamicSequenceInterface<T> {
     public:
         explicit ListInterface() = default;
         virtual ~ListInterface() override = 0;
 
         inline size_t length () const noexcept override { return (_length); }
+        virtual inline size_t size () const noexcept = 0;
 
         inline bool front (T& val) const noexcept override {
             return (this->get(0, val));
@@ -17,8 +18,6 @@ class ListInterface : public IndexableSequenceInterface<T> {
         inline bool back (T& val) const noexcept override {
             return (this->get(length() - 1, val));
         }
-
-        virtual inline bool swap (size_t index_1, size_t index_2) noexcept = 0;
 
         virtual inline bool insert (size_t index, const T& val) = 0;
         virtual inline bool remove (size_t index) = 0;

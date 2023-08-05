@@ -1,10 +1,10 @@
 #pragma once
 
-#include "indexable_sequence_interface.hpp"
+#include "indexable_dynamic_sequence_interface.hpp"
 
 
 template<typename T>
-class DequeInterface : public IndexableSequenceInterface<T> {
+class DequeInterface : public IndexableDynamicSequenceInterface<T> {
     public:
         virtual ~DequeInterface() override = 0;
 

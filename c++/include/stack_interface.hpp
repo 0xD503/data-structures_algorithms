@@ -1,10 +1,10 @@
 #pragma once
 
-#include "sequence_interface.hpp"
+#include "dynamic_sequence_interface.hpp"
 
 
 template<typename T>
-class StackInterface : public SequenceInterface<T> {
+class StackInterface : public DynamicSequenceInterface<T> {
     public:
         virtual ~StackInterface() override = 0;
 

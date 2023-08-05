@@ -16,7 +16,7 @@ class DynamicArray : public ListInterface<T> {
 
         /// memory management
         inline size_t capacity () const noexcept { return (_capacity); }
-        inline size_t size () const noexcept { return (sizeof(T) * _capacity); }
+        inline size_t size () const noexcept override { return (sizeof(T) * _capacity); }
         bool resize (const size_t newSize);
         bool fit ();
 

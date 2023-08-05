@@ -1,6 +1,5 @@
 #include <criterion/criterion.h>
 
-#include "container_interface.hpp"
 #include "dynamic_array.hpp"
 #include "linked_list.hpp"
 #include "deque.hpp"
@@ -22,7 +21,7 @@ TestSuite(container_if, .init = setUp, .fini = tearDown);
 
 
 template<typename T>
-void test_container_if (ContainerInterface<T> *cont) {
+void test_container_if (DynamicContainerInterface<T> *cont) {
     cr_assert_not(cont == nullptr);
 
     cr_expect(cont->empty());
@@ -33,7 +32,7 @@ void test_container_if (ContainerInterface<T> *cont) {
 }
 
 template<typename T>
-void test_non_empty_container_if (ContainerInterface<T> *cont) {
+void test_non_empty_container_if (DynamicContainerInterface<T> *cont) {
     cr_assert_not(cont == nullptr);
 
     cr_expect_not(cont->empty());

@@ -22,6 +22,8 @@ class Deque : public DequeInterface<T> {
         bool get (size_t index, T& dest) const noexcept override;
         bool set (size_t index, const T& val) noexcept override;
 
+        virtual bool swap (size_t index_1, size_t index_2) noexcept override;
+
         bool addFront (const T& val) override;
         bool removeFront () override;
         bool addBack (const T& val) override;

@@ -19,7 +19,7 @@ TestSuite(indexable_seq_if, .init = testSetUp, .fini = testTearDown);
 
 template<typename T>
 void testEmptyIndexableSequenceIf (
-    IndexableSequenceInterface<T> *indexableSeq) {
+    IndexableDynamicSequenceInterface<T> *indexableSeq) {
     cr_assert_not_null(indexableSeq);
     T val(-1237);
 
@@ -33,7 +33,7 @@ void testEmptyIndexableSequenceIf (
 }
 
 template<typename T>
-void testIndexableSequenceIf (IndexableSequenceInterface<T> *indexableSeq) {
+void testIndexableSequenceIf (IndexableDynamicSequenceInterface<T> *indexableSeq) {
     cr_assert_not_null(indexableSeq);
     T val(-1237);
 

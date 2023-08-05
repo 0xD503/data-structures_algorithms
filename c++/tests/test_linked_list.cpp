@@ -94,6 +94,6 @@ Test(linked_list, accessors) {
     cr_expect_eq(val, 1);
     cr_expect(ll.get(6, val));
     cr_expect_eq(val, 7);
-    cr_expect(not ll.get(7, val));
+    cr_expect_not(ll.get(7, val));
     cr_expect_eq(val, 7);
 }

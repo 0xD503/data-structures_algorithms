@@ -20,7 +20,7 @@ TestSuite(sequence_if, .init = setUp, .fini = tearDown);
 
 
 template<typename T>
-void testEmptySequenceIf (SequenceInterface<T> *seq) {
+void testEmptySequenceIf (DynamicSequenceInterface<T> *seq) {
     cr_assert_not_null(seq);
     T val(-1237);
 
@@ -31,7 +31,7 @@ void testEmptySequenceIf (SequenceInterface<T> *seq) {
 }
 
 template<typename T>
-void testSequenceIf (SequenceInterface<T> *seq) {
+void testSequenceIf (DynamicSequenceInterface<T> *seq) {
     cr_assert_not_null(seq);
     T val(-1237);
 

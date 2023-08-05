@@ -4,20 +4,19 @@
 
 
 template<typename T>
-class LinkedList : public LinkedListInterface<T> {
+class ForwardLinkedList : public LinkedListInterface<T> {
     public:
         struct Node {
-                T value{};
-                Node *previous{}, *next{};
+            T value{};
+            Node *next{};
 
-                explicit Node(const T value_ = T(), Node *prev = nullptr,
-                              Node *next_ = nullptr) :
-                    value(value_), previous(prev), next(next_) { }
+            explicit Node(const T val = T(), Node *nxt = nullptr) :
+                value(val), next(nxt) { }
         };
-
-        LinkedList() = default;
-        LinkedList(const size_t length, const T &fillValue);
-        ~LinkedList() override;
+        
+        ForwardLinkedList() = default;
+        ForwardLinkedList(const size_t length, const T& fillValue);
+        ~ForwardLinkedList() override;
 
         bool get (const size_t index, T &dest) const noexcept override;
         bool set (const size_t index, const T &value) noexcept override;
@@ -28,7 +27,7 @@ class LinkedList : public LinkedListInterface<T> {
         bool remove (const size_t index) override;
 
     protected:
-        Node _rootNode { T(), &_rootNode, &_rootNode };
+        Node *head_{nullptr};//, *tail_{nullptr};
 
         const Node *getNode_ (size_t index) const noexcept;
         Node *getNode_ (size_t index) noexcept;

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "sequence_interface.hpp"
+#include "dynamic_sequence_interface.hpp"
 
 
 template<typename T>
-class QueueInterface : public SequenceInterface<T> {
+class QueueInterface : public DynamicSequenceInterface<T> {
     public:
         virtual ~QueueInterface() override = 0;
 

@@ -54,6 +54,7 @@ add_executable(${PROJECT_NAME}
   src/main.cpp
   src/dynamic_array.cpp
   src/linked_list.cpp
+  src/forward_linked_list.cpp
   src/deque.cpp
   src/queue.cpp
   src/stack.cpp

@@ -26,7 +26,7 @@ template<typename T>
 bool LinkedList<T>::get(const size_t index, T &dest) const noexcept {
     bool success(false);
 
-    const Node *node(_getNode(index));
+    const Node *node(getNode_(index));
     if (node != nullptr) {
         dest = node->value;
         success = true;
@@ -37,15 +37,15 @@ bool LinkedList<T>::get(const size_t index, T &dest) const noexcept {
 
 template<typename T>
 bool LinkedList<T>::set(const size_t index, const T &value) noexcept {
-    bool status(false);
+    bool success(false);
 
-    Node *node(_getNode(index));
+    Node *node(getNode_(index));
     if (node != nullptr) {
         node->value = value;
-        status = true;
+        success = true;
     }
 
-    return (status);
+    return (success);
 }
 
 
@@ -53,8 +53,8 @@ template<typename T>
 bool LinkedList<T>::swap(size_t index_1, size_t index_2) noexcept {
     bool success(false);
 
-    Node *n_1(_getNode(index_1));
-    Node *n_2(_getNode(index_2));
+    Node *n_1(getNode_(index_1));
+    Node *n_2(getNode_(index_2));
     if ((n_1 != nullptr) && (n_2 != nullptr)) [[likely]] {
         T temp(n_1->value);
         n_1->value = n_2->value;
@@ -77,11 +77,11 @@ bool LinkedList<T>::insert(const size_t index, const T &value) {
             [[unlikely]] {  /// check if it is the first node to be added
             prev = &_rootNode;
         } else [[likely]] {
-            prev = _getNode(index - 1);
+            prev = getNode_(index - 1);
         }
         next = &_rootNode;
     } else {
-        next = _getNode(index);
+        next = getNode_(index);
         if (next == nullptr) {
             cerr << "Failed to add node at index " << index << endl;
             goto end;
@@ -93,7 +93,7 @@ bool LinkedList<T>::insert(const size_t index, const T &value) {
         newNode = new Node(value, prev, next);
     } catch (std::bad_alloc &excpt) {
         cerr << "Failed to allocate new list node: " << excpt.what()
-             << ", current length = " << this->_length << endl;
+             << ", current length = " << this->length() << endl;
         goto end;
     }
 
@@ -113,10 +113,10 @@ end:
 
 template<typename T>
 bool LinkedList<T>::remove(const size_t index) {
-    bool status(false);
+    bool success(false);
     Node *node, *prev, *next;
 
-    node = _getNode(index);
+    node = getNode_(index);
     if (node == nullptr) {
         cerr << "Failed to remove node with index " << index << endl;
         goto end;
@@ -134,16 +134,16 @@ bool LinkedList<T>::remove(const size_t index) {
         _rootNode.previous = prev;
     }
     this->_length--;
-    status = true;
+    success = true;
 
 end:
-    return (status);
+    return (success);
 }
 
 
 template<typename T>
-typename LinkedList<T>::Node *LinkedList<T>::_getNode(size_t index) noexcept {
-    Node *node;
+const typename LinkedList<T>::Node *LinkedList<T>::getNode_(size_t index) const noexcept {
+    const Node *node;
 
     if (index < (this->length() / 2)) {
         node = _rootNode.next;
@@ -165,9 +165,8 @@ typename LinkedList<T>::Node *LinkedList<T>::_getNode(size_t index) noexcept {
 }
 
 template<typename T>
-const typename LinkedList<T>::Node *LinkedList<T>::_getNode(
-    size_t index) const noexcept {
-    const Node *node;
+typename LinkedList<T>::Node *LinkedList<T>::getNode_(size_t index) noexcept {
+    Node *node;
 
     if (index < (this->length() / 2)) {
         node = _rootNode.next;

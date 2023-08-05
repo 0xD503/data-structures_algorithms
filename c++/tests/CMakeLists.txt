@@ -14,8 +14,8 @@ find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 # set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-add_executable(TestContainerInterface
-  test_container_if.cpp
+add_executable(TestDynamicContainerInterface
+  test_dynamic_container_if.cpp
   ../src/dynamic_array.cpp
   ../src/linked_list.cpp
   ../src/deque.cpp
@@ -24,7 +24,7 @@ add_executable(TestContainerInterface
   ../src/circular_buffer.cpp
 )
 add_executable(TestSequenceInterface
-  test_sequence_if.cpp
+  test_dynamic_sequence_if.cpp
   ../src/dynamic_array.cpp
   ../src/linked_list.cpp
   ../src/deque.cpp
@@ -32,7 +32,7 @@ add_executable(TestSequenceInterface
   ../src/stack.cpp
 )
 add_executable(TestIndexableSequenceInterface
-  test_indexable_sequence_if.cpp
+  test_indexable_dynamic_sequence_if.cpp
   ../src/dynamic_array.cpp
   ../src/linked_list.cpp
   ../src/deque.cpp
@@ -46,9 +46,18 @@ add_executable(TestDynamicArray
   test_dynamic_array.cpp
   ../src/dynamic_array.cpp
 )
+add_executable(TestLinkedListInterface
+  test_linked_list_interface.cpp
+  ../src/linked_list.cpp
+  ../src/forward_linked_list.cpp
+)
 add_executable(TestLinkedList
   test_linked_list.cpp
   ../src/linked_list.cpp
+)
+add_executable(TestForwardLinkedList
+  test_forward_linked_list.cpp
+  ../src/forward_linked_list.cpp
 )
 add_executable(TestDeque
   test_deque.cpp
@@ -74,21 +83,30 @@ add_executable(TestCircularBuffer
   ../src/deque.cpp
   ../src/dynamic_array.cpp
 )
+# add_executable(TestSkipList
+#   test_skip_list.cpp
+#   ../src/skip_list.cpp
+#   ../src/dynamic_array.cpp
+#   ../src/forward_linked_list.cpp
+# )
 
-target_link_libraries(TestContainerInterface criterion)
+target_link_libraries(TestDynamicContainerInterface criterion)
 target_link_libraries(TestSequenceInterface criterion)
 target_link_libraries(TestIndexableSequenceInterface criterion)
 target_link_libraries(TestListInterface criterion)
 target_link_libraries(TestDynamicArray criterion)
+target_link_libraries(TestLinkedListInterface criterion)
 target_link_libraries(TestLinkedList criterion)
+target_link_libraries(TestForwardLinkedList criterion)
 target_link_libraries(TestDeque criterion)
 target_link_libraries(TestQueue criterion)
 target_link_libraries(TestStack criterion)
 target_link_libraries(TestCircularBuffer criterion)
+#target_link_libraries(TestSkipList criterion)
 
 add_test(
-  NAME TestContainerInterface
-  COMMAND TestContainerInterface
+  NAME TestDynamicContainerInterface
+  COMMAND TestDynamicContainerInterface
 )
 add_test(
   NAME TestSequenceInterface
@@ -107,8 +125,16 @@ add_test(
   COMMAND TestDynamicArray
 )
 add_test(
+  NAME TestLinkedListInterface
+  COMMAND TestLinkedListInterface
+)
+add_test(
   NAME TestLinkedList
   COMMAND TestLinkedList
+)
+add_test(
+  NAME TestForwardLinkedList
+  COMMAND TestForwardLinkedList
 )
 add_test(
   NAME TestDeque
@@ -126,6 +152,10 @@ add_test(
   NAME TestCircularBuffer
   COMMAND TestCircularBuffer
 )
+# add_test(
+#   NAME TestSkipList
+#   COMMAND TestSkipList
+# )
 
 #
 #find_package(CodeCoverage)
