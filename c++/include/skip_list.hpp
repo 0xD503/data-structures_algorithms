@@ -1,7 +1,7 @@
 #pragma once
 
 #include "sorted_set_interface.hpp"
-#include "dynamic_array.hpp"
+#include "static_array.hpp"
 #include "forward_linked_list.hpp"
 
 
@@ -15,5 +15,5 @@ class SkipList : public SortedSetInterface<T> {
         //
 
     private:
-        //
+        StaticArray<ForwardLinkedList<T>, maxLevels_> levels__{};
 };

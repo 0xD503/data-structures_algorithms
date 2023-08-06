@@ -14,6 +14,10 @@ find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 # set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
+add_executable(TestStaticArray
+  test_static_array.cpp
+  ../src/static_array.cpp
+)
 add_executable(TestDynamicContainerInterface
   test_dynamic_container_if.cpp
   ../src/dynamic_array.cpp
@@ -90,6 +94,7 @@ add_executable(TestCircularBuffer
 #   ../src/forward_linked_list.cpp
 # )
 
+target_link_libraries(TestStaticArray criterion)
 target_link_libraries(TestDynamicContainerInterface criterion)
 target_link_libraries(TestSequenceInterface criterion)
 target_link_libraries(TestIndexableSequenceInterface criterion)
@@ -104,6 +109,10 @@ target_link_libraries(TestStack criterion)
 target_link_libraries(TestCircularBuffer criterion)
 #target_link_libraries(TestSkipList criterion)
 
+add_test(
+  NAME TestStaticArray
+  COMMAND TestStaticArray
+)
 add_test(
   NAME TestDynamicContainerInterface
   COMMAND TestDynamicContainerInterface

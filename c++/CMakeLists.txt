@@ -52,6 +52,7 @@ link_directories(
 
 add_executable(${PROJECT_NAME}
   src/main.cpp
+  src/static_array.cpp
   src/dynamic_array.cpp
   src/linked_list.cpp
   src/forward_linked_list.cpp
