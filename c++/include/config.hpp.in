@@ -1,0 +1,3 @@
+/// project configuration settings
+#define PRJ_VER_MAJOR @PROJECT_VERSION_MAJOR@
+#define PRJ_VER_MINOR @PROJECT_VERSION_MINOR@
