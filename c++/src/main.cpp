@@ -4,6 +4,7 @@
 #include "dynamic_array.hpp"
 #include "linked_list.hpp"
 #include "deque.hpp"
+#include "config.hpp"
 
 
 using std::clog;
@@ -22,6 +23,8 @@ int main ([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
     cout << "DQ len: " << dq.clear() << endl;
     cout << "DQ len: " << dq.empty() << endl;
     cout << "DQ len: " << dq.length() << endl;
+    cout << "PRJ VER: " << PRJ_VER_MAJOR << "." << PRJ_VER_MINOR << endl;
+    //cout << "PRJ MAJOR: " << PRJ_VER_MAJOR << endl;
 
     // dq.addFront(1);
     // dq.addFront(2);

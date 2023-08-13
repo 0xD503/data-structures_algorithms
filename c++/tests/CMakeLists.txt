@@ -9,161 +9,242 @@ find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 ## coverage
 #find_program(CTEST_COVERAGE_COMMAND NAMES gcov)
 
-# #
-# set(CMAKE_CXX_STANDARD 20)
-# set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
-add_executable(TestStaticArray
+set(USER_CURR_TEST_TARGET TestStaticArray)
+add_executable(${USER_CURR_TEST_TARGET}
   test_static_array.cpp
-  ../src/static_array.cpp
 )
-add_executable(TestDynamicContainerInterface
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  static_array
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestDynamicContainerInterface)
+add_executable(${USER_CURR_TEST_TARGET}
   test_dynamic_container_if.cpp
-  ../src/dynamic_array.cpp
-  ../src/linked_list.cpp
-  ../src/deque.cpp
-  ../src/queue.cpp
-  ../src/stack.cpp
-  ../src/circular_buffer.cpp
 )
-add_executable(TestSequenceInterface
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  dynamic_array
+  linked_list
+  forward_linked_list
+  deque
+  queue
+  stack
+  circular_buffer
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestSequenceInterface)
+add_executable(${USER_CURR_TEST_TARGET}
   test_dynamic_sequence_if.cpp
-  ../src/dynamic_array.cpp
-  ../src/linked_list.cpp
-  ../src/deque.cpp
-  ../src/queue.cpp
-  ../src/stack.cpp
 )
-add_executable(TestIndexableSequenceInterface
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  dynamic_array
+  linked_list
+  deque
+  queue
+  stack
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestIndexableDynamicSequenceInterface)
+add_executable(${USER_CURR_TEST_TARGET}
   test_indexable_dynamic_sequence_if.cpp
-  ../src/dynamic_array.cpp
-  ../src/linked_list.cpp
-  ../src/deque.cpp
 )
-add_executable(TestListInterface
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  dynamic_array
+  linked_list
+  deque
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestListInterface)
+add_executable(${USER_CURR_TEST_TARGET}
   test_list_interface.cpp
-  ../src/dynamic_array.cpp
-  ../src/linked_list.cpp
 )
-add_executable(TestDynamicArray
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  dynamic_array
+  linked_list
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestDynamicArray)
+add_executable(${USER_CURR_TEST_TARGET}
   test_dynamic_array.cpp
-  ../src/dynamic_array.cpp
 )
-add_executable(TestLinkedListInterface
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  dynamic_array
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestLinkedListInterface)
+add_executable(${USER_CURR_TEST_TARGET}
   test_linked_list_interface.cpp
-  ../src/linked_list.cpp
-  ../src/forward_linked_list.cpp
 )
-add_executable(TestLinkedList
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  linked_list
+  forward_linked_list
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestLinkedList)
+add_executable(${USER_CURR_TEST_TARGET}
   test_linked_list.cpp
-  ../src/linked_list.cpp
 )
-add_executable(TestForwardLinkedList
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  linked_list
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestForwardLinkedList)
+add_executable(${USER_CURR_TEST_TARGET}
   test_forward_linked_list.cpp
-  ../src/forward_linked_list.cpp
 )
-add_executable(TestDeque
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  forward_linked_list
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestDeque)
+add_executable(${USER_CURR_TEST_TARGET}
   test_deque.cpp
-  ../src/deque.cpp
-  ../src/dynamic_array.cpp
 )
-add_executable(TestQueue
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  deque
+  dynamic_array
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestQueue)
+add_executable(${USER_CURR_TEST_TARGET}
   test_queue.cpp
-  ../src/queue.cpp
-  ../src/deque.cpp
-  ../src/dynamic_array.cpp
 )
-add_executable(TestStack
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  queue
+  deque
+  dynamic_array
+  criterion
+)
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestStack)
+add_executable(${USER_CURR_TEST_TARGET}
   test_stack.cpp
-  ../src/stack.cpp
-  ../src/deque.cpp
-  ../src/dynamic_array.cpp
 )
-add_executable(TestCircularBuffer
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  stack
+  deque
+  dynamic_array
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestCircularBuffer)
+add_executable(${USER_CURR_TEST_TARGET}
   test_circular_buffer.cpp
-  ../src/circular_buffer.cpp
-  ../src/queue.cpp
-  ../src/deque.cpp
-  ../src/dynamic_array.cpp
 )
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  circular_buffer
+  queue
+  deque
+  dynamic_array
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
 # add_executable(TestSkipList
 #   test_skip_list.cpp
-#   ../src/skip_list.cpp
+# #   ../src/skip_list.cpp
 #   ../src/dynamic_array.cpp
 #   ../src/forward_linked_list.cpp
-# )
-
-target_link_libraries(TestStaticArray criterion)
-target_link_libraries(TestDynamicContainerInterface criterion)
-target_link_libraries(TestSequenceInterface criterion)
-target_link_libraries(TestIndexableSequenceInterface criterion)
-target_link_libraries(TestListInterface criterion)
-target_link_libraries(TestDynamicArray criterion)
-target_link_libraries(TestLinkedListInterface criterion)
-target_link_libraries(TestLinkedList criterion)
-target_link_libraries(TestForwardLinkedList criterion)
-target_link_libraries(TestDeque criterion)
-target_link_libraries(TestQueue criterion)
-target_link_libraries(TestStack criterion)
-target_link_libraries(TestCircularBuffer criterion)
-#target_link_libraries(TestSkipList criterion)
-
-add_test(
-  NAME TestStaticArray
-  COMMAND TestStaticArray
-)
-add_test(
-  NAME TestDynamicContainerInterface
-  COMMAND TestDynamicContainerInterface
-)
-add_test(
-  NAME TestSequenceInterface
-  COMMAND TestSequenceInterface
-)
-add_test(
-  NAME TestIndexableSequenceInterface
-  COMMAND TestIndexableSequenceInterface
-)
-add_test(
-  NAME TestListInterface
-  COMMAND TestListInterface
-)
-add_test(
-  NAME TestDynamicArray
-  COMMAND TestDynamicArray
-)
-add_test(
-  NAME TestLinkedListInterface
-  COMMAND TestLinkedListInterface
-)
-add_test(
-  NAME TestLinkedList
-  COMMAND TestLinkedList
-)
-add_test(
-  NAME TestForwardLinkedList
-  COMMAND TestForwardLinkedList
-)
-add_test(
-  NAME TestDeque
-  COMMAND TestDeque
-)
-add_test(
-  NAME TestQueue
-  COMMAND TestQueue
-)
-add_test(
-  NAME TestStack
-  COMMAND TestStack
-)
-add_test(
-  NAME TestCircularBuffer
-  COMMAND TestCircularBuffer
-)
-# add_test(
-#   NAME TestSkipList
-#   COMMAND TestSkipList
 # )
 
 #

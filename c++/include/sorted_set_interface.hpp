@@ -8,7 +8,7 @@ class SortedSetInterface : public SetInterface<T> {
     public:
         virtual ~SortedSetInterface() override = 0;
 
-        virtual bool find (const T& val, T& dest) const noexcept = 0;
+        virtual inline bool find (const T& val, T& dest) const noexcept = 0;
 };
 
 
