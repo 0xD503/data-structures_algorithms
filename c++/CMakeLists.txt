@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.14..3.22)
 
 
-project(
-  data_structures_and_algorithms_cxx
+project(data_structures_and_algorithms_cxx
   VERSION 0.1
   DESCRIPTION "basic data structures and algorithms implemented in C++"
   LANGUAGES CXX
