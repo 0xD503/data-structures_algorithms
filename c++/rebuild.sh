@@ -3,4 +3,4 @@
 
 ./prepare.sh
 cd build
-cmake --build .
+cmake --build . --clean-first

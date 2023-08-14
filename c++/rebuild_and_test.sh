@@ -2,4 +2,4 @@
 
 
 ./clean.sh
-./build_and_test.sh
+./rebuild.sh && ./test.sh
