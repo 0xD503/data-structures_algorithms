@@ -10,6 +10,29 @@ find_program(CTEST_MEMORYCHECK_COMMAND NAMES valgrind)
 #find_program(CTEST_COVERAGE_COMMAND NAMES gcov)
 
 
+set(USER_CURR_TEST_TARGET TestContainerInterface)
+add_executable(${USER_CURR_TEST_TARGET}
+  test_container_if.cpp
+)
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  static_array
+  dynamic_array
+  linked_list
+  forward_linked_list
+  deque
+  queue
+  stack
+  circular_buffer
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
 set(USER_CURR_TEST_TARGET TestStaticArray)
 add_executable(${USER_CURR_TEST_TARGET}
   test_static_array.cpp

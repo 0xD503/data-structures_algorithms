@@ -1,47 +1,49 @@
 #pragma once
 
+#include <cstddef>
 #include "sorted_set_interface.hpp"
 #include "static_array.hpp"
 #include "forward_linked_list.hpp"
 
 
-template<typename T, size_t maxLevels_ = 6>
+template<typename T, size_t maxLevels__ = 4>
 class SkipList : public SortedSetInterface<T> {
     public:
+        static_assert(maxLevels__ > 0, "number of levels for skip list should be >= 1");
+
         //SkipList()
         ~SkipList() override;
 
-        //inline size_t length () const noexcept { return levels__[baseLevelIndex_].length(); }
-        inline size_t length () const noexcept {
-            #warning "move out to implementation"
-            //return levels__[baseLevelIndex_].length();
-            //return levels__.get(baseLevelIndex_).length();
-        }
+        inline size_t length () const noexcept override { return (levels__[baseLevelIndex__].length()); }
 
-        inline bool clear () {
+        inline bool clear () override {
             #warning "move out to implementation"
         }
 
-        inline bool insert (const T& val) noexcept {
+        inline bool insert (const T& val) noexcept override {
             #warning "move out to implementation"
         }
-        inline bool remove (const T& val) noexcept {
-            #warning "move out to implementation"
-        }
-
-        inline bool find (const T& val, T& dest) const noexcept {
+        inline bool remove (const T& val) noexcept override {
             #warning "move out to implementation"
         }
 
-    protected:
-        static constexpr size_t baseLevelIndex_ = 0;
+        inline bool find (const T& val, T& dest) const noexcept override {
+            #warning "move out to implementation"
+        }
 
     private:
-        StaticArray<ForwardLinkedList<T>, maxLevels_> levels__{};
+        static constexpr size_t baseLevelIndex__ = 0;
+        StaticArray<ForwardLinkedList<T>, maxLevels__> levels__{};
 };
 
 
-template<typename T, size_t maxLevels_>
-SkipList<T, maxLevels_>::~SkipList() {
+template<typename T, size_t maxLevels__>
+SkipList<T, maxLevels__>::~SkipList() {
     clear();
 }
+
+
+// template<typename T, size_t maxLevels__>
+// size_t SkipList<T, maxLevels__>::length () const noexcept {
+//     //
+// }

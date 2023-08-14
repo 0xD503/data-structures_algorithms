@@ -8,6 +8,8 @@
 template<typename T, const size_t length_>
 class StaticArray: public IndexableSequenceInterface<T> {
     public:
+        static_assert(length_ > 0, "length of static array should be > 0");
+
         StaticArray() = default;
         StaticArray(const T& fillValue);
         ~StaticArray() override = default;
@@ -38,8 +40,11 @@ class StaticArray: public IndexableSequenceInterface<T> {
 
         void fill (const T& val) noexcept;
 
-        //inline T *data () noexcept { return (&array_[0]); }
+        inline T *data () noexcept { return (&array_[0]); }
         inline const T *data () const noexcept { return (&array_[0]); }
+
+        inline T& operator[] (size_t index) override { return array_[index]; }
+        inline const T& operator[] (size_t index) const override { return array_[index]; }
 
     protected:
         T array_[length_]{};
