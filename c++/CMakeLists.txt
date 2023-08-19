@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.14..3.22)
 
 project(data_structures_and_algorithms_cxx
   VERSION 0.1
-  DESCRIPTION "basic data structures and algorithms implemented in C++"
+  DESCRIPTION "Basic data structures and algorithms implemented in C++"
   LANGUAGES CXX
 )
 
@@ -16,10 +16,10 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -Wsign-conversion")
 #set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -fprofile-arcs -ftest-coverage")
 #set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -Weffc++ -coverage -fprofile-arcs -ftest-coverage")
 
-#set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-set(CMAKE_CXX_FLAGS_DEBUG "-g -Og")
-#set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -O3")
-set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -Og")
+set(CMAKE_CXX_FLAGS_DEBUG "-gdwarf-4 -O0")
+#set(CMAKE_CXX_FLAGS_DEBUG "-gdwarf-4 -Og")
+#set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-gdwarf-4 -O3")
+set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-gdwarf-4 -Og")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 set(CMAKE_BUILD_TYPE Debug)
@@ -54,7 +54,7 @@ add_executable(${PROJECT_NAME}
 )
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
-  PUBLIC ${PROJECT_BINARY_DIR}
+  PUBLIC ${PROJECT_BINARY_DIR} # for CMake generated includes
 )
 target_link_libraries(${PROJECT_NAME}
   static_array
@@ -65,6 +65,7 @@ target_link_libraries(${PROJECT_NAME}
   queue
   stack
   circular_buffer
+  skip_list
 )
 
 ## testing

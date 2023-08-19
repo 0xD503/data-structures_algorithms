@@ -26,6 +26,7 @@ target_link_libraries(${USER_CURR_TEST_TARGET}
   queue
   stack
   circular_buffer
+  skip_list
   criterion
 )
 add_test(

@@ -60,3 +60,11 @@ add_library(${USER_CURR_OBJECT_TARGET} OBJECT
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
 )
+
+set(USER_CURR_OBJECT_TARGET skip_list)
+add_library(${USER_CURR_OBJECT_TARGET} OBJECT
+  ../include/skip_list.hpp
+)
+target_include_directories(${USER_CURR_OBJECT_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)

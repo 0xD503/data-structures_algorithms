@@ -8,7 +8,7 @@
 #include "queue.hpp"
 #include "stack.hpp"
 #include "circular_buffer.hpp"
-//#include "skip_list.hpp"
+#include "skip_list.hpp"
 
 
 void setUp () {
@@ -116,6 +116,10 @@ Test(container_if, circular_buffer) {
     test_container_if<long>(&cb_3, 0);
 }
 
-// Test(container_if, skip_list) {
+Test(container_if, skip_list) {
+    SkipList<long, 3> sl;
+    //SkipList<long, 4> sl_2{};
 
-// }
+    // test_container_if<long>(&sl, 0);
+    // test_container_if<long>(&sl_2, 0);
+}

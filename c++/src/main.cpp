@@ -1,10 +1,13 @@
 #include <iostream>
 
-//#include <bag.hpp>
+#include "config.hpp"
+
+#include "static_array.hpp"
 #include "dynamic_array.hpp"
 #include "linked_list.hpp"
+#include "forward_linked_list.hpp"
 #include "deque.hpp"
-#include "config.hpp"
+#include "skip_list.hpp"
 
 
 using std::clog;
@@ -14,15 +17,34 @@ using std::endl;
 int main ([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
     int status = EXIT_FAILURE;
 
+    StaticArray<ForwardLinkedList<long *>, 4> levels;
+    StaticArray<ForwardLinkedList<long *>, 4> levels_2{};
+    StaticArray<ForwardLinkedList<long *>, 4> levels__{};
+
+    cout << "levels len: " << levels.length() << endl;
+    cout << "levels 2 len: " << levels_2.length() << endl;
+
+    // SkipList<long *, 4> sl;
+    // SkipList<long *, 4> sl_2{};
+
+    // cout << "SL len: " << sl.length() << endl;
+    // cout << "SL 2 len: " << sl_2.length() << endl;
+
+    SkipList<long *, 4> *slp = new SkipList<long *, 4>;
+
+    slp->clear();
+
+    delete slp;
+
     // LinkedList<long> ll(7, 777);
-    Deque<long> dq(7, 4);
+    // Deque<long> dq(7, 4);
 
 
-    cout << "DQ len: " << dq.empty() << endl;
-    cout << "DQ len: " << dq.length() << endl;
-    cout << "DQ len: " << dq.clear() << endl;
-    cout << "DQ len: " << dq.empty() << endl;
-    cout << "DQ len: " << dq.length() << endl;
+    // cout << "DQ len: " << dq.empty() << endl;
+    // cout << "DQ len: " << dq.length() << endl;
+    // cout << "DQ len: " << dq.clear() << endl;
+    // cout << "DQ len: " << dq.empty() << endl;
+    // cout << "DQ len: " << dq.length() << endl;
     cout << "PRJ VER: " << PRJ_VER_MAJOR << "." << PRJ_VER_MINOR << endl;
     //cout << "PRJ MAJOR: " << PRJ_VER_MAJOR << endl;
 
