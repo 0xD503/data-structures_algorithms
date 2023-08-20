@@ -12,7 +12,7 @@ class StaticArray: public IndexableSequenceInterface<T> {
 
         StaticArray() = default;
         StaticArray(const T& fillValue);
-        ~StaticArray() override = default;
+        //~StaticArray() override = default;
 
         inline size_t length () const noexcept override { return (length_); }
 

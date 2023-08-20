@@ -32,6 +32,7 @@ class ListInterface : public IndexableDynamicSequenceInterface<T> {
                 done = true;
                 while (not this->empty()) {
                     if (not remove(0)) [[unlikely]] {
+                    //if (not remove(length() - 1)) [[unlikely]] {
                         done = false;
                         break;
                     }

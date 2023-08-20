@@ -13,6 +13,7 @@ class SkipList : public SortedSetInterface<T> {
 
         SkipList();
         ~SkipList() override;
+        //~SkipList() override = default;
 
         inline size_t length () const noexcept override {
             return (levels__[baseLevelIndex__].length() - 1);
@@ -44,8 +45,11 @@ class SkipList : public SortedSetInterface<T> {
 
 
 template<typename T, size_t maxLevels_>
+//SkipList<T, maxLevels_>::SkipList() : levels__() {
+//SkipList<T, maxLevels_>::SkipList() : levels__(ForwardLinkedList<T>(0)) {
 SkipList<T, maxLevels_>::SkipList() : levels__(ForwardLinkedList<T>(1)) {
-    //
+    // ForwardLinkedList<T> lst(1);
+    // levels__.fill(lst);
 }
 
 template<typename T, size_t maxLevels__>
@@ -56,10 +60,13 @@ SkipList<T, maxLevels__>::~SkipList() {
 
 template<typename T, size_t maxLevels__>
 bool SkipList<T, maxLevels__>::clear () {
-    bool status(true);
+    bool status(false);
 
-    for (size_t i(0); i < maxLevels__; i++) {
-        status = levels__[i].clear() && status;
+    if (not this->empty()) {
+        status = true;
+        for (size_t i(0); i < maxLevels__; i++) {
+            status = levels__[i].clear() && status;
+        }
     }
 
     return (status);

@@ -32,7 +32,7 @@ int main ([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 
     SkipList<long *, 4> *slp = new SkipList<long *, 4>;
 
-    slp->clear();
+    //slp->clear();
 
     delete slp;
 

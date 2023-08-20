@@ -21,6 +21,8 @@ class ForwardLinkedList : public LinkedListInterface<T> {
         ForwardLinkedList(const size_t length, const T& fillValue = T());
         ~ForwardLinkedList() override;
 
+        ForwardLinkedList(ForwardLinkedList& instance) = delete;
+
         bool get (const size_t index, T &dest) const noexcept override;
         bool set (const size_t index, const T &value) noexcept override;
 
@@ -146,7 +148,8 @@ bool ForwardLinkedList<T>::remove(const size_t index) {
         }
         else {
             node = head_;
-            head_ = head_->next;
+            //head_ = head_->next;
+            head_ = (this->length() == 1) ? nullptr : head_->next;
         }
 
         delete node;

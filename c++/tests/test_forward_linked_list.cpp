@@ -14,7 +14,7 @@ void tearDown () {
 TestSuite(forward_linked_list, .init = setUp, .fini = tearDown);
 
 
-Test(linked_list, create) {
+Test(forward_linked_list, create) {
     ForwardLinkedList<long> fll {};
     long val(-9);
 
@@ -40,7 +40,7 @@ Test(linked_list, create) {
     cr_expect(fll_2.empty());
 }
 
-Test(linked_list, adding_elements) {
+Test(forward_linked_list, adding_elements) {
     ForwardLinkedList<long> fll {};
 
     cr_expect_not(fll.insert(7, 777));
@@ -70,7 +70,7 @@ Test(linked_list, adding_elements) {
     cr_expect_not(fll.remove(0));
 }
 
-Test(linked_list, accessors) {
+Test(forward_linked_list, accessors) {
     ForwardLinkedList<long> fll {};
     long val(-342);
 
