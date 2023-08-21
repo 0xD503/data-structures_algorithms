@@ -23,6 +23,49 @@ LinkedList<T>::~LinkedList() {
 
 
 template<typename T>
+const T& LinkedList<T>::operator[] (size_t index) const {
+    const Node *node;
+    if (index < (this->length() / 2)) {
+        node = _rootNode.next;
+        while (index > 0) {
+            node = node->next;
+            index--;
+        }
+    }
+    else {
+        node = &_rootNode;
+        while (index < this->length()) {
+            node = node->previous;
+            index++;
+        }
+    }
+
+    return (node->value);
+}
+
+template<typename T>
+T& LinkedList<T>::operator[] (size_t index) {
+    Node *node;
+    if (index < (this->length() / 2)) {
+        node = _rootNode.next;
+        while (index > 0) {
+            node = node->next;
+            index--;
+        }
+    }
+    else {
+        node = &_rootNode;
+        while (index < this->length()) {
+            node = node->previous;
+            index++;
+        }
+    }
+
+    return (node->value);
+}
+
+
+template<typename T>
 bool LinkedList<T>::get(const size_t index, T &dest) const noexcept {
     bool success(false);
 
@@ -151,13 +194,15 @@ const typename LinkedList<T>::Node *LinkedList<T>::getNode_(size_t index) const 
             node = node->next;
             index--;
         }
-    } else if (index < this->length()) {
+    }
+    else if (index < this->length()) {
         node = &_rootNode;
         while (index < this->length()) {
             node = node->previous;
             index++;
         }
-    } else [[unlikely]] {
+    }
+    else [[unlikely]] {
         node = nullptr;
     }
 

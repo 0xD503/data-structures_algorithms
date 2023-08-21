@@ -92,7 +92,7 @@ add_test(
   COMMAND ${USER_CURR_TEST_TARGET}
 )
 
-set(USER_CURR_TEST_TARGET TestIndexableDynamicSequenceInterface)
+set(USER_CURR_TEST_TARGET TestDynamicIndexableSequenceInterface)
 add_executable(${USER_CURR_TEST_TARGET}
   test_indexable_dynamic_sequence_if.cpp
 )

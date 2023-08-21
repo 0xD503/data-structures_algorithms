@@ -47,6 +47,25 @@ bool Deque<T>::back(T& val) const noexcept {
 
 
 template<typename T>
+inline const T& Deque<T>::operator[] (size_t index) const {
+    const T& returnValue = (index < _frontArray.length()) ?
+        _frontArray[_frontArray.length() - 1 - index]
+        : _backArray[index - _frontArray.length()];
+
+    return (returnValue);
+}
+
+template<typename T>
+inline T& Deque<T>::operator[] (size_t index) {
+    T& returnValue = (index < _frontArray.length()) ?
+        _frontArray[_frontArray.length() - 1 - index]
+        : _backArray[index - _frontArray.length()];
+
+    return (returnValue);
+}
+
+
+template<typename T>
 bool Deque<T>::get(size_t index, T& dest) const noexcept {
     bool success(false);
 

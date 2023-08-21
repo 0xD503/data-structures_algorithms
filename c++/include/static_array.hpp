@@ -33,18 +33,20 @@ class StaticArray: public IndexableSequenceInterface<T> {
             return (success);
         }
 
+        /// getters/setters
+        inline const T& operator[] (size_t index) const override { return array_[index]; }
+        inline T& operator[] (size_t index) override { return array_[index]; }
+
         bool get (size_t index, T& dest) const noexcept override;
         bool set (size_t index, const T& val) noexcept override;
-
-        bool swap (size_t index_1, size_t index_2) noexcept override;
-
-        void fill (const T& val) noexcept;
 
         inline T *data () noexcept { return (&array_[0]); }
         inline const T *data () const noexcept { return (&array_[0]); }
 
-        inline T& operator[] (size_t index) override { return array_[index]; }
-        inline const T& operator[] (size_t index) const override { return array_[index]; }
+        /// modifiers
+        bool swap (size_t index_1, size_t index_2) noexcept override;
+
+        void fill (const T& val) noexcept;
 
     protected:
         T array_[length_]{};

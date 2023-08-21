@@ -4,7 +4,7 @@
 
 
 template<typename T>
-class SequenceInterface : public ContainerInterface<T> {
+class SequenceInterface : virtual public ContainerInterface<T> {
     public:
         virtual ~SequenceInterface() override = 0;
 

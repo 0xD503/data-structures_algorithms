@@ -4,7 +4,7 @@
 
 
 template<typename T>
-class IndexableSequenceInterface : public SequenceInterface<T> {
+class IndexableSequenceInterface : virtual public SequenceInterface<T> {
     public:
         virtual ~IndexableSequenceInterface() override = 0;
 
@@ -13,8 +13,8 @@ class IndexableSequenceInterface : public SequenceInterface<T> {
 
         virtual inline bool swap (size_t index_1, size_t index_2) noexcept = 0;
 
-        virtual inline T& operator[] (size_t index) = 0;
         virtual inline const T& operator[] (size_t index) const = 0;
+        virtual inline T& operator[] (size_t index) = 0;
 };
 
 

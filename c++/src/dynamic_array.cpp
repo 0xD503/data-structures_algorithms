@@ -9,15 +9,9 @@ using std::clog;
 using std::endl;
 
 template<typename T>
-DynamicArray<T>::DynamicArray(const size_t capacity) : DynamicArray<T>() {
-    try {
-        _array = new T[capacity];
-        this->_capacity = capacity;
-    } catch (std::bad_alloc& excpt) {
-        _array = nullptr;
-        cerr << "Failed to construct dynamic array with capacity " << capacity
-             << ": " << excpt.what() << endl;
-    }
+DynamicArray<T>::DynamicArray(const size_t capacity) :
+    _array(new T[capacity]), _capacity(capacity) {
+    //
 }
 
 template<typename T>
@@ -43,13 +37,7 @@ bool DynamicArray<T>::resize(const size_t newCapacity) {
 
     if ((newCapacity >= this->length()) and (newCapacity != this->_capacity)) {
         T* newArray;
-        try {
-            newArray = new T[newCapacity];
-        } catch (std::bad_alloc& excpt) {
-            cerr << "Failed to allocate resized array: " << excpt.what()
-                 << endl;
-            goto end;
-        }
+        newArray = new T[newCapacity];
 
         for (size_t i = 0; i < this->length(); i++) {
             newArray[i] = _array[i];
@@ -61,7 +49,6 @@ bool DynamicArray<T>::resize(const size_t newCapacity) {
         status = true;
     }
 
-end:
     return (status);
 }
 

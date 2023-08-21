@@ -4,7 +4,7 @@
 
 
 template<typename T>
-class DynamicContainerInterface : public ContainerInterface<T> {
+class DynamicContainerInterface : virtual public ContainerInterface<T> {
     public:
         virtual ~DynamicContainerInterface() override = 0;
 

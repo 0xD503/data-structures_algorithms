@@ -4,7 +4,7 @@
 
 
 template<typename T>
-class DequeInterface : public IndexableDynamicSequenceInterface<T> {
+class DequeInterface : public DynamicIndexableSequenceInterface<T> {
     public:
         virtual ~DequeInterface() override = 0;
 

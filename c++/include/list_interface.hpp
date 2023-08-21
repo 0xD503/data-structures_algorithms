@@ -4,7 +4,7 @@
 
 
 template<typename T>
-class ListInterface : public IndexableDynamicSequenceInterface<T> {
+class ListInterface : public DynamicIndexableSequenceInterface<T> {
     public:
         explicit ListInterface() = default;
         virtual ~ListInterface() override = 0;
@@ -24,23 +24,6 @@ class ListInterface : public IndexableDynamicSequenceInterface<T> {
 
         inline bool append (const T& val) { return (insert(length(), val)); }
         inline bool prepend (const T& val) { return (insert(0, val)); }
-
-        virtual inline bool clear () override {
-            bool done(false);
-
-            if (not this->empty()) {
-                done = true;
-                while (not this->empty()) {
-                    if (not remove(0)) [[unlikely]] {
-                    //if (not remove(length() - 1)) [[unlikely]] {
-                        done = false;
-                        break;
-                    }
-                }
-            }
-
-            return (done);
-        }
 
     protected:
         size_t _length {};

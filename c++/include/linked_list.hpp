@@ -19,9 +19,14 @@ class LinkedList : public LinkedListInterface<T> {
         LinkedList(const size_t length, const T &fillValue);
         ~LinkedList() override;
 
+        /// getters/setters
+        const T& operator[] (size_t index) const override;
+        T& operator[] (size_t index) override;
+
         bool get (const size_t index, T &dest) const noexcept override;
         bool set (const size_t index, const T &value) noexcept override;
 
+        /// modifiers
         bool swap (size_t index_1, size_t index_2) noexcept override;
 
         bool insert (const size_t index, const T &value) override;

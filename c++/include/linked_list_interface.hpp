@@ -24,6 +24,22 @@ class LinkedListInterface: public ListInterface<T> {
 
         //     return (success);
         // }
+        inline bool clear () override {
+            bool done(false);
+
+            if (not this->empty()) {
+                done = true;
+                while (not this->empty()) {
+                    if (not this->remove(0)) [[unlikely]] {
+                    //if (not remove(length() - 1)) [[unlikely]] {
+                        done = false;
+                        break;
+                    }
+                }
+            }
+
+            return (done);
+        }
 
     protected:
         // const Node *getNode_ (size_t index) const noexcept;

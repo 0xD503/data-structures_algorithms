@@ -14,6 +14,8 @@ class DynamicArray : public ListInterface<T> {
         DynamicArray(const DynamicArray& darr) = default;
         ~DynamicArray() override;
 
+        inline DynamicArray& operator=(const DynamicArray& other) = default;
+
         /// memory management
         inline size_t capacity () const noexcept { return (_capacity); }
         inline size_t size () const noexcept override { return (sizeof(T) * _capacity); }
@@ -24,17 +26,20 @@ class DynamicArray : public ListInterface<T> {
         inline T* data () noexcept { return (_array); }
         inline const T* data () const noexcept { return (_array); }
 
+        /// getters/setters
+        inline const T& operator[] (size_t index) const override { return (_array[index]); }
+        inline T& operator[] (size_t index) override { return (_array[index]); }
+
         bool get (const size_t index, T& dest) const noexcept override;
         bool set (const size_t index, const T& val) noexcept override;
 
+        /// modifiers
         bool swap (size_t index_1, size_t index_2) noexcept override;
 
         bool insert (const size_t index, const T& val) override;
         bool remove (const size_t index) override;
 
         bool clear () override;
-
-        inline DynamicArray& operator=(const DynamicArray& other) = default;
 
     protected:
         T* _array {};

@@ -1,4 +1,5 @@
 #include <criterion/criterion.h>
+#include <criterion/internal/assert.h>
 
 #include "dynamic_array.hpp"
 
@@ -47,13 +48,14 @@ Test(dynamic_array, create) {
     cr_expect(vec_2_filled.clear(),
               "Expected success on clearing non-empty array");
 
-    DynamicArray<int> vec_3(std::numeric_limits<size_t>::max());
-    cr_expect_null(vec_3.data());
-    cr_expect(vec_3.empty(), "Expected empty array");
-    cr_expect(vec_3.length() == 0, "Expected empty array");
-    cr_expect(vec_3.capacity() == 0, "Expected empty array with 0 capacity");
-    cr_expect(vec_3.size() == 0, "Expected empty array with 0 size");
-    cr_expect_not(vec_3.clear(), "Expected fail on clearing an empty array");
+    cr_expect_any_throw(DynamicArray<int> vec_3(std::numeric_limits<size_t>::max()));
+    // DynamicArray<int> vec_3(std::numeric_limits<size_t>::max());
+    // cr_expect_null(vec_3.data());
+    // cr_expect(vec_3.empty(), "Expected empty array");
+    // cr_expect(vec_3.length() == 0, "Expected empty array");
+    // cr_expect(vec_3.capacity() == 0, "Expected empty array with 0 capacity");
+    // cr_expect(vec_3.size() == 0, "Expected empty array with 0 size");
+    // cr_expect_not(vec_3.clear(), "Expected fail on clearing an empty array");
 }
 
 Test(dynamic_array, adding_alements) {
@@ -197,7 +199,9 @@ Test(dynamic_array, reserving_space) {
     cr_expect(vec.capacity() == 0);
     cr_expect(vec_2.capacity() == 90);
 
-    cr_expect_not(vec.resize(std::numeric_limits<size_t>::max()));
+    //cr_expect_not(vec.resize(std::numeric_limits<size_t>::max()));
+    cr_expect_any_throw(vec.resize(std::numeric_limits<size_t>::max()));
+    //cr_expect_throw(vec.resize(std::numeric_limits<size_t>::max()), "failed", std::bad_alloc);
     cr_expect(vec.resize(17));
     cr_expect(vec_2.resize(19));
     cr_expect(vec.capacity() == 17);

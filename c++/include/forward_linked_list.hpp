@@ -21,11 +21,39 @@ class ForwardLinkedList : public LinkedListInterface<T> {
         ForwardLinkedList(const size_t length, const T& fillValue = T());
         ~ForwardLinkedList() override;
 
-        ForwardLinkedList(ForwardLinkedList& instance) = delete;
+        ForwardLinkedList(const ForwardLinkedList& srcInstance);
+        ForwardLinkedList& operator= (const ForwardLinkedList& srcInstance);
+
+        // inline ForwardLinkedList& operator= (const ForwardLinkedList&) = delete;
+        // inline ForwardLinkedList& operator= (ForwardLinkedList&) = delete;
+        //ForwardLinkedList& operator= (ForwardLinkedList&);
+        // ForwardLinkedList& operator= (const ForwardLinkedList);
+        // ForwardLinkedList& operator= (ForwardLinkedList);
+
+        /// getters/setters
+        inline const T& operator[] (size_t index) const override {
+            const Node *node(head_);
+            while (index > 0) {
+                node = node->next;
+                index--;
+            }
+
+            return (node->value);
+        }
+        inline T& operator[] (size_t index) override {
+            Node *node(head_);
+            while (index > 0) {
+                node = node->next;
+                index--;
+            }
+
+            return (node->value);
+        }
 
         bool get (const size_t index, T &dest) const noexcept override;
         bool set (const size_t index, const T &value) noexcept override;
 
+        /// modifiers
         bool swap (size_t index_1, size_t index_2) noexcept override;
 
         bool insert (const size_t index, const T &value) override;
@@ -52,6 +80,32 @@ ForwardLinkedList<T>::ForwardLinkedList(const size_t length, const T& fillValue)
 template<typename T>
 ForwardLinkedList<T>::~ForwardLinkedList() {
     this->clear();
+}
+
+
+template<typename T>
+ForwardLinkedList<T>::ForwardLinkedList(const ForwardLinkedList& srcInstance) :
+    ForwardLinkedList<T>() {
+    for (size_t i(0); i < srcInstance.length(); i++) {
+        this->append(srcInstance[i]);
+    }
+}
+
+
+template<typename T>
+ForwardLinkedList<T>& ForwardLinkedList<T>::operator= (const ForwardLinkedList& srcInstance) {
+    /// copy-assignment operator is expected to be safe on self-assignment, so
+    /// guard self assignment
+    if (&srcInstance == this) {
+        return (*this);
+    }
+
+    this->clear();
+    for (size_t i(0); i < srcInstance.length(); i++) {
+        this->append(srcInstance[i]);
+    }
+
+    return (*this);
 }
 
 
