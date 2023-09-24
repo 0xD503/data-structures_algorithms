@@ -118,8 +118,8 @@ Test(container_if, circular_buffer) {
 
 Test(container_if, skip_list) {
     SkipList<long, 3> sl;
-    //SkipList<long, 4> sl_2{};
+    SkipList<char, 4> sl_2{};
 
-    // test_container_if<long>(&sl, 0);
-    // test_container_if<long>(&sl_2, 0);
+    test_container_if<long>(&sl, 0);
+    test_container_if<char>(&sl_2, 0);
 }

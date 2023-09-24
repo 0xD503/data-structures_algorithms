@@ -264,6 +264,54 @@ add_test(
   COMMAND ${USER_CURR_TEST_TARGET}
 )
 
+set(USER_CURR_TEST_TARGET TestSetInterface)
+add_executable(${USER_CURR_TEST_TARGET}
+  test_set_if.cpp
+)
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  skip_list
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestSortedSetInterface)
+add_executable(${USER_CURR_TEST_TARGET}
+  test_sorted_set_if.cpp
+)
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  skip_list
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
+set(USER_CURR_TEST_TARGET TestSkipList)
+add_executable(${USER_CURR_TEST_TARGET}
+  test_skip_list.cpp
+)
+target_include_directories(${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(${USER_CURR_TEST_TARGET}
+  skip_list
+  criterion
+)
+add_test(
+  NAME ${USER_CURR_TEST_TARGET}
+  COMMAND ${USER_CURR_TEST_TARGET}
+)
+
 # add_executable(TestSkipList
 #   test_skip_list.cpp
 # #   ../src/skip_list.cpp

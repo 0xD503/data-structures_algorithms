@@ -7,6 +7,7 @@
 #include "queue.hpp"
 #include "stack.hpp"
 #include "circular_buffer.hpp"
+#include "skip_list.hpp"
 
 
 void setUp () {
@@ -142,4 +143,12 @@ Test(dynamic_container_if, circular_buffer) {
 
     CircularBuffer<long> cb_3(7, true);
     test_dynamic_container_if<long>(&cb_3);
+}
+
+Test(dynamic_container_if, skip_list) {
+    SkipList<long, 4> sl_1{};
+    SkipList<char, 4> sl_2{};
+
+    test_dynamic_container_if<long>(&sl_1);
+    test_dynamic_container_if<char>(&sl_2);
 }
