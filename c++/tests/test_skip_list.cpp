@@ -16,7 +16,7 @@ TestSuite(skip_list, .init = setUp, .fini = tearDown);
 
 
 template<typename T>
-void test_skip_list(SkipList<T> *sl, size_t initLen) {
+void test_skip_list(SkipList<T> *sl, size_t initLen, size_t maxHeight) {
     cr_assert_not_null(sl);
     cr_assert_eq(sl->length(), initLen);
 
@@ -24,13 +24,21 @@ void test_skip_list(SkipList<T> *sl, size_t initLen) {
 
     if (initLen == 0) {
         cr_expect(sl->empty());
+        cr_expect_eq(sl->length(), 0);
+        cr_expect_eq(sl->getHeight(), 0);
         cr_expect_not(sl->clear());
         cr_expect(sl->empty());
+        cr_expect_eq(sl->length(), 0);
+        cr_expect_eq(sl->getHeight(), 0);
     }
     else {
         cr_expect_not(sl->empty());
+        cr_expect_neq(sl->length(), 0);
+        cr_expect_leq(sl->getHeight(), maxHeight);
         cr_expect(sl->clear());
         cr_expect(sl->empty());
+        cr_expect_eq(sl->length(), 0);
+        cr_expect_eq(sl->getHeight(), 0);
     }
 
     /// set methods
@@ -73,12 +81,14 @@ void test_skip_list(SkipList<T> *sl, size_t initLen) {
     cr_expect_eq(val, hasVal);
 
     /// other
+    cr_expect_leq(sl->getHeight(), maxHeight);
 }
 
 
 Test(skip_list, test) {
-    SkipList<int> sklst_1;
-    SkipList<int> sklst_2{};
+    //SkipList<int> sklst_1;
+    constexpr size_t height_2 = 4;
+    SkipList<int, height_2> sklst_2{};
 
-    test_skip_list<int>(&sklst_2, 0);
+    test_skip_list<int>(&sklst_2, 0, height_2);
 }

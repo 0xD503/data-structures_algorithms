@@ -22,16 +22,10 @@ class SkipList : public SortedSetInterface<T> {
 
         bool clear () override;
 
-        inline bool insert (const T& val) noexcept override {
-            #warning "move out to implementation"
-        }
-        inline bool remove (const T& val) noexcept override {
-            #warning "move out to implementation"
-        }
+        bool insert (const T& val) noexcept override;
+        bool remove (const T& val) noexcept override;
 
-        inline bool find (const T& val, T& dest) const noexcept override {
-            #warning "move out to implementation"
-        }
+        bool find (const T& val, T& dest) const noexcept override;
 
     private:
         StaticArray<ForwardLinkedList<T>, maxLevels__> levels__{};
@@ -48,6 +42,8 @@ template<typename T, size_t maxLevels_>
 //SkipList<T, maxLevels_>::SkipList() : levels__() {
 //SkipList<T, maxLevels_>::SkipList() : levels__(ForwardLinkedList<T>(0)) {
 SkipList<T, maxLevels_>::SkipList() : levels__(ForwardLinkedList<T>(1)) {
+    #warning "sentinel ???"
+    //sentinel = ???
     // ForwardLinkedList<T> lst(1);
     // levels__.fill(lst);
 }
@@ -55,6 +51,7 @@ SkipList<T, maxLevels_>::SkipList() : levels__(ForwardLinkedList<T>(1)) {
 template<typename T, size_t maxLevels__>
 SkipList<T, maxLevels__>::~SkipList() {
     clear();
+    #warning "sentinel ???"
 }
 
 
@@ -62,7 +59,9 @@ template<typename T, size_t maxLevels__>
 bool SkipList<T, maxLevels__>::clear () {
     bool status(false);
 
+    #warning "sentinel ???"
     if (not this->empty()) {
+    //if (not this->length() > 1) {
         status = true;
         for (size_t i(0); i < maxLevels__; i++) {
             status = levels__[i].clear() && status;
@@ -73,7 +72,18 @@ bool SkipList<T, maxLevels__>::clear () {
 }
 
 
-// template<typename T, size_t maxLevels__>
-// size_t SkipList<T, maxLevels__>::length () const noexcept {
-//     //
-// }
+template<typename T, size_t maxLevels__>
+bool SkipList<T, maxLevels__>::insert (const T& val) noexcept {
+    //
+}
+
+template<typename T, size_t maxLevels__>
+bool SkipList<T, maxLevels__>::remove (const T& val) noexcept {
+    //
+}
+
+
+template<typename T, size_t maxLevels__>
+bool SkipList<T, maxLevels__>::find (const T& val, T& dest) const noexcept {
+    //
+}
