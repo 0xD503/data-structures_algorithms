@@ -10,6 +10,8 @@ class SetInterface : public DynamicContainerInterface<T> {
 
         virtual inline bool insert (const T& val) noexcept = 0;
         virtual inline bool remove (const T& val) noexcept = 0;
+
+        virtual inline bool contains (const T& val) const noexcept = 0;
 };
 
 

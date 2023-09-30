@@ -25,7 +25,9 @@ class SkipList : public SortedSetInterface<T> {
         bool insert (const T& val) noexcept override;
         bool remove (const T& val) noexcept override;
 
-        bool find (const T& val, T& dest) const noexcept override;
+        //bool find (const T& val, T& dest) const noexcept override;
+        //bool find (const T& val) const noexcept override;
+        bool find (const T& val, size_t& index) const noexcept override;
 
     private:
         StaticArray<ForwardLinkedList<T>, maxLevels__> levels__{};
@@ -35,6 +37,8 @@ class SkipList : public SortedSetInterface<T> {
         //const typename ForwardLinkedList<T>::Node *sentinel_p = &sentinel__;
         static constexpr size_t baseLevelIndex__{0};
         size_t height__{0};
+
+        //bool findIndex__ (const T& val, size_t& index) const noexcept;
 };
 
 
@@ -42,7 +46,7 @@ template<typename T, size_t maxLevels_>
 //SkipList<T, maxLevels_>::SkipList() : levels__() {
 //SkipList<T, maxLevels_>::SkipList() : levels__(ForwardLinkedList<T>(0)) {
 SkipList<T, maxLevels_>::SkipList() : levels__(ForwardLinkedList<T>(1)) {
-    #warning "sentinel ???"
+    //#warning "sentinel ???"
     //sentinel = ???
     // ForwardLinkedList<T> lst(1);
     // levels__.fill(lst);
@@ -51,7 +55,7 @@ SkipList<T, maxLevels_>::SkipList() : levels__(ForwardLinkedList<T>(1)) {
 template<typename T, size_t maxLevels__>
 SkipList<T, maxLevels__>::~SkipList() {
     clear();
-    #warning "sentinel ???"
+    //#warning "sentinel ???"
 }
 
 
@@ -59,7 +63,7 @@ template<typename T, size_t maxLevels__>
 bool SkipList<T, maxLevels__>::clear () {
     bool status(false);
 
-    #warning "sentinel ???"
+    //#warning "sentinel ???"
     if (not this->empty()) {
     //if (not this->length() > 1) {
         status = true;
@@ -74,16 +78,37 @@ bool SkipList<T, maxLevels__>::clear () {
 
 template<typename T, size_t maxLevels__>
 bool SkipList<T, maxLevels__>::insert (const T& val) noexcept {
-    //
+    //find in levels[baseLevelIndex__] proper position
+    //if contains, stop, return false
+    //otherwise flip a coin until it tails
+    //on tail, fill each level at position with value
+    ////assign next and prev pointers for each level
+    //update height
+    //return true
 }
 
 template<typename T, size_t maxLevels__>
 bool SkipList<T, maxLevels__>::remove (const T& val) noexcept {
-    //
+    //find in levels[baseLevelIndex__] proper position with value
+    //if it doesn't contains, return false
+    //otherewise remove the value from each level
+    ////update pointers
+    //update height
+    //return true
 }
 
 
 template<typename T, size_t maxLevels__>
-bool SkipList<T, maxLevels__>::find (const T& val, T& dest) const noexcept {
-    //
+bool SkipList<T, maxLevels__>::find (const T& val, size_t& index) const noexcept {
+//bool SkipList<T, maxLevels__>::find (const T& val, T& dest) const noexcept {
+    //find in levels[baseLevelIndex__] proper position with value
+    //if it doesn't contains, don't fill dest, return false
+    //otherwise return true
 }
+
+
+
+// template<typename T, size_t maxLevels__>
+// bool SkipList<T, maxLevels__>::findIndex__ (const T& val, size_t& index) const noexcept {
+//     //
+// }

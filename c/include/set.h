@@ -33,7 +33,7 @@ ContStatus find (Set *me, TYPENAME *dest);
  *
  * Return values:
  *   ContStatus_e::OK - element was succesfully added to the set
- *   ContStatus_e::FAILED - element wasn't added to the set because it already exists
+ *   ContStatus_e::FAILED - element wasn't added to the set because it already contains
  *   ContStatus_e::NOT_ENOUGH_MEM - not enough memory
  */
 ContStatus add (Set *me, TYPENAME elem);
