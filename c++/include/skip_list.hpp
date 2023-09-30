@@ -29,6 +29,12 @@ class SkipList : public SortedSetInterface<T> {
         bool find (const T& val, size_t& index) const noexcept override;
 
     private:
+        struct Node {
+            T val;
+            Node *next[maxLevels__];
+            size_t height;
+        };
+
         StaticArray<ForwardLinkedList<T>, maxLevels__> levels__{};
         //StaticArray<DynamicArray<T *>, maxLevels__> levels__{};
         typename ForwardLinkedList<T>::Node sentinel__{};
@@ -36,6 +42,8 @@ class SkipList : public SortedSetInterface<T> {
         static constexpr size_t baseLevelIndex__{0};
         size_t height__{0};
         static RNG coinFlipper__;
+
+        Node *findNode (const T& val) const noexcept;
 
         static bool flipCoin__ () noexcept;
 };
@@ -154,6 +162,15 @@ end:
 }
 
 
+
+template<typename T, size_t maxLevels__>
+typename SkipList<T, maxLevels__>::Node *SkipList<T, maxLevels__>::findNode (const T& val) const noexcept {
+    Node *node;
+
+    //
+
+    return (node);
+}
 
 template<typename T, size_t maxLevels__>
 bool SkipList<T, maxLevels__>::flipCoin__ () noexcept {
