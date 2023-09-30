@@ -27,6 +27,7 @@ target_link_libraries(${USER_CURR_TEST_TARGET}
   stack
   circular_buffer
   skip_list
+  random_number_generator
   criterion
 )
 add_test(
@@ -65,6 +66,8 @@ target_link_libraries(${USER_CURR_TEST_TARGET}
   queue
   stack
   circular_buffer
+  skip_list
+  random_number_generator
   criterion
 )
 add_test(
@@ -273,6 +276,7 @@ target_include_directories(${USER_CURR_TEST_TARGET}
 )
 target_link_libraries(${USER_CURR_TEST_TARGET}
   skip_list
+  random_number_generator
   criterion
 )
 add_test(
@@ -289,6 +293,7 @@ target_include_directories(${USER_CURR_TEST_TARGET}
 )
 target_link_libraries(${USER_CURR_TEST_TARGET}
   skip_list
+  random_number_generator
   criterion
 )
 add_test(
@@ -305,6 +310,7 @@ target_include_directories(${USER_CURR_TEST_TARGET}
 )
 target_link_libraries(${USER_CURR_TEST_TARGET}
   skip_list
+  random_number_generator
   criterion
 )
 add_test(

@@ -67,6 +67,7 @@ target_link_libraries(${PROJECT_NAME}
   stack
   circular_buffer
   skip_list
+  random_number_generator
 )
 
 ## testing

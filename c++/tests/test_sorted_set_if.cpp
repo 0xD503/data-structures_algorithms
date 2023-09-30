@@ -17,16 +17,15 @@ TestSuite(test_sorted_set_if, .init = setUp, .fini = tearDown);
 
 template<typename T>
 void test_sorted_set_if(SortedSetInterface<T> *ss, size_t length, T& prevVal, T& maxVal) {
+    /// check input data correctness
     cr_assert_not_null(ss);
     cr_assert_neq(prevVal, maxVal);
+    cr_assert_eq(ss->length(), length);
+    cr_assert(ss->contains(prevVal));
+    cr_assert(ss->contains(maxVal));
 
     //T val(-1);
     size_t index_1(SIZE_MAX), index_2(SIZE_MAX);
-
-    cr_expect_eq(ss->length(), length);
-
-    cr_expect(ss->contains(prevVal));
-    cr_expect(ss->contains(maxVal));
 
     /// sorted array has no values higher than max value
     cr_expect_not(ss->contains(maxVal + 1));
@@ -48,6 +47,9 @@ Test(test_sorted_set_if, skip_list) {
 
     long prevVal = 7;
     long maxVal = 8;
+    cr_expect(sl_1.insert(maxVal));
+    cr_expect(sl_1.insert(6));
+    cr_expect(sl_1.insert(prevVal));
     //test_sorted_set_if<long>(&sl_1, 0, 7, 8);
-    test_sorted_set_if<long>(&sl_1, 0, prevVal, maxVal);
+    test_sorted_set_if<long>(&sl_1, 3, prevVal, maxVal);
 }

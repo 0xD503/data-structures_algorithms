@@ -68,3 +68,24 @@ add_library(${USER_CURR_OBJECT_TARGET} OBJECT
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
 )
+target_link_libraries(${USER_CURR_OBJECT_TARGET}
+  random_number_generator
+)
+
+
+## algorithms
+set(USER_CURR_OBJECT_TARGET random_number_generator)
+add_library(${USER_CURR_OBJECT_TARGET} OBJECT
+  algorithms/rng.cpp
+)
+target_include_directories(${USER_CURR_OBJECT_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+
+set(USER_CURR_OBJECT_TARGET binary_search)
+add_library(${USER_CURR_OBJECT_TARGET} OBJECT
+  ../include/algorithms/binary_search.hpp
+)
+target_include_directories(${USER_CURR_OBJECT_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
