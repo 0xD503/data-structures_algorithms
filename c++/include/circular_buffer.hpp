@@ -43,3 +43,37 @@ class CircularBuffer : public DynamicContainerInterface<T> {
         Queue<T> queue_ {};
         bool overwritable_ { false };
 };
+
+
+
+template<typename T>
+CircularBuffer<T>::CircularBuffer(const size_t maxLen,
+                                  const bool overwritable) :
+    maxLength_(maxLen), queue_(maxLength_), overwritable_(overwritable) {
+    //
+}
+
+
+template<typename T>
+bool CircularBuffer<T>::get(T& dest) noexcept {
+    bool success(queue_.front(dest));
+    if (success) {
+        queue_.remove();
+    }
+
+    return (success);
+}
+
+template<typename T>
+bool CircularBuffer<T>::put(const T& val) noexcept {
+    bool success(false);
+
+    if (queue_.length() < maxLength()) {
+        success = queue_.add(val);
+    } else if (isOverwritable() and (maxLength() > 0)) {
+        success = queue_.remove();
+        success = success && queue_.add(val);
+    }
+
+    return (success);
+}

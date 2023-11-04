@@ -7,7 +7,7 @@ add_library(${USER_CURR_OBJECT_TARGET} OBJECT
 
 set(USER_CURR_OBJECT_TARGET dynamic_array)
 add_library(${USER_CURR_OBJECT_TARGET} OBJECT
-  dynamic_array.cpp
+  ../include/dynamic_array.hpp
 )
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
@@ -15,7 +15,7 @@ target_include_directories(${USER_CURR_OBJECT_TARGET}
 
 set(USER_CURR_OBJECT_TARGET linked_list)
 add_library(${USER_CURR_OBJECT_TARGET} OBJECT
-  linked_list.cpp
+  ../include/linked_list.hpp
 )
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
@@ -23,7 +23,7 @@ target_include_directories(${USER_CURR_OBJECT_TARGET}
 
 set(USER_CURR_OBJECT_TARGET forward_linked_list)
 add_library(${USER_CURR_OBJECT_TARGET} OBJECT
-  forward_linked_list.cpp
+  ../include/forward_linked_list.hpp
 )
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
@@ -31,7 +31,7 @@ target_include_directories(${USER_CURR_OBJECT_TARGET}
 
 set(USER_CURR_OBJECT_TARGET deque)
 add_library(${USER_CURR_OBJECT_TARGET} OBJECT
-  deque.cpp
+  ../include/deque.hpp
 )
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
@@ -39,7 +39,7 @@ target_include_directories(${USER_CURR_OBJECT_TARGET}
 
 set(USER_CURR_OBJECT_TARGET queue)
 add_library(${USER_CURR_OBJECT_TARGET} OBJECT
-  queue.cpp
+  ../include/queue.hpp
 )
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
@@ -47,7 +47,7 @@ target_include_directories(${USER_CURR_OBJECT_TARGET}
 
 set(USER_CURR_OBJECT_TARGET stack)
 add_library(${USER_CURR_OBJECT_TARGET} OBJECT
-  stack.cpp
+  ../include/stack.hpp
 )
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
@@ -55,7 +55,7 @@ target_include_directories(${USER_CURR_OBJECT_TARGET}
 
 set(USER_CURR_OBJECT_TARGET circular_buffer)
 add_library(${USER_CURR_OBJECT_TARGET} OBJECT
-  circular_buffer.cpp
+  ../include/circular_buffer.hpp
 )
 target_include_directories(${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include

@@ -34,3 +34,15 @@ class Stack : public StackInterface<T> {
     protected:
         Deque<T> _deque {};
 };
+
+
+
+template<typename T>
+Stack<T>::Stack(const size_t capacity) : _deque(capacity) {
+    //
+}
+
+template<typename T>
+Stack<T>::Stack(const size_t len, const T& fillValue) : _deque(len, fillValue) {
+    //
+}
