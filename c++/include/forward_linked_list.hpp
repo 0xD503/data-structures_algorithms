@@ -21,6 +21,7 @@ class ForwardLinkedList : public LinkedListInterface<T> {
         ForwardLinkedList(const size_t length, const T& fillValue = T());
         ~ForwardLinkedList() override;
 
+        /// copy constructor/assignment
         ForwardLinkedList(const ForwardLinkedList& srcInstance);
         ForwardLinkedList& operator= (const ForwardLinkedList& srcInstance);
 
@@ -58,6 +59,10 @@ class ForwardLinkedList : public LinkedListInterface<T> {
 
         bool insert (const size_t index, const T &value) override;
         bool remove (const size_t index) override;
+
+        // /// iterators
+        // inline patterns::Iterator<T>& begin () const noexcept override = delete;
+        // inline patterns::Iterator<T>& end () const noexcept override = delete;
 
     protected:
         Node *head_{nullptr};//, *tail_{nullptr};

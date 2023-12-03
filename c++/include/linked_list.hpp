@@ -34,6 +34,10 @@ class LinkedList : public LinkedListInterface<T> {
         bool insert (const size_t index, const T &value) override;
         bool remove (const size_t index) override;
 
+        // /// iterators
+        // inline patterns::Iterator<T>& begin () const noexcept override = delete;
+        // inline patterns::Iterator<T>& end () const noexcept override = delete;
+
     protected:
         Node _rootNode { T(), &_rootNode, &_rootNode };
 

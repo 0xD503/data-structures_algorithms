@@ -64,12 +64,19 @@ class DynamicArray : public ListInterface<T> {
                 }
         };
 
-        inline ArrayIterator begin () const noexcept {
+        inline const ArrayIterator begin () const noexcept {
             return ArrayIterator(_array);
         }
-        inline ArrayIterator end () const noexcept {
+        inline const ArrayIterator end () const noexcept {
             return ArrayIterator(_array + this->length());
         }
+        /// TODO: override
+        // inline patterns::Iterator<T>& begin () const noexcept override {
+        //     return ArrayIterator(_array);
+        // }
+        // inline patterns::Iterator<T>& end () const noexcept override {
+        //     return ArrayIterator(_array + this->length());
+        // }
 
     protected:
         T* _array {};
