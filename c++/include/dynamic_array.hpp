@@ -46,40 +46,24 @@ class DynamicArray : public ListInterface<T> {
 
         bool clear () override;
 
+        /// iterators
         class ArrayIterator final : public patterns::Iterator<T> {
             public:
                 ArrayIterator(T *ptr) : patterns::Iterator<T>(ptr) { }
 
                 inline patterns::Iterator<T>& operator++() noexcept override {
-                    _array++;
+                    this->ptr_++;
 
                     return *this;
                 }
 
-                inline int operator<=>(const patterns::Iterator<T>& other) const noexcept override {
-                    if (this->ptr__ > other.ptr__) {
-                        return 1;
-                    }
-                    else if (this->ptr__ < other.ptr__) {
-                        return -1;
-                    }
-                    else {
-                        return 0;
-                    }
+                inline patterns::Iterator<T>& operator--() noexcept override {
+                    this->ptr_--;
+
+                    return *this;
                 }
         };
-        // class ArrayIterator final {
-        //     public:
-        //         ArrayIterator(T *ptr) : ptr_(ptr) { }
 
-        //         ArrayIterator& operator++() { ptr_++; return *this; }
-        //         bool operator!=(const ArrayIterator& other) { return ptr_ != other.ptr_; }
-        //         const T& operator*() const { return *ptr_; }
-
-        //     protected:
-        //         T *ptr_;
-        // };
-        /// iterators
         inline ArrayIterator begin () const noexcept {
             return ArrayIterator(_array);
         }
