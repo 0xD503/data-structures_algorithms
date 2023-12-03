@@ -1,6 +1,7 @@
 #pragma once
 
 #include "list_interface.hpp"
+#include "patterns/iterator.hpp"
 
 #include <utility>
 
@@ -15,10 +16,10 @@ class DynamicArray : public ListInterface<T> {
         DynamicArray() = default;
         explicit DynamicArray(const size_t capacity);
         DynamicArray(const size_t length, const T& fillValue);
-        DynamicArray(const DynamicArray& darr) = default;
         ~DynamicArray() override;
 
-        inline DynamicArray& operator=(const DynamicArray& other) = default;
+        inline DynamicArray(const DynamicArray& darr) = delete;             /// TODO: unimplemented
+        inline DynamicArray& operator=(const DynamicArray& other) = delete; /// TODO: unimplemented
 
         /// memory management
         inline size_t capacity () const noexcept { return (_capacity); }
@@ -44,6 +45,47 @@ class DynamicArray : public ListInterface<T> {
         bool remove (const size_t index) override;
 
         bool clear () override;
+
+        class ArrayIterator final : public patterns::Iterator<T> {
+            public:
+                ArrayIterator(T *ptr) : patterns::Iterator<T>(ptr) { }
+
+                inline patterns::Iterator<T>& operator++() noexcept override {
+                    _array++;
+
+                    return *this;
+                }
+
+                inline int operator<=>(const patterns::Iterator<T>& other) const noexcept override {
+                    if (this->ptr__ > other.ptr__) {
+                        return 1;
+                    }
+                    else if (this->ptr__ < other.ptr__) {
+                        return -1;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+        };
+        // class ArrayIterator final {
+        //     public:
+        //         ArrayIterator(T *ptr) : ptr_(ptr) { }
+
+        //         ArrayIterator& operator++() { ptr_++; return *this; }
+        //         bool operator!=(const ArrayIterator& other) { return ptr_ != other.ptr_; }
+        //         const T& operator*() const { return *ptr_; }
+
+        //     protected:
+        //         T *ptr_;
+        // };
+        /// iterators
+        inline ArrayIterator begin () const noexcept {
+            return ArrayIterator(_array);
+        }
+        inline ArrayIterator end () const noexcept {
+            return ArrayIterator(_array + this->length());
+        }
 
     protected:
         T* _array {};
