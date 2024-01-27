@@ -24,7 +24,7 @@ void test_hash_table(HashTable<T> *ht, size_t numOfElems) {
 
 
 Test(test_hash_table, long) {
-    HashTable<long> ht_1{};
+    HashTable<long> ht_1(71);
 
     test_hash_table<long>(&ht_1, 0);
 }

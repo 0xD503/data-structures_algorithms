@@ -62,7 +62,7 @@ Test(test_set_interface, skip_list) {
 }
 
 Test(test_set_interface, hash_table) {
-    HashTable<long> ht_1{};
+    HashTable<long> ht_1(71);
 
     test_set_if<long>(&ht_1, 0);
 }
