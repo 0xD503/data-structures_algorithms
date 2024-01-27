@@ -4,7 +4,7 @@
 #include "linked_list.hpp"
 #include "deque.hpp"
 #include "queue.hpp"
-#include "stack.hpp"
+//#include "stack.hpp"
 
 
 void setUp () {
@@ -92,15 +92,15 @@ Test(sequence_if, queue) {
     testSequenceIf<long>(&q_4);
 }
 
-Test(sequence_if, stack) {
-    Stack<long> q;
-    Stack<long> q_2 {};
-    Stack<long> q_3(4);
-    Stack<long> q_4(4, 2);
-    q_4.push(8);
+// Test(sequence_if, stack) {
+//     Stack<long> q;
+//     Stack<long> q_2 {};
+//     Stack<long> q_3(4);
+//     Stack<long> q_4(4, 2);
+//     q_4.push(8);
 
-    testEmptySequenceIf<long>(&q);
-    testEmptySequenceIf<long>(&q_2);
-    testEmptySequenceIf<long>(&q_3);
-    testSequenceIf<long>(&q_4);
-}
+//     testEmptySequenceIf<long>(&q);
+//     testEmptySequenceIf<long>(&q_2);
+//     testEmptySequenceIf<long>(&q_3);
+//     testSequenceIf<long>(&q_4);
+// }

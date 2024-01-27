@@ -73,6 +73,14 @@ target_link_libraries(${USER_CURR_OBJECT_TARGET}
 )
 
 
+set(USER_CURR_OBJECT_TARGET hash_table)
+add_library(
+  ${USER_CURR_OBJECT_TARGET}
+  OBJECT
+  ../include/hash_table.hpp
+)
+
+
 ## algorithms
 set(USER_CURR_OBJECT_TARGET random_number_generator)
 add_library(${USER_CURR_OBJECT_TARGET} OBJECT
@@ -87,5 +95,14 @@ add_library(${USER_CURR_OBJECT_TARGET} OBJECT
   ../include/algorithms/binary_search.hpp
 )
 target_include_directories(${USER_CURR_OBJECT_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+
+set(USER_CURR_OBJECT_TARGET hash)
+add_library(${USER_CURR_OBJECT_TARGET} OBJECT
+  ../include/algorithms/hash.hpp
+)
+target_include_directories(
+  ${USER_CURR_OBJECT_TARGET}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
 )

@@ -318,6 +318,22 @@ add_test(
   COMMAND ${USER_CURR_TEST_TARGET}
 )
 
+
+set(USER_CURR_TEST_TARGET TestHashTable)
+add_executable(
+  ${USER_CURR_TEST_TARGET}
+  test_hash_table.cpp
+)
+target_include_directories(
+  ${USER_CURR_TEST_TARGET}
+  PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
+target_link_libraries(
+  ${USER_CURR_TEST_TARGET}
+  hash_table
+  criterion
+)
+
 # add_executable(TestSkipList
 #   test_skip_list.cpp
 # #   ../src/skip_list.cpp

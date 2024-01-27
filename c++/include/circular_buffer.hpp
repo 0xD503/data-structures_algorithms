@@ -49,6 +49,7 @@ class CircularBuffer : public DynamicContainerInterface<T> {
 template<typename T>
 CircularBuffer<T>::CircularBuffer(const size_t maxLen,
                                   const bool overwritable) :
+    DynamicContainerInterface<T>(),
     maxLength_(maxLen), queue_(maxLength_), overwritable_(overwritable) {
     //
 }

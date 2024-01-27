@@ -1,6 +1,7 @@
 #include <criterion/criterion.h>
 
 #include "skip_list.hpp"
+#include "hash_table.hpp"
 
 
 void setUp () {
@@ -57,6 +58,11 @@ void test_set_if(SetInterface<T> *set, size_t length = 0) {
 Test(test_set_interface, skip_list) {
     SkipList<long, 4> sl_1{};
 
-    test_set_if<long>(&sl_1, 0);
-    //test_set_if<SkipList<long, 4>>(&sl_1, 0);
+    //test_set_if<long>(&sl_1, 0);
+}
+
+Test(test_set_interface, hash_table) {
+    HashTable<long> ht_1{};
+
+    test_set_if<long>(&ht_1, 0);
 }

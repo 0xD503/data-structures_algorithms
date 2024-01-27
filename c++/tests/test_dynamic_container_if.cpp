@@ -152,3 +152,16 @@ Test(dynamic_container_if, skip_list) {
     test_dynamic_container_if<long>(&sl_1);
     test_dynamic_container_if<char>(&sl_2);
 }
+
+// Test(sequence_if, stack) {
+//     Stack<long> q;
+//     Stack<long> q_2 {};
+//     Stack<long> q_3(4);
+//     Stack<long> q_4(4, 2);
+//     q_4.push(8);
+
+//     testEmptySequenceIf<long>(&q);
+//     testEmptySequenceIf<long>(&q_2);
+//     testEmptySequenceIf<long>(&q_3);
+//     testSequenceIf<long>(&q_4);
+// }

@@ -19,17 +19,14 @@ class Stack : public StackInterface<T> {
 
         inline bool clear () override { return (_deque.clear()); }
 
-        inline bool front (T& val) const noexcept override {
-            return (_deque.front(val));
-        }
-        inline bool back (T& val) const noexcept override {
-            return (_deque.back(val));
-        }
-
         inline bool push (const T& val) override {
             return (_deque.addBack(val));
         }
         inline bool pop () override { return (_deque.removeBack()); }
+
+        inline bool top (T& val) const noexcept override {
+            return (_deque.back(val));
+        }
 
     protected:
         Deque<T> _deque {};
